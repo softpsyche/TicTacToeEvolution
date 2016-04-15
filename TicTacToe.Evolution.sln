@@ -1,0 +1,59 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.31101.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TicTacToe", "TicTacToe\TicTacToe.csproj", "{A4FD8F07-F15E-4605-BD4C-BE69B505A23F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TicTacToe.Evolution", "TicTacToe.Evolution\TicTacToe.Evolution.csproj", "{697990E1-A27F-4588-8F68-2A07E2B79C9B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TicTacToe.Evolution.WindowsApplication", "TicTacToe.Evolution.WindowsApplication\TicTacToe.Evolution.WindowsApplication.csproj", "{E2162FAD-48A5-41D5-8C4D-D077D3D133C8}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Testing", "Testing", "{A44716C5-E9E8-4FF9-9975-06050210BC84}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TicTacToe.Evolution.Test.Specification", "TicTacToe.Evolution.Test.Specification\TicTacToe.Evolution.Test.Specification.csproj", "{2CE38E4D-027D-4B33-AA9B-60E63A298431}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TicTacToe.Test.Specification", "TicTacToe.Test.Specification\TicTacToe.Test.Specification.csproj", "{189945E0-8AD2-450A-AF58-F0797A3D7515}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{4B50762C-6A85-487D-979F-4A91678B6503}"
+	ProjectSection(SolutionItems) = preProject
+		.nuget\NuGet.Config = .nuget\NuGet.Config
+		.nuget\NuGet.exe = .nuget\NuGet.exe
+		.nuget\NuGet.targets = .nuget\NuGet.targets
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A4FD8F07-F15E-4605-BD4C-BE69B505A23F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A4FD8F07-F15E-4605-BD4C-BE69B505A23F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A4FD8F07-F15E-4605-BD4C-BE69B505A23F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A4FD8F07-F15E-4605-BD4C-BE69B505A23F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{697990E1-A27F-4588-8F68-2A07E2B79C9B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{697990E1-A27F-4588-8F68-2A07E2B79C9B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{697990E1-A27F-4588-8F68-2A07E2B79C9B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{697990E1-A27F-4588-8F68-2A07E2B79C9B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E2162FAD-48A5-41D5-8C4D-D077D3D133C8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E2162FAD-48A5-41D5-8C4D-D077D3D133C8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E2162FAD-48A5-41D5-8C4D-D077D3D133C8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E2162FAD-48A5-41D5-8C4D-D077D3D133C8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2CE38E4D-027D-4B33-AA9B-60E63A298431}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2CE38E4D-027D-4B33-AA9B-60E63A298431}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2CE38E4D-027D-4B33-AA9B-60E63A298431}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2CE38E4D-027D-4B33-AA9B-60E63A298431}.Release|Any CPU.Build.0 = Release|Any CPU
+		{189945E0-8AD2-450A-AF58-F0797A3D7515}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{189945E0-8AD2-450A-AF58-F0797A3D7515}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{189945E0-8AD2-450A-AF58-F0797A3D7515}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{189945E0-8AD2-450A-AF58-F0797A3D7515}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{2CE38E4D-027D-4B33-AA9B-60E63A298431} = {A44716C5-E9E8-4FF9-9975-06050210BC84}
+		{189945E0-8AD2-450A-AF58-F0797A3D7515} = {A44716C5-E9E8-4FF9-9975-06050210BC84}
+	EndGlobalSection
+EndGlobal
