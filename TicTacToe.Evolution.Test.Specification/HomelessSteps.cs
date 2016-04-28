@@ -61,11 +61,11 @@ namespace TicTacToe.Evolution.Test.Specification
 		{
 			get
 			{
-				return EvolutionContext.CreateFitnessProvider();
+				return EvolutionContext.CreateSelector();
 			}
 			set
 			{
-				this.MockEvolutionContext.Setup(a => a.CreateFitnessProvider()).Returns(value);
+				this.MockEvolutionContext.Setup(a => a.CreateSelector()).Returns(value);
 			}
 		}
 

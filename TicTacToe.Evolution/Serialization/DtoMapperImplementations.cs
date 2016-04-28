@@ -18,8 +18,8 @@ namespace TicTacToe.Evolution.Serialization
 		{
 			return new PopulationDto()
 			{
-				Name = source.Name,
-				Size = source.Size,
+				//Name = source.Name,
+				//Size = source.Size,
 				Individuals = this.MapCollection<Individual, IndividualDto>(source.GetIndividuals())
 			};
 		}

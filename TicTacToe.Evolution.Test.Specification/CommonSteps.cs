@@ -18,7 +18,7 @@ namespace TicTacToe.Evolution.Test.Specification
 		[Given(@"I have a mock evolution context")]
 		public void GivenIHaveAnEvolutionContext()
 		{
-			this.MockEvolutionContext = new Mock<EvolutionContext>()
+			this.MockEvolutionContext = new Mock<EvolutionFactory>()
 			{
 				CallBase = true
 			};
@@ -26,7 +26,7 @@ namespace TicTacToe.Evolution.Test.Specification
 		[Given(@"I have the following evolution settings")]
 		public void GivenIHaveTheFollowingEvolutionSettings(Table table)
 		{
-			var instance = table.CreateInstance<EvolutionSettings>();
+			var instance = table.CreateInstance<PopulationSettings>();
 
 			this.MockEvolutionContext
 				.Setup(a => a.EvolutionSettings)
@@ -43,18 +43,18 @@ namespace TicTacToe.Evolution.Test.Specification
 
 	public abstract class Steps
 	{
-		protected Mock<EvolutionContext> MockEvolutionContext
+		protected Mock<EvolutionFactory> MockEvolutionContext
 		{
 			get
 			{
-				return ScenarioContext.Current.Get<Mock<EvolutionContext>>();
+				return ScenarioContext.Current.Get<Mock<EvolutionaFactory>>();
 			}
 			set
 			{
-				ScenarioContext.Current.Set<Mock<EvolutionContext>>(value);
+				ScenarioContext.Current.Set<Mock<EvolutionaFactory>>(value);
 			}
 		}
-		protected IEvolutionContext EvolutionContext
+		protected IEvolutionFactory EvolutionContext
 		{
 			get
 			{

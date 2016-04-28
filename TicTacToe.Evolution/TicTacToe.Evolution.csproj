@@ -47,8 +47,8 @@
   <ItemGroup>
     <Compile Include="Breeder.cs" />
     <Compile Include="Culler.cs" />
-    <Compile Include="EvolutionContext.cs" />
-    <Compile Include="EvolutionSettings.cs" />
+    <Compile Include="EvolutionFactory.cs" />
+    <Compile Include="PopulationSettings.cs" />
     <Compile Include="Extensions.cs" />
     <Compile Include="GameMatch.cs" />
     <Compile Include="Mutator.cs" />

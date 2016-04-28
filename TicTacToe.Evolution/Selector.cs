@@ -9,13 +9,12 @@ namespace TicTacToe.Evolution
 {
 	public class Selector
 	{
-		private IEvolutionContext Context { get; set; }
+		private IGameFactory GameFactory { get; set; }
 		private Int32 MaximumMatchesPerIndividual { get; set; }
-
-		public Selector(IEvolutionContext context)
+		public Selector(IGameFactory gameFactory, Int32 maximumMatchesPerIndividual)
 		{
-			this.Context = context;
-			this.MaximumMatchesPerIndividual = context.EvolutionSettings.MaximumMatchesPerIndividual;
+			this.GameFactory = gameFactory;
+			this.MaximumMatchesPerIndividual = maximumMatchesPerIndividual;
 		}
 
 		public IEnumerable<FitnessResult> EvaluateFitness(IEnumerable<Individual> individuals)
@@ -53,8 +52,8 @@ namespace TicTacToe.Evolution
 
 					opponents.ForEach(a =>
 					{
-						individual.CreateMatch(Context, a);
-						a.CreateMatch(Context, individual);
+						individual.CreateMatch(this.GameFactory, a);
+						a.CreateMatch(this.GameFactory, individual);
 					});
 				}
 			}
@@ -148,10 +147,10 @@ namespace TicTacToe.Evolution
 			this._OMatches = new List<GameMatch>();
 		}
 
-		public void CreateMatch(IEvolutionContext context, IndividualFitnessProvider oPlayer)
+		public void CreateMatch(IGameFactory gameFactory, IndividualFitnessProvider oPlayer)
 		{
 			var match = new GameMatch(
-				context.CreateGame(),
+				gameFactory.NewGame(),
 				this.Individual,
 				oPlayer.Individual,
 				this.Score,

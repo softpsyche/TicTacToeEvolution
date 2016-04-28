@@ -6,13 +6,14 @@ using System.Threading.Tasks;
 
 namespace TicTacToe.Evolution
 {
-	public class EvolutionSettings
+	public class PopulationSettings
 	{
-		public Int32 MaximumMatchesPerIndividual { get; set; }
-		public Int32 MaximumPopulationSize { get; set; }
+		public String Name { get; set; }
+		public Int32 MaximumSize { get; set; }
 		public Double MutationRate { get; set; }
+		public Int32 MaximumMatchesPerIndividual { get; set; }
 
-		public EvolutionSettings()
+		public PopulationSettings()
 		{
 			//this.MaximumMatchesPerIndividual = 5;
 			//this.MaximumPopulationSize = 10;

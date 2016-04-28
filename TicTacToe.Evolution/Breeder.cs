@@ -8,45 +8,44 @@ namespace TicTacToe.Evolution
 {
 	public class Breeder
 	{
-		private IEvolutionContext Context { get; set; }
+		private IRandom RandomNumberGenerator { get; set; }
 		private Dictionary<Int64, Double> GenerationAverageFitnessDictionary
 		{
 			get;
 			set;
 		}
 
-		public Breeder(IEvolutionContext context)
+		public Breeder(IRandom randomNumberGenerator)
 		{
-			this.Context = context;
-
+			RandomNumberGenerator = randomNumberGenerator;
 			this.GenerationAverageFitnessDictionary = new Dictionary<long, double>();
 		}
 
-		public IEnumerable<Individual> Breed(IEnumerable<FitnessResult> scores)
+		public IEnumerable<Individual> Breed(IEnumerable<FitnessResult> scores, Int32 broodSize,Double mutationRate)
 		{
 			List<Individual> nextGeneration = new List<Individual>();
 			var totalScore = scores.Sum(a => a.Score);
 
 			foreach (var score in scores)
 			{
-				nextGeneration.AddRange(BreedIndividual(score.Individual, GetBreedCount(totalScore, score.Score)));
+				nextGeneration.AddRange(BreedIndividual(score.Individual, GetBreedCount(totalScore, score.Score, broodSize), mutationRate));
 			}
 
 			GenerationAverageFitnessDictionary.Add(GenerationAverageFitnessDictionary.Count, totalScore / scores.Count());
 
 			return nextGeneration;
 		}
-		private Int32 GetBreedCount(Double totalScore, Double individualScore)
+		private Int32 GetBreedCount(Double totalScore, Double individualScore,Int32 broodSize)
 		{
 			if (totalScore == 0)
 				return 1;
 			else
-				return Convert.ToInt32(Math.Ceiling((individualScore / totalScore) * Context.EvolutionSettings.MaximumPopulationSize));
+				return Convert.ToInt32(Math.Ceiling((individualScore / totalScore) * broodSize));
 		}
-		public IEnumerable<Individual> BreedIndividual(Individual individual, Int32 count)
+		public IEnumerable<Individual> BreedIndividual(Individual individual, Int32 count,Double mutationRate)
 		{
 			var children = individual.Copy(count);
-			var mutator = new Mutator(this.Context.CreateRandom(), this.Context.EvolutionSettings.MutationRate);
+			var mutator = new Mutator(this.RandomNumberGenerator, mutationRate);
 
 			mutator.Mutate(children);
 

@@ -8,26 +8,24 @@ namespace TicTacToe.Evolution
 {
 	public class Culler
 	{
-		private IEvolutionContext Context { get; set; }
-
-		public Culler(IEvolutionContext context)
+		public Culler()
 		{
-			this.Context = context;
+
 		}
 
-		public IList<FitnessResult> Cull(IEnumerable<FitnessResult> fitnessScores)
+		public IList<FitnessResult> Cull(IEnumerable<FitnessResult> fitnessScores, Int32 maximumSize)
 		{
 			var orderedFittest = fitnessScores
 				.OrderByDescending(a => a.Score)
 				.ToList();
 
-			if (fitnessScores.Count() < Context.EvolutionSettings.MaximumPopulationSize)
+			if (fitnessScores.Count() < maximumSize)
 			{
 				return orderedFittest;
 			}
 			else
 			{
-				return orderedFittest.Take(Context.EvolutionSettings.MaximumPopulationSize).ToList();
+				return orderedFittest.Take(maximumSize).ToList();
 			}
 
 		}

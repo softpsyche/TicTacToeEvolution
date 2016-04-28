@@ -8,33 +8,29 @@ namespace TicTacToe.Evolution
 {
 	public class Population
 	{
-		public String Name { get; set; }
-		public Int32 Size { get; set; }
+		public String Name { get { return Settings.Name; } }
+
+		private PopulationSettings Settings { get; set; }
 		public IEnumerable<Individual> GetIndividuals()
 		{
 			return Individuals;
 		}
 
-		private IEvolutionContext Context { get; set; }
-
-
 		private List<Individual> Individuals { get; set; }
-		private Selector FitnessProvider { get; set; }
+		private Selector Selector { get; set; }
 		private Culler Culler { get; set; }
 		private Breeder Breeder { get; set; }
-
-		//private PopulationHistory PopulationHistory { get; set; }
 
 		public void Evolve()
 		{
 			//Evaluate the fitness of the individuals
-			var fitnessResults = FitnessProvider.EvaluateFitness(Individuals);
+			var fitnessResults = Selector.EvaluateFitness(Individuals);
 
 			//Get the survivors
-			var survivors = Culler.Cull(fitnessResults);
+			var survivors = Culler.Cull(fitnessResults, Settings.MaximumSize);
 
 			//breed based on the survivors
-			this.Individuals = Breeder.Breed(survivors).ToList();
+			this.Individuals = Breeder.Breed(survivors,this.Settings.MaximumSize, this.Settings.MutationRate).ToList();
 
 			if (fitnessResults.OrderByDescending(a => a.Score).First().Score > 100)
 			{
@@ -48,16 +44,15 @@ namespace TicTacToe.Evolution
 			//PopulationHistory.Record(nextGeneration);
 		}
 
-		public Population(IEvolutionContext context)
+		public Population(PopulationSettings settings, Selector selector, Culler culler, Breeder breeder)
 		{
-			this.Context = context;
+			this.Settings = settings;
 
-			this.FitnessProvider = this.Context.CreateFitnessProvider();
-			this.Culler = this.Context.CreateCuller();
-			this.Breeder = this.Context.CreateBreeder();
-			this.Size = this.Context.EvolutionSettings.MaximumPopulationSize;
+			this.Selector = selector;
+			this.Culler = culler;
+			this.Breeder = breeder;
 
-			this.Individuals = this.Breeder.NewIndividuals(this.Size);
+			this.Individuals = this.Breeder.NewIndividuals(this.Settings.MaximumSize);
 		}
 
 

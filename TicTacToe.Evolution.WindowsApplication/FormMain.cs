@@ -14,7 +14,7 @@ namespace TicTacToe.Evolution.WindowsApplication
 {
 	public partial class FormMain : Form
 	{
-		EvolutionContext Context;
+		EvolutionFactory Context;
 		Population Population { get; set; }
 		JsonSerializer serializer;
 
@@ -22,9 +22,9 @@ namespace TicTacToe.Evolution.WindowsApplication
 		{
 			InitializeComponent();
 
-			this.Context = new EvolutionContext();
+			this.Context = new EvolutionFactory();
 			this.Population = this.Context.CreatePopulation();
-			this.Population.Name = String.Format("Population.{0}.pop",DateTime.Now.ToString("MM_dd_yyyy"));
+			//this.Population.Name = String.Format("Population.{0}.pop",DateTime.Now.ToString("MM_dd_yyyy"));
 			serializer = new JsonSerializer();
 		}
 
