@@ -14,7 +14,7 @@ namespace TicTacToe.Evolution.WindowsApplication
 {
 	public partial class FormMain : Form
 	{
-		EvolutionFactory Context;
+		EvolutionFactory EvolutionFactory;
 		Population Population { get; set; }
 		JsonSerializer serializer;
 
@@ -22,8 +22,8 @@ namespace TicTacToe.Evolution.WindowsApplication
 		{
 			InitializeComponent();
 
-			this.Context = new EvolutionFactory();
-			this.Population = this.Context.CreatePopulation();
+			this.EvolutionFactory = new EvolutionFactory();
+			this.Population = this.EvolutionFactory.NewPopulation();
 			//this.Population.Name = String.Format("Population.{0}.pop",DateTime.Now.ToString("MM_dd_yyyy"));
 			serializer = new JsonSerializer();
 		}
@@ -107,7 +107,7 @@ namespace TicTacToe.Evolution.WindowsApplication
 			var population = serializer.DeserializeFromFile(@"c:\Population.04_04_2016.AllNight.pop");
 
 
-			this.Population = this.Context.CreatePopulation(population);
+			//this.Population = this.Context.CreatePopulation(population);
 		}
 
 		private void buttonSave_Click(object sender, EventArgs e)

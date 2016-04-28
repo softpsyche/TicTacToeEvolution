@@ -28,9 +28,9 @@ namespace TicTacToe.Evolution.Test.Specification
 		{
 			var instance = table.CreateInstance<PopulationSettings>();
 
-			this.MockEvolutionContext
-				.Setup(a => a.EvolutionSettings)
-				.Returns(instance);
+			//this.MockEvolutionContext
+			//	.Setup(a => a.EvolutionSettings)
+			//	.Returns(instance);
 		}
 		[Given(@"I have a random number generator with seed (.*)")]
 		public void GivenIHaveARandomNumberGeneratorWithSeed(int p0)
@@ -47,11 +47,11 @@ namespace TicTacToe.Evolution.Test.Specification
 		{
 			get
 			{
-				return ScenarioContext.Current.Get<Mock<EvolutionaFactory>>();
+				return ScenarioContext.Current.Get<Mock<EvolutionFactory>>();
 			}
 			set
 			{
-				ScenarioContext.Current.Set<Mock<EvolutionaFactory>>(value);
+				ScenarioContext.Current.Set<Mock<EvolutionFactory>>(value);
 			}
 		}
 		protected IEvolutionFactory EvolutionContext
@@ -65,11 +65,11 @@ namespace TicTacToe.Evolution.Test.Specification
 		{
 			get
 			{
-				return EvolutionContext.CreateBreeder();
+				return null;// EvolutionContext.CreateBreeder();
 			}
 			set
 			{
-				this.MockEvolutionContext.Setup(a => a.CreateBreeder()).Returns(value);
+				//this.MockEvolutionContext.Setup(a => a.CreateBreeder()).Returns(value);
 			}
 		}
 

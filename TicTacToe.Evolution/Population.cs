@@ -8,7 +8,21 @@ namespace TicTacToe.Evolution
 {
 	public class Population
 	{
-		public String Name { get { return Settings.Name; } }
+		public String Name
+		{
+			get;
+			set;
+		}
+		public Int32 MaximumSize
+		{
+			get;
+			set;
+		}
+		public Double MutationRate
+		{
+			get;
+			set;
+		}
 
 		private PopulationSettings Settings { get; set; }
 		public IEnumerable<Individual> GetIndividuals()

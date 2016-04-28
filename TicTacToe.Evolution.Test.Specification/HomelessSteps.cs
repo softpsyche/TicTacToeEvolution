@@ -61,11 +61,11 @@ namespace TicTacToe.Evolution.Test.Specification
 		{
 			get
 			{
-				return EvolutionContext.CreateSelector();
+				return null;//EvolutionContext.CreateSelector();
 			}
 			set
 			{
-				this.MockEvolutionContext.Setup(a => a.CreateSelector()).Returns(value);
+				//this.MockEvolutionContext.Setup(a => a.CreateSelector()).Returns(value);
 			}
 		}
 
@@ -79,12 +79,12 @@ namespace TicTacToe.Evolution.Test.Specification
 		[Given(@"I have a breeder")]
 		public void GivenIHaveABreeder()
 		{
-			this.Breeder = new Breeder(this.EvolutionContext);
+			//this.Breeder = new Breeder(this.EvolutionContext);
 		}
 		[Given(@"I have a fitness calculator")]
 		public void GivenIHaveAFitnessCalculator()
 		{
-			this.FitnessCalculator = new Selector(this.EvolutionContext);
+			//this.FitnessCalculator = new Selector(this.EvolutionContext);
 		}
 
 

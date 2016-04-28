@@ -19,13 +19,13 @@ namespace TicTacToe.Evolution
 			return new GameRng();
 		}
 
-		public virtual Population CreatePopulation(PopulationDto dto)
+		public virtual Population NewPopulation(PopulationDto dto)
 		{
 			var yo = dto;
 
 			return null;
 		}
-		public virtual Population CreatePopulation()
+		public virtual Population NewPopulation()
 		{
 			var settings = new PopulationSettings()
 			{
@@ -49,8 +49,7 @@ namespace TicTacToe.Evolution
 	}
 	public interface IEvolutionFactory
 	{
-
-		Population CreatePopulation();
+		Population NewPopulation();
 	}
 
 
