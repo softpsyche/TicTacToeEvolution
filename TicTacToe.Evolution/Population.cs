@@ -15,7 +15,7 @@ namespace TicTacToe.Evolution
 			return Individuals;
 		}
 
-		//private IEvolutionContext Context { get; set; }
+		private IEvolutionContext Context { get; set; }
 
 
 		private List<Individual> Individuals { get; set; }
@@ -48,9 +48,9 @@ namespace TicTacToe.Evolution
 			//PopulationHistory.Record(nextGeneration);
 		}
 
-		public Population(Fit IEvolutionContext context)
+		public Population(IEvolutionContext context)
 		{
-			//this.Context = context;
+			this.Context = context;
 
 			this.FitnessProvider = this.Context.CreateFitnessProvider();
 			this.Culler = this.Context.CreateCuller();
