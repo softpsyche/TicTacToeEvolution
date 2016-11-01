@@ -146,6 +146,34 @@ namespace TicTacToe.Evolution
 			}
 		}
 		#endregion
+
+		private Int32? _key;
+		public Int32 Key
+		{
+			get
+			{
+				if (!_key.HasValue)
+				{
+					_key = BuildKey();
+				}
+
+				return _key.Value;
+			}
+		}
+		private Int32 BuildKey()
+		{
+			return
+				(int)Alleles[0] * 1 +
+				(int)Alleles[1] * 10 +
+				(int)Alleles[2] * 100 +
+				(int)Alleles[3] * 1000 +
+				(int)Alleles[5] * 10000 +
+				(int)Alleles[6] * 100000 +
+				(int)Alleles[7] * 1000000 +
+				(int)Alleles[8] * 10000000 +
+				(Response.HasValue? Response.Value: 9) *		100000000 +
+				Move *			1000000000;
+		}
 	}
 
 	[Flags]
@@ -154,8 +182,8 @@ namespace TicTacToe.Evolution
 		DontCare = 0,
 		Empty = 1,
 		OccupiedAny = 2,
-		OccupiedX = 4,
-		OccupiedO = 8,
-		Response = 16,
+		OccupiedX = 3,
+		OccupiedO = 4,
+		Response = 5,
 	}
 }

@@ -7,7 +7,7 @@ using TicTacToe.Evolution.Serialization;
 
 namespace TicTacToe.Evolution
 {
-	public class EvolutionFactory : IEvolutionFactory,IGameFactory
+	public class EvolutionFactory : IEvolutionFactory, IGameFactory
 	{
 
 		public virtual IGame NewGame()
@@ -31,14 +31,15 @@ namespace TicTacToe.Evolution
 			{
 				MaximumMatchesPerIndividual = 5,
 				MaximumSize = 200,
-				MutationRate = .01D
+				MutationRate = .01D,
+				MaximumIndividualOffspring = 10
 			};
 
 			var rng = new GameRng();
 
 			return new Population(
 				settings,
-				new Selector(this,settings.MaximumMatchesPerIndividual),
+				new Selector(this, settings.MaximumMatchesPerIndividual),
 				new Culler(),
 				new Breeder(rng));
 		}

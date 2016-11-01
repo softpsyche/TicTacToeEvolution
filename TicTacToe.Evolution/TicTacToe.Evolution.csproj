@@ -61,7 +61,6 @@
     <Compile Include="Serialization\DtoImplementations.cs" />
     <Compile Include="Serialization\JsonSerializer.cs" />
     <Compile Include="WorkerThread.cs" />
-    <None Include="Junk.cs" />
     <Compile Include="Individual.cs" />
     <Compile Include="Population.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

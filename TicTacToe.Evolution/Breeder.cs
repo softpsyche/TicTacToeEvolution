@@ -21,26 +21,43 @@ namespace TicTacToe.Evolution
 			this.GenerationAverageFitnessDictionary = new Dictionary<long, double>();
 		}
 
-		public IEnumerable<Individual> Breed(IEnumerable<FitnessResult> scores, Int32 broodSize,Double mutationRate)
+		public IEnumerable<Individual> Breed(IEnumerable<FitnessResult> scores, Int32 broodSize, Int32 maximumIndividualOffspring, Double mutationRate)
 		{
 			List<Individual> nextGeneration = new List<Individual>();
 			var totalScore = scores.Sum(a => a.Score);
 
 			foreach (var score in scores)
 			{
-				nextGeneration.AddRange(BreedIndividual(score.Individual, GetBreedCount(totalScore, score.Score, broodSize), mutationRate));
+				nextGeneration.AddRange(
+					BreedIndividual(
+						score.Individual,
+						GetBreedCount(totalScore, score.Score, broodSize, maximumIndividualOffspring), mutationRate));
+
+				if (nextGeneration.Count >= broodSize)
+					break;
 			}
 
 			GenerationAverageFitnessDictionary.Add(GenerationAverageFitnessDictionary.Count, totalScore / scores.Count());
 
 			return nextGeneration;
 		}
-		private Int32 GetBreedCount(Double totalScore, Double individualScore,Int32 broodSize)
+		private Int32 GetBreedCount(Double totalScore, Double individualScore,Int32 broodSize,Int32 maximumIndividualOffspring)
 		{
 			if (totalScore == 0)
+			{
 				return 1;
+			}
 			else
-				return Convert.ToInt32(Math.Ceiling((individualScore / totalScore) * broodSize));
+			{
+				var breedCount = Convert.ToInt32(Math.Ceiling((individualScore / totalScore) * broodSize));
+
+				if(breedCount < 1)
+					return 1;
+				else if(breedCount > maximumIndividualOffspring)
+					return maximumIndividualOffspring;
+				else
+					return breedCount;
+			}
 		}
 		public IEnumerable<Individual> BreedIndividual(Individual individual, Int32 count,Double mutationRate)
 		{
