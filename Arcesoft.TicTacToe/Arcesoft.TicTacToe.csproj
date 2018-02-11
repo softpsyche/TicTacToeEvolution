@@ -1,0 +1,103 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{6535EE53-ABFE-4C7C-9818-D2CBC58F23F0}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Arcesoft.TicTacToe</RootNamespace>
+    <AssemblyName>Arcesoft.TicTacToe</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="LiteDB, Version=4.1.1.0, Culture=neutral, PublicKeyToken=4ee40123013c9f27, processorArchitecture=MSIL">
+      <HintPath>..\packages\LiteDB.4.1.1\lib\net40\LiteDB.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.10.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="SimpleInjector, Version=4.0.12.0, Culture=neutral, PublicKeyToken=984cb50dea722e99, processorArchitecture=MSIL">
+      <HintPath>..\packages\SimpleInjector.4.0.12\lib\net45\SimpleInjector.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ArtificialIntelligence\Strategies\BruteForce.cs" />
+    <Compile Include="Database\BoardStateComparer.cs" />
+    <Compile Include="Database\ILiteDatabase.cs" />
+    <Compile Include="Database\ILiteDatabaseFactory.cs" />
+    <Compile Include="Entities\BoardConstants.cs" />
+    <Compile Include="IDatabaseBuilder.cs" />
+    <Compile Include="Database\IMoveEvaluator.cs" />
+    <Compile Include="Database\LiteDatabase.cs" />
+    <Compile Include="Database\LiteDatabaseFactory.cs" />
+    <Compile Include="Database\MoveResponseRecord.cs" />
+    <Compile Include="Data\IMoveResponseRepository.cs" />
+    <Compile Include="Database\DatabaseBuilder.cs" />
+    <Compile Include="Data\MoveResponse.cs" />
+    <Compile Include="ArtificialIntelligence\Strategies\OmniscientGod.cs" />
+    <Compile Include="Entities\ArtificialIntelligenceTypes.cs" />
+    <Compile Include="IArtificialIntelligence.cs" />
+    <Compile Include="Data\IMoveDataAccess.cs" />
+    <Compile Include="Data\MoveResponseRepository.cs" />
+    <Compile Include="GameImplementation\TicTacToeFactory.cs" />
+    <Compile Include="DependencyInjection\Binder.cs" />
+    <Compile Include="Entities\GameChange.cs" />
+    <Compile Include="Entities\GameState.cs" />
+    <Compile Include="Entities\GameStateChangedEventArgs.cs" />
+    <Compile Include="GameImplementation\Square.cs" />
+    <Compile Include="IGame.cs" />
+    <Compile Include="Database\MoveEvaluator.cs" />
+    <Compile Include="GameImplementation\Board.cs" />
+    <Compile Include="Database\BoardState.cs" />
+    <Compile Include="GameImplementation\Game.cs" />
+    <Compile Include="GameException.cs" />
+    <Compile Include="Entities\MoveResult.cs" />
+    <Compile Include="Entities\Move.cs" />
+    <Compile Include="Entities\Player.cs" />
+    <Compile Include="ITicTacToeFactory.cs" />
+    <Compile Include="RandomNumberGeneration\DefaultRandomNumberGenerator.cs" />
+    <Compile Include="IRandom.cs" />
+    <Compile Include="Data\MoveDataAccess.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RandomNumberGeneration\IRandomExtensions.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Arcesoft.TicTacToe.Common\Arcesoft.TicTacToe.Common.csproj">
+      <Project>{f9c02105-c670-4937-9e13-d57b6bdd309e}</Project>
+      <Name>Arcesoft.TicTacToe.Common</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

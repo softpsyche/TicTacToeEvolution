@@ -1,0 +1,54 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27004.2009
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Testing", "Testing", "{A44716C5-E9E8-4FF9-9975-06050210BC84}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{4B50762C-6A85-487D-979F-4A91678B6503}"
+	ProjectSection(SolutionItems) = preProject
+		.nuget\NuGet.Config = .nuget\NuGet.Config
+		.nuget\NuGet.targets = .nuget\NuGet.targets
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Arcesoft.TicTacToe", "Arcesoft.TicTacToe\Arcesoft.TicTacToe.csproj", "{6535EE53-ABFE-4C7C-9818-D2CBC58F23F0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Arcesoft.TicTacToe.Common", "Arcesoft.TicTacToe.Common\Arcesoft.TicTacToe.Common.csproj", "{F9C02105-C670-4937-9E13-D57B6BDD309E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Arcesoft.TicTacToe.Evolution", "Arcesoft.TicTacToe.Evolution\Arcesoft.TicTacToe.Evolution.csproj", "{697990E1-A27F-4588-8F68-2A07E2B79C9B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Arcesoft.TicTacToe.Evolution.Tests", "Arcesoft.TicTacToe.Evolution.Tests\Arcesoft.TicTacToe.Evolution.Tests.csproj", "{28971CA9-33AC-48EB-97CA-7552981A22F0}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{6535EE53-ABFE-4C7C-9818-D2CBC58F23F0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6535EE53-ABFE-4C7C-9818-D2CBC58F23F0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6535EE53-ABFE-4C7C-9818-D2CBC58F23F0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6535EE53-ABFE-4C7C-9818-D2CBC58F23F0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F9C02105-C670-4937-9E13-D57B6BDD309E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F9C02105-C670-4937-9E13-D57B6BDD309E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F9C02105-C670-4937-9E13-D57B6BDD309E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F9C02105-C670-4937-9E13-D57B6BDD309E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{697990E1-A27F-4588-8F68-2A07E2B79C9B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{697990E1-A27F-4588-8F68-2A07E2B79C9B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{697990E1-A27F-4588-8F68-2A07E2B79C9B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{697990E1-A27F-4588-8F68-2A07E2B79C9B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{28971CA9-33AC-48EB-97CA-7552981A22F0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{28971CA9-33AC-48EB-97CA-7552981A22F0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{28971CA9-33AC-48EB-97CA-7552981A22F0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{28971CA9-33AC-48EB-97CA-7552981A22F0}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{28971CA9-33AC-48EB-97CA-7552981A22F0} = {A44716C5-E9E8-4FF9-9975-06050210BC84}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {204472C2-4DE2-42F8-B411-F4B5CB2B57F8}
+	EndGlobalSection
+EndGlobal
