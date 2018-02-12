@@ -23,19 +23,19 @@ namespace Arcesoft.TicTacToe.Evolution.Selection
         {
             Ledger ledger = new Ledger();
             var game = TicTacToeFactory.NewGame();
-            double xScore = 0;
-            double oScore = 0;
+            Score xScore = new Score();
+            Score oScore = new Score();
 
             foreach (var match in matches)
             {
-                EvaluateInternal(game, match,ref xScore, ref oScore, ledger);
+                EvaluateInternal(game, match, xScore, oScore, ledger);
 
                 game.Reset();
             }
 
             return ledger;
         }
-        private void EvaluateInternal(IGame game, Match match, ref double xScore, ref double oScore, Ledger ledger)
+        private void EvaluateInternal(IGame game, Match match, Score xScore, Score oScore, Ledger ledger)
         {
             //is the game over?
             if (game.GameIsOver)
@@ -43,16 +43,16 @@ namespace Arcesoft.TicTacToe.Evolution.Selection
                 switch (game.GameState)
                 {
                     case GameState.OWin:
-                        UpdateScoresOrLedger(match.PlayerX, match, ref xScore, MetricType.Lost, ledger);
-                        UpdateScoresOrLedger(match.PlayerO, match, ref oScore, MetricType.Won, ledger);
+                        UpdateScoresOrLedger(match.PlayerX, match, xScore, MetricType.Lost, ledger);
+                        UpdateScoresOrLedger(match.PlayerO, match, oScore, MetricType.Won, ledger);
                         break;
                     case GameState.XWin:
-                        UpdateScoresOrLedger(match.PlayerX, match, ref xScore, MetricType.Won, ledger);
-                        UpdateScoresOrLedger(match.PlayerO, match, ref oScore, MetricType.Lost, ledger);
+                        UpdateScoresOrLedger(match.PlayerX, match, xScore, MetricType.Won, ledger);
+                        UpdateScoresOrLedger(match.PlayerO, match, oScore, MetricType.Lost, ledger);
                         break;
                     case GameState.Tie:
-                        UpdateScoresOrLedger(match.PlayerX, match, ref xScore, MetricType.Tied, ledger);
-                        UpdateScoresOrLedger(match.PlayerO, match, ref oScore, MetricType.Tied, ledger);
+                        UpdateScoresOrLedger(match.PlayerX, match, xScore, MetricType.Tied, ledger);
+                        UpdateScoresOrLedger(match.PlayerO, match, oScore, MetricType.Tied, ledger);
                         break;
                 }
             }
@@ -77,7 +77,7 @@ namespace Arcesoft.TicTacToe.Evolution.Selection
 
                         //the super narrow path to game continuation...
                         game.Move(move.Value);
-                        EvaluateInternal(game, match, ref xScore, ref oScore, ledger);
+                        EvaluateInternal(game, match, xScore, oScore, ledger);
                     }
                     else
                     {
@@ -118,9 +118,10 @@ namespace Arcesoft.TicTacToe.Evolution.Selection
                 }
             }
         }
-        private void UpdateScoresOrLedger(Individual individual,Match match, ref double score, MetricType metricType, Ledger ledger)
+        private void UpdateScoresOrLedger(Individual individual, Match match, Score score, MetricType metricType, Ledger ledger)
         {
-            score += MetricTypeScore.GetScore(metricType);
+            var metricScore = MetricTypeScore.GetScore(metricType);
+            score.Value += metricScore;
 
             if (ledger != null)
             {
@@ -128,10 +129,14 @@ namespace Arcesoft.TicTacToe.Evolution.Selection
                     individual.Id,
                     match.Id,
                     match.PlayerX == individual ? Player.X : Player.O,
-                    score,
+                    metricScore,
                     metricType);
             }
         }
-      
+
+        private class Score
+        {
+            public double Value { get; set; }
+        }
     }
 }
