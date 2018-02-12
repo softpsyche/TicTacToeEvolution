@@ -50,6 +50,8 @@
   <ItemGroup>
     <Compile Include="Selection\Match.cs" />
     <Compile Include="Selection\MatchBuilder.cs" />
+    <Compile Include="Selection\MatchEvaluator.cs" />
+    <Compile Include="Selection\MatchResult.cs" />
     <None Include="Reproduction\Breeder.cs" />
     <None Include="Reproduction\Culler.cs" />
     <Compile Include="GameExtensions.cs" />
@@ -60,7 +62,7 @@
     <None Include="EvolutionFactory.cs" />
     <None Include="PopulationSettings.cs" />
     <None Include="Extensions.cs" />
-    <Compile Include="Selection\GameMatch.cs" />
+    <Compile Include="Selection\DeleteWhenDone.cs" />
     <Compile Include="Mutations\Mutator.cs" />
     <None Include="Selector.cs" />
     <Compile Include="Organisms\AlleleConstants.cs" />

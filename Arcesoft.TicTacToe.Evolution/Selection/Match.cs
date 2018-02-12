@@ -9,8 +9,14 @@ namespace Arcesoft.TicTacToe.Evolution.Selection
 {
     public class Match
     {
+        public Guid Id { get; private set; }
         public Individual PlayerX { get; set; }
         public Individual PlayerO { get; set; }
+
+        public Match()
+        {
+            Id = Guid.NewGuid();
+        }
 
         public override bool Equals(object obj)
         {
