@@ -1,12 +1,23 @@
-﻿using System;
+﻿using Arcesoft.TicTacToe.Entities;
+using Arcesoft.TicTacToe.Evolution.Organisms;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Arcesoft.TicTacToe.Evolution
+namespace Arcesoft.TicTacToe.Evolution.Selection
 {
-	public class GameMatch
+
+
+    public class MatchResult
+    {
+
+    }
+
+
+
+    public class GameMatch
 	{
 		public Individual XPlayer { get; private set; }
 		public Individual OPlayer { get; private set; }
@@ -27,28 +38,28 @@ namespace Arcesoft.TicTacToe.Evolution
 		{
 			get
 			{
-				return Game.PlayerTurn == Player.X ? XPlayer : OPlayer;
+				return Game.CurrentPlayer == Player.X ? XPlayer : OPlayer;
 			}
 		}
 		private Individual NonMovingPlayer
 		{
 			get
 			{
-				return Game.PlayerTurn == Player.X ? OPlayer : XPlayer;
+				return Game.CurrentPlayer == Player.X ? OPlayer : XPlayer;
 			}
 		}
 		private FitnessScore MovingPlayerFitnessScore
 		{
 			get
 			{
-				return Game.PlayerTurn == Player.X ? XPlayerFitnessScore : OPlayerFitnessScore;
+				return Game.CurrentPlayer == Player.X ? XPlayerFitnessScore : OPlayerFitnessScore;
 			}
 		}
 		private FitnessScore NonMovingPlayerFitnessScore
 		{
 			get
 			{
-				return Game.PlayerTurn == Player.X ? OPlayerFitnessScore : XPlayerFitnessScore;
+				return Game.CurrentPlayer == Player.X ? OPlayerFitnessScore : XPlayerFitnessScore;
 			}
 		}
 
@@ -61,15 +72,15 @@ namespace Arcesoft.TicTacToe.Evolution
 			this.OPlayerFitnessScore = oPlayerFitnessScore;
 		}
 
-		public Tuple<Individual, FitnessScore> GetPlayerAndScoreByName(String playerName)
-		{
-			if (playerName == XPlayer.Name)
-				return new Tuple<Individual, FitnessScore>(this.XPlayer, this.XPlayerFitnessScore);
-			else if (playerName == OPlayer.Name)
-				return new Tuple<Individual, FitnessScore>(this.OPlayer, this.OPlayerFitnessScore);
-			else
-				throw new GameException("Invalid player name");
-		}
+		//public Tuple<Individual, FitnessScore> GetPlayerAndScoreByName(String playerName)
+		//{
+		//	if (playerName == XPlayer.Name)
+		//		return new Tuple<Individual, FitnessScore>(this.XPlayer, this.XPlayerFitnessScore);
+		//	else if (playerName == OPlayer.Name)
+		//		return new Tuple<Individual, FitnessScore>(this.OPlayer, this.OPlayerFitnessScore);
+		//	else
+		//		throw new GameException("Invalid player name");
+		//}
 		public GameState Evaluate()
 		{
 			if (HasEvaluated == false)
@@ -83,20 +94,20 @@ namespace Arcesoft.TicTacToe.Evolution
 		private void EvaluateMatchRecursive()
 		{
 			//get the best move for the moving player.
-			var move = MovingPlayer.TryFindBestGameMove(Game);
+			var move = MovingPlayer.TryFindMove(Game);
 			var movingPlayerFitnessScore = MovingPlayerFitnessScore;
 			var nonMovingPlayerFitnessScore = NonMovingPlayerFitnessScore;
 
-			if (move == null)
+			if (move.HasValue == false)
 			{//no move means we lose...concede the game
 				movingPlayerFitnessScore.AddMetric(FitnessMetric.NoResponse);
 			}
 			else//we have a move to make
 			{
 				movingPlayerFitnessScore.AddMetric(FitnessMetric.Moved);
-				Game.MakeMove(move);
+				Game.Move(move.Value);
 
-				if (Game.IsOver)
+				if (Game.GameIsOver)
 				{
 					if (Game.GameState == GameState.Tie)
 					{
@@ -131,7 +142,7 @@ namespace Arcesoft.TicTacToe.Evolution
 
 			public override string ToString()
 			{
-				return String.Format("{0} - {1}", Individual.Name, Count.ToString());
+				return String.Format("{0} - {1}", "TODO", Count.ToString());
 			}
 		}
 
@@ -140,6 +151,7 @@ namespace Arcesoft.TicTacToe.Evolution
 			return String.Format("'{0}(X)' vs '{1}'(O)", XPlayer, OPlayer);
 		}
 	}
+
 	public class FitnessScore
 	{
 		public const Double ZeroScore = 0;
@@ -206,6 +218,7 @@ namespace Arcesoft.TicTacToe.Evolution
 			return Total.ToString();
 		}
 	}
+
 	public enum FitnessMetric
 	{
 		NoResponse = 0,

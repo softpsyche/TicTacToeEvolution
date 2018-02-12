@@ -19,5 +19,15 @@ namespace Arcesoft.TicTacToe.RandomNumberGeneration
         {
             return random.Next(maxValue);
         }
+
+        public Int32 Next(Int32 minValue,Int32 maxValue)
+        {
+            return random.Next(minValue, maxValue);
+        }
+
+        public Double NextDouble()
+        {
+            return random.NextDouble();
+        }
     }
 }

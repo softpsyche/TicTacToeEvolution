@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Arcesoft.TicTacToe.RandomNumberGeneration
+namespace Arcesoft.TicTacToe
 {
-    internal static class IRandomExtensions
+    public static class IRandomExtensions
     {
         /// <summary>
         /// Returns a random item from the given list using the provided rng

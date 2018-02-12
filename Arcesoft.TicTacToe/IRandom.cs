@@ -17,5 +17,23 @@ namespace Arcesoft.TicTacToe
 		/// </returns>
 		/// <exception cref="System.ArgumentOutOfRangeException"></exception>
 		Int32 Next(Int32 maxValue);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="minValue"></param>
+        /// <param name="maxValue"></param>
+        /// <returns></returns>
+        Int32 Next(Int32 minValue, Int32 maxValue);
+
+        /// <summary>
+        ///     Returns a random floating-point number that is greater than or equal to 0.0,
+        ///     and less than 1.0.
+        /// </summary>
+        /// <returns>
+        ///  A double-precision floating point number that is greater than or equal to 0.0,
+        ///  and less than 1.0.
+        /// </returns>
+        double NextDouble();
 	}
 }

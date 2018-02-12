@@ -141,7 +141,7 @@ namespace Arcesoft.TicTacToe.Evolution.Tests
             }
         }
 
-        private T GetScenarioContextItemOrDefault<T>(string key = null)
+        protected T GetScenarioContextItemOrDefault<T>(string key = null)
         {
             var keyName = key ?? typeof(T).FullName;
 

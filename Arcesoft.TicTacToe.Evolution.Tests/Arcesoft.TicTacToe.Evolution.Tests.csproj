@@ -92,6 +92,12 @@
       <DependentUpon>Organisms.feature</DependentUpon>
     </Compile>
     <Compile Include="OrganismsSteps.cs" />
+    <Compile Include="Selection.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Selection.feature</DependentUpon>
+    </Compile>
+    <Compile Include="SelectionSteps.cs" />
     <Compile Include="Steps.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TableExtensions.cs" />
@@ -103,6 +109,10 @@
       <LastGenOutput>Organisms.feature.cs</LastGenOutput>
     </None>
     <None Include="packages.config" />
+    <None Include="Selection.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>Selection.feature.cs</LastGenOutput>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Arcesoft.TicTacToe.Common\Arcesoft.TicTacToe.Common.csproj">

@@ -9,6 +9,8 @@ namespace Arcesoft.TicTacToe.Evolution.Organisms
 {
 	public class Individual
 	{
+        public string Name { get; set; }
+        public Guid Id { get; internal set; }
         private List<Gene> _geneList = null;
 		public IEnumerable<Gene> Genes
         {
@@ -26,13 +28,14 @@ namespace Arcesoft.TicTacToe.Evolution.Organisms
 
 		public Individual()
 		{
+            Id = Guid.NewGuid();
             _geneList = new List<Gene>();
 		}
-		private Individual(Individual source):this()
-		{
+        private Individual(Individual source) : this()
+        {
             //we can copy the references here because genes are IMMUTABLE. Flyweight anyone?
             Genes = source.Genes;
-		}
+        }
 
         public Move? TryFindMove(IGame game)
         {
@@ -100,9 +103,9 @@ namespace Arcesoft.TicTacToe.Evolution.Organisms
 
 
         public override string ToString()
-		{
-            return base.ToString();
-		}
+        {
+            return string.IsNullOrWhiteSpace(Name) ? Id.ToString() : $"{Name} - ({Id})";
+        }
 
 
 	}

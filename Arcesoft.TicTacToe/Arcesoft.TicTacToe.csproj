@@ -87,7 +87,7 @@
     <Compile Include="IRandom.cs" />
     <Compile Include="Data\MoveDataAccess.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RandomNumberGeneration\IRandomExtensions.cs" />
+    <Compile Include="IRandomExtensions.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Arcesoft.TicTacToe.Common\Arcesoft.TicTacToe.Common.csproj">

@@ -48,15 +48,20 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Selection\Match.cs" />
+    <Compile Include="Selection\MatchBuilder.cs" />
     <None Include="Reproduction\Breeder.cs" />
     <None Include="Reproduction\Culler.cs" />
     <Compile Include="GameExtensions.cs" />
+    <Compile Include="IRandomExtensions.cs" />
+    <Compile Include="Mutations\IMutator.cs" />
+    <Compile Include="Mutations\MutationSettings.cs" />
     <Compile Include="Organisms\Allele.cs" />
     <None Include="EvolutionFactory.cs" />
     <None Include="PopulationSettings.cs" />
     <None Include="Extensions.cs" />
-    <None Include="Selection\GameMatch.cs" />
-    <None Include="Mutations\Mutator.cs" />
+    <Compile Include="Selection\GameMatch.cs" />
+    <Compile Include="Mutations\Mutator.cs" />
     <None Include="Selector.cs" />
     <Compile Include="Organisms\AlleleConstants.cs" />
     <Compile Include="Organisms\AlleleExtensions.cs" />

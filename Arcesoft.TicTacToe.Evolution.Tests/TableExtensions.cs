@@ -1,6 +1,7 @@
 ﻿using Arcesoft.TicTacToe.Entities;
 using Arcesoft.TicTacToe.Evolution.Organisms;
 using FluentAssertions;
+using SimpleInjector;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,6 +14,12 @@ namespace Arcesoft.TicTacToe.Evolution.Tests
 {
     internal static class TableExtensions
     {
+        public static IEnumerable<T> CreateSetWithContainer<T>(this Table table, Container container)
+            where T: class
+        {
+            return table.CreateSet(a => container.GetInstance<T>());
+        }
+
         public static IEnumerable<Gene> ToGenes(this Table table)
         {
             return table.CreateSet(a => a.ToGene()).ToList();
