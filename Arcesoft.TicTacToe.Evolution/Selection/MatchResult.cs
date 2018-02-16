@@ -19,14 +19,14 @@ namespace Arcesoft.TicTacToe.Evolution.Selection
         {
             DefaultScores = new Dictionary<Selection.MetricType, double>();
 
-            DefaultScores.Add(MetricType.Moved, 1);
-            DefaultScores.Add(MetricType.LostDueToNoMoves, 1);
-            DefaultScores.Add(MetricType.LostDueToInvalidMove, 1);
-            DefaultScores.Add(MetricType.Lost, 1);
-            DefaultScores.Add(MetricType.WonDueToNoMoves, 1);
-            DefaultScores.Add(MetricType.WonDueToInvalidMove, 1);
-            DefaultScores.Add(MetricType.Won, 1);
-            DefaultScores.Add(MetricType.Tied, 1);
+            DefaultScores.Add(MetricType.Moved, 10);
+            DefaultScores.Add(MetricType.LostDueToNoMoves, 0);
+            DefaultScores.Add(MetricType.LostDueToInvalidMove, 5);
+            DefaultScores.Add(MetricType.Lost, 0);
+            DefaultScores.Add(MetricType.WonDueToNoMoves, 10);
+            DefaultScores.Add(MetricType.WonDueToInvalidMove, 10);
+            DefaultScores.Add(MetricType.Won, 100);
+            DefaultScores.Add(MetricType.Tied, 50);
         }
         public MetricTypeScore()
         {
@@ -63,6 +63,13 @@ namespace Arcesoft.TicTacToe.Evolution.Selection
     {
         public List<LedgerEntry> Entries { get; set; }
 
+        public Ledger()
+        {
+            Entries = new List<LedgerEntry>();
+        }
+
+
+
         public Ledger Merge(params Ledger[] ledgers)
         {
             Ledger newLedger = new Ledger();
@@ -70,15 +77,18 @@ namespace Arcesoft.TicTacToe.Evolution.Selection
             return newLedger;
         }
 
-        public LedgerEntry AddEntry(Guid individualId, Guid matchId, Player player, Double metricScore, MetricType? metricType)
+        public LedgerEntry AddEntry(Guid individualId,string individualName, Guid matchId, Player player, Double metricScore, MetricType? metricType, String description = null)
         {
+
             var entry = new LedgerEntry()
             {
                 IndividualId = individualId,
+                IndividualName = individualName,
                 MatchId = matchId,
                 Player = player,
                 MetricScore = metricScore,
-                MetricType = metricType
+                MetricType = metricType,
+                Description = description
             };
             Entries.Add(entry);
 
@@ -89,10 +99,12 @@ namespace Arcesoft.TicTacToe.Evolution.Selection
     public class LedgerEntry
     {
         public Guid IndividualId { get; set; }
+        public string IndividualName { get; set; }
         public Guid MatchId { get; set; }
         public Player Player { get; set; }
         public Double MetricScore { get; set; }
         public MetricType? MetricType { get; set; }
+        public string Description { get; set; }
     }
 
     public class MatchResult

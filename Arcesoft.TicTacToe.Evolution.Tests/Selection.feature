@@ -28,3 +28,52 @@ Scenario Outline: Should build matches for a
 		| huge set                      | 1000        | 6           | 6                   | 6000            |
 		| set with too many tournaments | 10          | 15          | 9                   | 90              |
 		| invalid set                   | 3           | 1           | 1                   | 3               |
+
+Scenario: Should evaluate match correctly if players have no moves
+	Given I have a match evaluator
+	Given I have the following individuals
+		| Name  |
+		| John  |
+		| Sally |
+	Given I create matches for the following individuals
+		| PlayerXName | PlayerOName |
+		| John        | Sally       |
+	When I evaluate the matches
+	Then I expect the ledger to contain
+		| IndividualName | Player | MetricScore | MetricType       |
+		| John           | X      | 0           | LostDueToNoMoves |
+		| Sally          | O      | 10          | WonDueToNoMoves  |
+
+Scenario: Should evaluate match correctly for invalid move
+	Given I have a match evaluator
+	Given I have the following individuals
+		| Name  |
+		| John  |
+		| Sally |
+	Given I add a gene to individual 'John' for turn 'First' with priority '1' and the following alleles
+		|   |   |   |
+		|   |   | D |
+		| D | R |   |
+		|   | D |   |
+	Given I add a gene to individual 'Sally' for turn 'Second' with priority '1' and the following alleles
+		|   |   |  |
+		| R |   |  |
+		|   | D |  |
+		|   |   |  |
+	Given I add a gene to individual 'John' for turn 'Third' with priority '1' and the following alleles
+		|   |   |   |
+		| O |   |   |
+		|   | X | R |
+		|   |   |   |
+	Given I create matches for the following individuals
+		| PlayerXName | PlayerOName |
+		| John        | Sally       |
+	When I evaluate the matches
+	Then I expect the ledger to contain
+		| IndividualName | Player | MetricScore | MetricType       | Description                              |
+		| John           | X      | 10          | Moved            | Moved to 'Center' for board _________    |
+		| Sally          | O      | 10          | Moved            | Moved to 'NorthWest' for board ____X____ |
+		| John           | X      | 10          | Moved            | Moved to 'Eastern' for board O___X____   |
+		| Sally          | O      | 0           | LostDueToNoMoves | Lost due to no move for board O___XX___  |
+		| John           | X      | 10          | WonDueToNoMoves  | Won due to no move for board O___XX___   |
+

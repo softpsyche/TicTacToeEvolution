@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using TechTalk.SpecFlow;
 using TechTalk.SpecFlow.Assist;
+using SpecFlow.Assist.Dynamic;
 
 namespace Arcesoft.TicTacToe.Evolution.Tests
 {
@@ -20,6 +21,18 @@ namespace Arcesoft.TicTacToe.Evolution.Tests
             get
             {
                 return GetScenarioContextItemOrDefault<MatchBuilder>();
+            }
+            set
+            {
+                CurrentContext.Set(value);
+            }
+        }
+
+        protected MatchEvaluator MatchEvaluator
+        {
+            get
+            {
+                return GetScenarioContextItemOrDefault<MatchEvaluator>();
             }
             set
             {
@@ -48,6 +61,18 @@ namespace Arcesoft.TicTacToe.Evolution.Tests
             set
             {
                 CurrentContext.Set(value, nameof(Matches));
+            }
+        }
+
+        protected Ledger Ledger
+        {
+            get
+            {
+                return GetScenarioContextItemOrDefault<Ledger>();
+            }
+            set
+            {
+                CurrentContext.Set(value);
             }
         }
 
@@ -103,8 +128,6 @@ namespace Arcesoft.TicTacToe.Evolution.Tests
             Individuals = listy.ToArray();
         }
 
-
-
         [When(@"I repeat the test '(.*)' times using '(.*)' tournaments and '(.*)' individuals")]
         public void WhenIRepeatTheTestTimesUsingTournamentsAndIndividuals(int times, int tournaments,int individuals)
         {
@@ -129,9 +152,52 @@ namespace Arcesoft.TicTacToe.Evolution.Tests
             errorCount.Should().Be(0);
         }
 
+        [Given(@"I add a gene to individual '(.*)' for turn '(.*)' with priority '(.*)' and the following alleles")]
+        public void GivenIAddAGeneToIndividualForTurnWithPriorityAndTheFollowingAlleles(string name, Turn turn, int priority, Table table)
+        {
+            var indy = Individuals.Single(a => a.Name.Equals(name));
+            List<Gene> listy = new List<Gene>();
+            listy.AddRange(indy.Genes);
+            listy.Add(new Gene(turn, priority, table.ToAlleles().ToArray()));
+            indy.Genes = listy;
+        }
+
+        [Given(@"I create matches for the following individuals")]
+        public void GivenICreateMatchesForTheFollowingIndividuals(Table table)
+        {
+            var set = table.CreateDynamicSet();
+            var matches = new List<Match>();
+
+            foreach (var item in set)
+            {
+                matches.Add(new Match()
+                {
+                    PlayerX = Individuals.Single(a => a.Name == item.PlayerXName),
+                    PlayerO = Individuals.Single(a => a.Name == item.PlayerOName),
+                });
+            }
+
+            Matches = matches;
+        }
+
+        [Given(@"I have a match evaluator")]
+        public void GivenIHaveAMatchEvaluator()
+        {
+            MatchEvaluator = Container.GetInstance<MatchEvaluator>();
+        }
 
 
+        [When(@"I evaluate the matches")]
+        public void WhenIEvaluateTheMatches()
+        {
+            Invoke(() => Ledger = MatchEvaluator.Evaluate(Matches.ToArray()));
+        }
 
+        [Then(@"I expect the ledger to contain")]
+        public void ThenIExpectTheLedgerToContain(Table table)
+        {
+            table.CompareToSet(Ledger.Entries);
+        }
 
     }
 }

@@ -43,16 +43,16 @@ namespace Arcesoft.TicTacToe.Evolution.Selection
                 switch (game.GameState)
                 {
                     case GameState.OWin:
-                        UpdateScoresOrLedger(match.PlayerX, match, xScore, MetricType.Lost, ledger);
-                        UpdateScoresOrLedger(match.PlayerO, match, oScore, MetricType.Won, ledger);
+                        UpdateScoresOrLedger(match.PlayerX, match, xScore, MetricType.Lost, ledger,$"Lost for board {game.GameBoardString}");
+                        UpdateScoresOrLedger(match.PlayerO, match, oScore, MetricType.Won, ledger, $"Won for board {game.GameBoardString}");
                         break;
                     case GameState.XWin:
-                        UpdateScoresOrLedger(match.PlayerX, match, xScore, MetricType.Won, ledger);
-                        UpdateScoresOrLedger(match.PlayerO, match, oScore, MetricType.Lost, ledger);
+                        UpdateScoresOrLedger(match.PlayerX, match, xScore, MetricType.Won, ledger, $"Won for board {game.GameBoardString}");
+                        UpdateScoresOrLedger(match.PlayerO, match, oScore, MetricType.Lost, ledger, $"Lost for board {game.GameBoardString}");
                         break;
                     case GameState.Tie:
-                        UpdateScoresOrLedger(match.PlayerX, match, xScore, MetricType.Tied, ledger);
-                        UpdateScoresOrLedger(match.PlayerO, match, oScore, MetricType.Tied, ledger);
+                        UpdateScoresOrLedger(match.PlayerX, match, xScore, MetricType.Tied, ledger, $"Tied for board {game.GameBoardString}");
+                        UpdateScoresOrLedger(match.PlayerO, match, oScore, MetricType.Tied, ledger, $"Tied for board {game.GameBoardString}");
                         break;
                 }
             }
@@ -72,7 +72,8 @@ namespace Arcesoft.TicTacToe.Evolution.Selection
                             match,
                             game.CurrentPlayer == Player.X ? xScore : oScore,
                             MetricType.Moved,
-                            ledger);
+                            ledger,
+                            $"Moved to '{move.Value}' for board {game.GameBoardString}");
 
 
                         //the super narrow path to game continuation...
@@ -87,7 +88,8 @@ namespace Arcesoft.TicTacToe.Evolution.Selection
                             match,
                             game.CurrentPlayer == Player.X ? xScore : oScore,
                             MetricType.LostDueToInvalidMove,
-                            ledger);
+                            ledger,
+                            $"Lost due to no move for board {game.GameBoardString}");
 
                         //The other player wins by default, specifically wins due to invalid move
                         UpdateScoresOrLedger(
@@ -95,7 +97,8 @@ namespace Arcesoft.TicTacToe.Evolution.Selection
                             match,
                             game.CurrentPlayer == Player.X ? oScore : xScore,
                             MetricType.WonDueToInvalidMove,
-                            ledger);
+                            ledger,
+                            $"Won due to no move for board {game.GameBoardString}");
                     }
                 }
                 else
@@ -106,7 +109,8 @@ namespace Arcesoft.TicTacToe.Evolution.Selection
                         match,
                         game.CurrentPlayer == Player.X ? xScore : oScore,
                         MetricType.LostDueToNoMoves,
-                        ledger);
+                        ledger,
+                        $"Lost due to no move for board {game.GameBoardString}");
 
                     //The other player wins by default, specifically wins due to invalid move
                     UpdateScoresOrLedger(
@@ -114,11 +118,12 @@ namespace Arcesoft.TicTacToe.Evolution.Selection
                         match,
                         game.CurrentPlayer == Player.X ? oScore : xScore,
                         MetricType.WonDueToNoMoves,
-                        ledger);
+                        ledger,
+                        $"Won due to no move for board {game.GameBoardString}");
                 }
             }
         }
-        private void UpdateScoresOrLedger(Individual individual, Match match, Score score, MetricType metricType, Ledger ledger)
+        private void UpdateScoresOrLedger(Individual individual, Match match, Score score, MetricType metricType, Ledger ledger, string description)
         {
             var metricScore = MetricTypeScore.GetScore(metricType);
             score.Value += metricScore;
@@ -127,10 +132,12 @@ namespace Arcesoft.TicTacToe.Evolution.Selection
             {
                 ledger.AddEntry(
                     individual.Id,
+                    individual.Name,
                     match.Id,
                     match.PlayerX == individual ? Player.X : Player.O,
                     metricScore,
-                    metricType);
+                    metricType,
+                    description);
             }
         }
 

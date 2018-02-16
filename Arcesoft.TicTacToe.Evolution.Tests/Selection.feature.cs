@@ -254,6 +254,197 @@ this.ShouldBuildMatchesForA("set with too many tournaments", "10", "15", "9", "9
 this.ShouldBuildMatchesForA("invalid set", "3", "1", "1", "3", ((string[])(null)));
 #line hidden
         }
+        
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Should evaluate match correctly if players have no moves")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Selection")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("Behavioral")]
+        public virtual void ShouldEvaluateMatchCorrectlyIfPlayersHaveNoMoves()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Should evaluate match correctly if players have no moves", ((string[])(null)));
+#line 32
+this.ScenarioSetup(scenarioInfo);
+#line 7
+this.FeatureBackground();
+#line 33
+ testRunner.Given("I have a match evaluator", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line hidden
+            TechTalk.SpecFlow.Table table1 = new TechTalk.SpecFlow.Table(new string[] {
+                        "Name"});
+            table1.AddRow(new string[] {
+                        "John"});
+            table1.AddRow(new string[] {
+                        "Sally"});
+#line 34
+ testRunner.Given("I have the following individuals", ((string)(null)), table1, "Given ");
+#line hidden
+            TechTalk.SpecFlow.Table table2 = new TechTalk.SpecFlow.Table(new string[] {
+                        "PlayerXName",
+                        "PlayerOName"});
+            table2.AddRow(new string[] {
+                        "John",
+                        "Sally"});
+#line 38
+ testRunner.Given("I create matches for the following individuals", ((string)(null)), table2, "Given ");
+#line 41
+ testRunner.When("I evaluate the matches", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+            TechTalk.SpecFlow.Table table3 = new TechTalk.SpecFlow.Table(new string[] {
+                        "IndividualName",
+                        "Player",
+                        "MetricScore",
+                        "MetricType"});
+            table3.AddRow(new string[] {
+                        "John",
+                        "X",
+                        "0",
+                        "LostDueToNoMoves"});
+            table3.AddRow(new string[] {
+                        "Sally",
+                        "O",
+                        "10",
+                        "WonDueToNoMoves"});
+#line 42
+ testRunner.Then("I expect the ledger to contain", ((string)(null)), table3, "Then ");
+#line hidden
+            this.ScenarioCleanup();
+        }
+        
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Should evaluate match correctly for invalid move")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Selection")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("Behavioral")]
+        public virtual void ShouldEvaluateMatchCorrectlyForInvalidMove()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Should evaluate match correctly for invalid move", ((string[])(null)));
+#line 47
+this.ScenarioSetup(scenarioInfo);
+#line 7
+this.FeatureBackground();
+#line 48
+ testRunner.Given("I have a match evaluator", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line hidden
+            TechTalk.SpecFlow.Table table4 = new TechTalk.SpecFlow.Table(new string[] {
+                        "Name"});
+            table4.AddRow(new string[] {
+                        "John"});
+            table4.AddRow(new string[] {
+                        "Sally"});
+#line 49
+ testRunner.Given("I have the following individuals", ((string)(null)), table4, "Given ");
+#line hidden
+            TechTalk.SpecFlow.Table table5 = new TechTalk.SpecFlow.Table(new string[] {
+                        "",
+                        "",
+                        ""});
+            table5.AddRow(new string[] {
+                        "",
+                        "",
+                        "D"});
+            table5.AddRow(new string[] {
+                        "D",
+                        "R",
+                        ""});
+            table5.AddRow(new string[] {
+                        "",
+                        "D",
+                        ""});
+#line 53
+ testRunner.Given("I add a gene to individual \'John\' for turn \'First\' with priority \'1\' and the foll" +
+                    "owing alleles", ((string)(null)), table5, "Given ");
+#line hidden
+            TechTalk.SpecFlow.Table table6 = new TechTalk.SpecFlow.Table(new string[] {
+                        "",
+                        "",
+                        ""});
+            table6.AddRow(new string[] {
+                        "R",
+                        "",
+                        ""});
+            table6.AddRow(new string[] {
+                        "",
+                        "D",
+                        ""});
+            table6.AddRow(new string[] {
+                        "",
+                        "",
+                        ""});
+#line 58
+ testRunner.Given("I add a gene to individual \'Sally\' for turn \'Second\' with priority \'1\' and the fo" +
+                    "llowing alleles", ((string)(null)), table6, "Given ");
+#line hidden
+            TechTalk.SpecFlow.Table table7 = new TechTalk.SpecFlow.Table(new string[] {
+                        "",
+                        "",
+                        ""});
+            table7.AddRow(new string[] {
+                        "O",
+                        "",
+                        ""});
+            table7.AddRow(new string[] {
+                        "",
+                        "X",
+                        "R"});
+            table7.AddRow(new string[] {
+                        "",
+                        "",
+                        ""});
+#line 63
+ testRunner.Given("I add a gene to individual \'John\' for turn \'Third\' with priority \'1\' and the foll" +
+                    "owing alleles", ((string)(null)), table7, "Given ");
+#line hidden
+            TechTalk.SpecFlow.Table table8 = new TechTalk.SpecFlow.Table(new string[] {
+                        "PlayerXName",
+                        "PlayerOName"});
+            table8.AddRow(new string[] {
+                        "John",
+                        "Sally"});
+#line 68
+ testRunner.Given("I create matches for the following individuals", ((string)(null)), table8, "Given ");
+#line 71
+ testRunner.When("I evaluate the matches", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+            TechTalk.SpecFlow.Table table9 = new TechTalk.SpecFlow.Table(new string[] {
+                        "IndividualName",
+                        "Player",
+                        "MetricScore",
+                        "MetricType",
+                        "Description"});
+            table9.AddRow(new string[] {
+                        "John",
+                        "X",
+                        "10",
+                        "Moved",
+                        "Moved to \'Center\' for board _________"});
+            table9.AddRow(new string[] {
+                        "Sally",
+                        "O",
+                        "10",
+                        "Moved",
+                        "Moved to \'NorthWest\' for board ____X____"});
+            table9.AddRow(new string[] {
+                        "John",
+                        "X",
+                        "10",
+                        "Moved",
+                        "Moved to \'Eastern\' for board O___X____"});
+            table9.AddRow(new string[] {
+                        "Sally",
+                        "O",
+                        "0",
+                        "LostDueToNoMoves",
+                        "Lost due to no move for board O___XX___"});
+            table9.AddRow(new string[] {
+                        "John",
+                        "X",
+                        "10",
+                        "WonDueToNoMoves",
+                        "Won due to no move for board O___XX___"});
+#line 72
+ testRunner.Then("I expect the ledger to contain", ((string)(null)), table9, "Then ");
+#line hidden
+            this.ScenarioCleanup();
+        }
     }
 }
 #pragma warning restore
