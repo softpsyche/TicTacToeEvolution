@@ -25,7 +25,7 @@ namespace Arcesoft.TicTacToe.Evolution.Selection
             return newLedger;
         }
 
-        public LedgerEntry AddEntry(Guid individualId, string individualName, Guid matchId, Player player, Double metricScore, MetricType? metricType, String description = null)
+        public LedgerEntry AddEntry(Guid individualId, string individualName, Guid matchId, Player player, MetricType? metricType, String description = null)
         {
 
             var entry = new LedgerEntry()
@@ -34,7 +34,6 @@ namespace Arcesoft.TicTacToe.Evolution.Selection
                 IndividualName = individualName,
                 MatchId = matchId,
                 Player = player,
-                MetricScore = metricScore,
                 MetricType = metricType,
                 Description = description
             };

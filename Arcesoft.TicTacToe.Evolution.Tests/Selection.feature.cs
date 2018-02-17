@@ -292,17 +292,14 @@ this.FeatureBackground();
             TechTalk.SpecFlow.Table table3 = new TechTalk.SpecFlow.Table(new string[] {
                         "IndividualName",
                         "Player",
-                        "MetricScore",
                         "MetricType"});
             table3.AddRow(new string[] {
                         "John",
                         "X",
-                        "0",
                         "LostDueToNoMoves"});
             table3.AddRow(new string[] {
                         "Sally",
                         "O",
-                        "10",
                         "WonDueToNoMoves"});
 #line 42
  testRunner.Then("I expect the ledger to contain", ((string)(null)), table3, "Then ");
@@ -407,41 +404,226 @@ this.FeatureBackground();
             TechTalk.SpecFlow.Table table9 = new TechTalk.SpecFlow.Table(new string[] {
                         "IndividualName",
                         "Player",
-                        "MetricScore",
                         "MetricType",
                         "Description"});
             table9.AddRow(new string[] {
                         "John",
                         "X",
-                        "10",
                         "Moved",
                         "Moved to \'Center\' for board _________"});
             table9.AddRow(new string[] {
                         "Sally",
                         "O",
-                        "10",
                         "Moved",
                         "Moved to \'NorthWest\' for board ____X____"});
             table9.AddRow(new string[] {
                         "John",
                         "X",
-                        "10",
                         "Moved",
                         "Moved to \'Eastern\' for board O___X____"});
             table9.AddRow(new string[] {
                         "Sally",
                         "O",
-                        "0",
                         "LostDueToNoMoves",
                         "Lost due to no move for board O___XX___"});
             table9.AddRow(new string[] {
                         "John",
                         "X",
-                        "10",
                         "WonDueToNoMoves",
                         "Won due to no move for board O___XX___"});
 #line 72
  testRunner.Then("I expect the ledger to contain", ((string)(null)), table9, "Then ");
+#line hidden
+            this.ScenarioCleanup();
+        }
+        
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Should evaluate fitness for all or nothing")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Selection")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("Behavioral")]
+        public virtual void ShouldEvaluateFitnessForAllOrNothing()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Should evaluate fitness for all or nothing", ((string[])(null)));
+#line 80
+this.ScenarioSetup(scenarioInfo);
+#line 7
+this.FeatureBackground();
+#line 81
+ testRunner.Given("I have a fitness evaluator of type \'AllOrNothing\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line hidden
+            TechTalk.SpecFlow.Table table10 = new TechTalk.SpecFlow.Table(new string[] {
+                        "Name",
+                        "Id"});
+            table10.AddRow(new string[] {
+                        "John",
+                        "10000000-0000-0000-0000-000000000000"});
+            table10.AddRow(new string[] {
+                        "Sally",
+                        "20000000-0000-0000-0000-000000000000"});
+            table10.AddRow(new string[] {
+                        "Wayne",
+                        "30000000-0000-0000-0000-000000000000"});
+#line 82
+ testRunner.Given("I have the following individuals", ((string)(null)), table10, "Given ");
+#line hidden
+            TechTalk.SpecFlow.Table table11 = new TechTalk.SpecFlow.Table(new string[] {
+                        "MatchId",
+                        "IndividualId",
+                        "MetricType"});
+            table11.AddRow(new string[] {
+                        "10000000-0000-0000-0000-000000000000",
+                        "10000000-0000-0000-0000-000000000000",
+                        "Moved"});
+            table11.AddRow(new string[] {
+                        "10000000-0000-0000-0000-000000000000",
+                        "10000000-0000-0000-0000-000000000000",
+                        "Lost"});
+            table11.AddRow(new string[] {
+                        "20000000-0000-0000-0000-000000000000",
+                        "10000000-0000-0000-0000-000000000000",
+                        "Moved"});
+            table11.AddRow(new string[] {
+                        "20000000-0000-0000-0000-000000000000",
+                        "10000000-0000-0000-0000-000000000000",
+                        "LostDueToNoMoves"});
+            table11.AddRow(new string[] {
+                        "30000000-0000-0000-0000-000000000000",
+                        "10000000-0000-0000-0000-000000000000",
+                        "Moved"});
+            table11.AddRow(new string[] {
+                        "30000000-0000-0000-0000-000000000000",
+                        "10000000-0000-0000-0000-000000000000",
+                        "LostDueToInvalidMove"});
+            table11.AddRow(new string[] {
+                        "40000000-0000-0000-0000-000000000000",
+                        "10000000-0000-0000-0000-000000000000",
+                        "Moved"});
+            table11.AddRow(new string[] {
+                        "40000000-0000-0000-0000-000000000000",
+                        "10000000-0000-0000-0000-000000000000",
+                        "Won"});
+            table11.AddRow(new string[] {
+                        "50000000-0000-0000-0000-000000000000",
+                        "10000000-0000-0000-0000-000000000000",
+                        "Moved"});
+            table11.AddRow(new string[] {
+                        "50000000-0000-0000-0000-000000000000",
+                        "10000000-0000-0000-0000-000000000000",
+                        "WonDueToNoMoves"});
+            table11.AddRow(new string[] {
+                        "60000000-0000-0000-0000-000000000000",
+                        "10000000-0000-0000-0000-000000000000",
+                        "Moved"});
+            table11.AddRow(new string[] {
+                        "60000000-0000-0000-0000-000000000000",
+                        "10000000-0000-0000-0000-000000000000",
+                        "WonDueToInvalidMove"});
+            table11.AddRow(new string[] {
+                        "70000000-0000-0000-0000-000000000000",
+                        "10000000-0000-0000-0000-000000000000",
+                        "Moved"});
+            table11.AddRow(new string[] {
+                        "70000000-0000-0000-0000-000000000000",
+                        "10000000-0000-0000-0000-000000000000",
+                        "Tied"});
+            table11.AddRow(new string[] {
+                        "80000000-0000-0000-0000-000000000000",
+                        "10000000-0000-0000-0000-000000000000",
+                        "Moved"});
+            table11.AddRow(new string[] {
+                        "80000000-0000-0000-0000-000000000000",
+                        "10000000-0000-0000-0000-000000000000",
+                        "Tied"});
+            table11.AddRow(new string[] {
+                        "10000000-0000-0000-0000-000000000002",
+                        "20000000-0000-0000-0000-000000000000",
+                        "Moved"});
+            table11.AddRow(new string[] {
+                        "10000000-0000-0000-0000-000000000002",
+                        "20000000-0000-0000-0000-000000000000",
+                        "Lost"});
+            table11.AddRow(new string[] {
+                        "20000000-0000-0000-0000-000000000002",
+                        "20000000-0000-0000-0000-000000000000",
+                        "Moved"});
+            table11.AddRow(new string[] {
+                        "20000000-0000-0000-0000-000000000002",
+                        "20000000-0000-0000-0000-000000000000",
+                        "LostDueToNoMoves"});
+            table11.AddRow(new string[] {
+                        "30000000-0000-0000-0000-000000000002",
+                        "20000000-0000-0000-0000-000000000000",
+                        "Moved"});
+            table11.AddRow(new string[] {
+                        "30000000-0000-0000-0000-000000000002",
+                        "20000000-0000-0000-0000-000000000000",
+                        "LostDueToInvalidMove"});
+            table11.AddRow(new string[] {
+                        "40000000-0000-0000-0000-000000000002",
+                        "20000000-0000-0000-0000-000000000000",
+                        "Moved"});
+            table11.AddRow(new string[] {
+                        "40000000-0000-0000-0000-000000000002",
+                        "20000000-0000-0000-0000-000000000000",
+                        "Won"});
+            table11.AddRow(new string[] {
+                        "50000000-0000-0000-0000-000000000002",
+                        "20000000-0000-0000-0000-000000000000",
+                        "Moved"});
+            table11.AddRow(new string[] {
+                        "50000000-0000-0000-0000-000000000002",
+                        "20000000-0000-0000-0000-000000000000",
+                        "WonDueToNoMoves"});
+            table11.AddRow(new string[] {
+                        "60000000-0000-0000-0000-000000000002",
+                        "20000000-0000-0000-0000-000000000000",
+                        "Moved"});
+            table11.AddRow(new string[] {
+                        "60000000-0000-0000-0000-000000000002",
+                        "20000000-0000-0000-0000-000000000000",
+                        "WonDueToInvalidMove"});
+            table11.AddRow(new string[] {
+                        "70000000-0000-0000-0000-000000000002",
+                        "20000000-0000-0000-0000-000000000000",
+                        "Moved"});
+            table11.AddRow(new string[] {
+                        "70000000-0000-0000-0000-000000000002",
+                        "20000000-0000-0000-0000-000000000000",
+                        "Tied"});
+            table11.AddRow(new string[] {
+                        "80000000-0000-0000-0000-000000000002",
+                        "20000000-0000-0000-0000-000000000000",
+                        "Moved"});
+            table11.AddRow(new string[] {
+                        "80000000-0000-0000-0000-000000000002",
+                        "20000000-0000-0000-0000-000000000000",
+                        "Tied"});
+            table11.AddRow(new string[] {
+                        "90000000-0000-0000-0000-000000000002",
+                        "20000000-0000-0000-0000-000000000000",
+                        "Moved"});
+            table11.AddRow(new string[] {
+                        "90000000-0000-0000-0000-000000000002",
+                        "20000000-0000-0000-0000-000000000000",
+                        "Tied"});
+            table11.AddRow(new string[] {
+                        "99000000-0000-0000-0000-000000000002",
+                        "20000000-0000-0000-0000-000000000000",
+                        "Moved"});
+            table11.AddRow(new string[] {
+                        "99000000-0000-0000-0000-000000000002",
+                        "20000000-0000-0000-0000-000000000000",
+                        "Tied"});
+#line 87
+ testRunner.Given("I have the following ledger", ((string)(null)), table11, "Given ");
+#line 125
+ testRunner.When("I evaluate fitness", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 126
+ testRunner.Then("I expect the fitness score for individual \'10000000-0000-0000-0000-000000000000\' " +
+                    "to be \'.625\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 127
+ testRunner.Then("I expect the fitness score for individual \'20000000-0000-0000-0000-000000000000\' " +
+                    "to be \'.7\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }

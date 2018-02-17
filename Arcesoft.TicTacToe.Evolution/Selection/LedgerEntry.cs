@@ -13,13 +13,12 @@ namespace Arcesoft.TicTacToe.Evolution.Selection
         public string IndividualName { get; set; }
         public Guid MatchId { get; set; }
         public Player Player { get; set; }
-        public Double MetricScore { get; set; }
         public MetricType? MetricType { get; set; }
         public string Description { get; set; }
 
         public override string ToString()
         {
-            return $"{MetricType}:{MetricScore}:{Player}:{MatchId}:{IndividualName}({IndividualId}):{Description}";
+            return $"{MetricType}:{Player}:{MatchId}:{IndividualName}({IndividualId}):{Description}";
         }
     }
 }

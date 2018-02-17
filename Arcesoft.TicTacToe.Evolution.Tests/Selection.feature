@@ -40,9 +40,9 @@ Scenario: Should evaluate match correctly if players have no moves
 		| John        | Sally       |
 	When I evaluate the matches
 	Then I expect the ledger to contain
-		| IndividualName | Player | MetricScore | MetricType       |
-		| John           | X      | 0           | LostDueToNoMoves |
-		| Sally          | O      | 10          | WonDueToNoMoves  |
+		| IndividualName | Player | MetricType       |
+		| John           | X      | LostDueToNoMoves |
+		| Sally          | O      | WonDueToNoMoves  |
 
 Scenario: Should evaluate match correctly for invalid move
 	Given I have a match evaluator
@@ -70,10 +70,60 @@ Scenario: Should evaluate match correctly for invalid move
 		| John        | Sally       |
 	When I evaluate the matches
 	Then I expect the ledger to contain
-		| IndividualName | Player | MetricScore | MetricType       | Description                              |
-		| John           | X      | 10          | Moved            | Moved to 'Center' for board _________    |
-		| Sally          | O      | 10          | Moved            | Moved to 'NorthWest' for board ____X____ |
-		| John           | X      | 10          | Moved            | Moved to 'Eastern' for board O___X____   |
-		| Sally          | O      | 0           | LostDueToNoMoves | Lost due to no move for board O___XX___  |
-		| John           | X      | 10          | WonDueToNoMoves  | Won due to no move for board O___XX___   |
+		| IndividualName | Player | MetricType       | Description                              |
+		| John           | X      | Moved            | Moved to 'Center' for board _________    |
+		| Sally          | O      | Moved            | Moved to 'NorthWest' for board ____X____ |
+		| John           | X      | Moved            | Moved to 'Eastern' for board O___X____   |
+		| Sally          | O      | LostDueToNoMoves | Lost due to no move for board O___XX___  |
+		| John           | X      | WonDueToNoMoves  | Won due to no move for board O___XX___   |
+
+Scenario: Should evaluate fitness for all or nothing 
+	Given I have a fitness evaluator of type 'AllOrNothing'
+	Given I have the following individuals
+        | Name  | Id                                   |
+        | John  | 10000000-0000-0000-0000-000000000000 |
+        | Sally | 20000000-0000-0000-0000-000000000000 |
+        | Wayne | 30000000-0000-0000-0000-000000000000 |
+	Given I have the following ledger
+		| MatchId                              | IndividualId                         | MetricType           |
+		| 10000000-0000-0000-0000-000000000000 | 10000000-0000-0000-0000-000000000000 | Moved                |
+		| 10000000-0000-0000-0000-000000000000 | 10000000-0000-0000-0000-000000000000 | Lost                 |
+		| 20000000-0000-0000-0000-000000000000 | 10000000-0000-0000-0000-000000000000 | Moved                |
+		| 20000000-0000-0000-0000-000000000000 | 10000000-0000-0000-0000-000000000000 | LostDueToNoMoves     |
+		| 30000000-0000-0000-0000-000000000000 | 10000000-0000-0000-0000-000000000000 | Moved                |
+		| 30000000-0000-0000-0000-000000000000 | 10000000-0000-0000-0000-000000000000 | LostDueToInvalidMove |
+		| 40000000-0000-0000-0000-000000000000 | 10000000-0000-0000-0000-000000000000 | Moved                |
+		| 40000000-0000-0000-0000-000000000000 | 10000000-0000-0000-0000-000000000000 | Won                  |
+		| 50000000-0000-0000-0000-000000000000 | 10000000-0000-0000-0000-000000000000 | Moved                |
+		| 50000000-0000-0000-0000-000000000000 | 10000000-0000-0000-0000-000000000000 | WonDueToNoMoves      |
+		| 60000000-0000-0000-0000-000000000000 | 10000000-0000-0000-0000-000000000000 | Moved                |
+		| 60000000-0000-0000-0000-000000000000 | 10000000-0000-0000-0000-000000000000 | WonDueToInvalidMove  |
+		| 70000000-0000-0000-0000-000000000000 | 10000000-0000-0000-0000-000000000000 | Moved                |
+		| 70000000-0000-0000-0000-000000000000 | 10000000-0000-0000-0000-000000000000 | Tied                 |
+		| 80000000-0000-0000-0000-000000000000 | 10000000-0000-0000-0000-000000000000 | Moved                |
+		| 80000000-0000-0000-0000-000000000000 | 10000000-0000-0000-0000-000000000000 | Tied                 |
+		| 10000000-0000-0000-0000-000000000002 | 20000000-0000-0000-0000-000000000000 | Moved                |
+		| 10000000-0000-0000-0000-000000000002 | 20000000-0000-0000-0000-000000000000 | Lost                 |
+		| 20000000-0000-0000-0000-000000000002 | 20000000-0000-0000-0000-000000000000 | Moved                |
+		| 20000000-0000-0000-0000-000000000002 | 20000000-0000-0000-0000-000000000000 | LostDueToNoMoves     |
+		| 30000000-0000-0000-0000-000000000002 | 20000000-0000-0000-0000-000000000000 | Moved                |
+		| 30000000-0000-0000-0000-000000000002 | 20000000-0000-0000-0000-000000000000 | LostDueToInvalidMove |
+		| 40000000-0000-0000-0000-000000000002 | 20000000-0000-0000-0000-000000000000 | Moved                |
+		| 40000000-0000-0000-0000-000000000002 | 20000000-0000-0000-0000-000000000000 | Won                  |
+		| 50000000-0000-0000-0000-000000000002 | 20000000-0000-0000-0000-000000000000 | Moved                |
+		| 50000000-0000-0000-0000-000000000002 | 20000000-0000-0000-0000-000000000000 | WonDueToNoMoves      |
+		| 60000000-0000-0000-0000-000000000002 | 20000000-0000-0000-0000-000000000000 | Moved                |
+		| 60000000-0000-0000-0000-000000000002 | 20000000-0000-0000-0000-000000000000 | WonDueToInvalidMove  |
+		| 70000000-0000-0000-0000-000000000002 | 20000000-0000-0000-0000-000000000000 | Moved                |
+		| 70000000-0000-0000-0000-000000000002 | 20000000-0000-0000-0000-000000000000 | Tied                 |
+		| 80000000-0000-0000-0000-000000000002 | 20000000-0000-0000-0000-000000000000 | Moved                |
+		| 80000000-0000-0000-0000-000000000002 | 20000000-0000-0000-0000-000000000000 | Tied                 |
+		| 90000000-0000-0000-0000-000000000002 | 20000000-0000-0000-0000-000000000000 | Moved                |
+		| 90000000-0000-0000-0000-000000000002 | 20000000-0000-0000-0000-000000000000 | Tied                 |
+		| 99000000-0000-0000-0000-000000000002 | 20000000-0000-0000-0000-000000000000 | Moved                |
+		| 99000000-0000-0000-0000-000000000002 | 20000000-0000-0000-0000-000000000000 | Tied                 |
+	When I evaluate fitness
+	Then I expect the fitness score for individual '10000000-0000-0000-0000-000000000000' to be '.625'
+	Then I expect the fitness score for individual '20000000-0000-0000-0000-000000000000' to be '.7'
+
 

@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using TechTalk.SpecFlow;
 using TechTalk.SpecFlow.Assist;
 using SpecFlow.Assist.Dynamic;
+using Arcesoft.TicTacToe.Evolution.Selection.Strategies;
 
 namespace Arcesoft.TicTacToe.Evolution.Tests
 {
@@ -33,6 +34,18 @@ namespace Arcesoft.TicTacToe.Evolution.Tests
             get
             {
                 return GetScenarioContextItemOrDefault<MatchEvaluator>();
+            }
+            set
+            {
+                CurrentContext.Set(value);
+            }
+        }
+
+        protected IFitnessEvaluator FitnessEvaluator
+        {
+            get
+            {
+                return GetScenarioContextItemOrDefault<IFitnessEvaluator>();
             }
             set
             {
@@ -75,6 +88,19 @@ namespace Arcesoft.TicTacToe.Evolution.Tests
                 CurrentContext.Set(value);
             }
         }
+
+        protected List<FitnessScore> FitnessScores
+        {
+            get
+            {
+                return GetScenarioContextItemOrDefault<List<FitnessScore>>();
+            }
+            set
+            {
+                CurrentContext.Set(value);
+            }
+        }
+        
 
         [Given(@"I have a match builder")]
         public void GivenIHaveAMatchBuilder()
@@ -198,6 +224,38 @@ namespace Arcesoft.TicTacToe.Evolution.Tests
         {
             table.CompareToSet(Ledger.Entries);
         }
+
+        [Given(@"I have a fitness evaluator of type '(.*)'")]
+        public void GivenIHaveAFitnessEvaluatorOfType(FitnessEvaluatorType evaluatorType)
+        {
+            FitnessEvaluator = Container.GetInstance<AllOrNothingFitnessEvaluator>();
+        }
+
+        [Given(@"I have the following ledger")]
+        public void GivenIHaveTheFollowingLedger(Table table)
+        {
+            Ledger = new Ledger()
+            {
+                Entries = table.CreateSet<LedgerEntry>().ToList()
+            };
+        }
+
+        [When(@"I evaluate fitness")]
+        public void WhenIEvaluateFitness()
+        {
+            Invoke(() => FitnessScores = FitnessEvaluator.Evaluate(Individuals, Ledger).ToList());
+        }
+
+        [Then(@"I expect the fitness score for individual '(.*)' to be '(.*)'")]
+        public void ThenIExpectTheFitnessScoreForIndividualToBe(Guid individualId, double score)
+        {
+            var fitnessScore = FitnessScores.SingleOrDefault(a => a.Individual.Id == individualId);
+
+            fitnessScore.Should().NotBeNull();
+
+            fitnessScore.Score.Should().BeApproximately(score, .000001);
+        }
+
 
     }
 }

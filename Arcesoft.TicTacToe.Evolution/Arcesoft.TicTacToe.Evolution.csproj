@@ -48,15 +48,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Selection\FitnessEvaluator.cs" />
+    <Compile Include="Selection\FitnessEvaluatorType.cs" />
+    <Compile Include="Selection\FitnessScore.cs" />
+    <Compile Include="Selection\IFitnessEvaluator.cs" />
     <Compile Include="Selection\Ledger.cs" />
     <Compile Include="Selection\LedgerEntry.cs" />
+    <Compile Include="Selection\LedgerExtensions.cs" />
     <Compile Include="Selection\Match.cs" />
     <Compile Include="Selection\MatchBuilder.cs" />
     <Compile Include="Selection\MatchEvaluator.cs" />
     <Compile Include="Selection\MatchResult.cs" />
     <Compile Include="Selection\MetricType.cs" />
-    <Compile Include="Selection\MetricTypeScore.cs" />
+    <Compile Include="Selection\Strategies\AllOrNothingFitnessEvaluator.cs" />
     <None Include="Reproduction\Breeder.cs" />
     <None Include="Reproduction\Culler.cs" />
     <Compile Include="GameExtensions.cs" />
