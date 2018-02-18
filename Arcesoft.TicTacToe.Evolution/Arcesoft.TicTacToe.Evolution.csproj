@@ -48,13 +48,21 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DependencyInjection\Binder.cs" />
+    <Compile Include="DependencyInjection\FactoryContainer.cs" />
+    <Compile Include="Environs\IPopulation.cs" />
     <Compile Include="EvolutionSettings.cs" />
+    <Compile Include="IEvolutionFactory.cs" />
+    <Compile Include="IInternalEvolutionFactory.cs" />
     <Compile Include="Organisms\GeneCache.cs" />
+    <Compile Include="Reproduction\BreederType.cs" />
     <Compile Include="Reproduction\IReproductionSettings.cs" />
     <Compile Include="Reproduction\Strategies\AsexualBreeder.cs" />
     <Compile Include="Selection\FitnessEvaluatorType.cs" />
     <Compile Include="Selection\FitnessScore.cs" />
     <Compile Include="Selection\IFitnessEvaluator.cs" />
+    <Compile Include="Selection\IMatchBuilder.cs" />
+    <Compile Include="Selection\IMatchEvaluator.cs" />
     <Compile Include="Selection\Ledger.cs" />
     <Compile Include="Selection\LedgerEntry.cs" />
     <Compile Include="Selection\LedgerExtensions.cs" />
@@ -69,7 +77,7 @@
     <Compile Include="Mutations\IMutator.cs" />
     <Compile Include="Mutations\MutationSettings.cs" />
     <Compile Include="Organisms\Allele.cs" />
-    <None Include="EvolutionFactory.cs" />
+    <Compile Include="EvolutionFactory.cs" />
     <None Include="Extensions.cs" />
     <Compile Include="Mutations\Mutator.cs" />
     <Compile Include="Organisms\AlleleConstants.cs" />
@@ -81,7 +89,7 @@
     <None Include="Serialization\DtoImplementations.cs" />
     <None Include="Serialization\JsonSerializer.cs" />
     <Compile Include="Organisms\Individual.cs" />
-    <None Include="Environs\Population.cs" />
+    <Compile Include="Environs\Population.cs" />
     <Compile Include="Organisms\TurnExtensions.cs" />
     <Compile Include="Organisms\Turn.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

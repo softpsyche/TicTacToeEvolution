@@ -24,7 +24,9 @@ namespace Arcesoft.TicTacToe.Evolution.Tests
             var container = new Container();
             container.Options.AllowOverridingRegistrations = true;
 
-            new DependencyInjection.Binder().BindDependencies(container);
+            new Arcesoft.TicTacToe.DependencyInjection.Binder().BindDependencies(container);
+            new TicTacToe.Evolution.DependencyInjection.Binder().BindDependencies(container);
+
 
             //this locks the container so no tx for us...
             //container.Verify();

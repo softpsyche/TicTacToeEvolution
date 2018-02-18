@@ -1,4 +1,5 @@
 ﻿using Arcesoft.TicTacToe.ArtificialIntelligence.Strategies;
+using Arcesoft.TicTacToe.DependencyInjection;
 using Arcesoft.TicTacToe.Entities;
 using SimpleInjector;
 using System;
@@ -9,22 +10,23 @@ using System.Threading.Tasks;
 
 namespace Arcesoft.TicTacToe.GameImplementation
 {
-    public class TicTacToeFactory : ITicTacToeFactory
+    internal class TicTacToeFactory : ITicTacToeFactory
     {
-        private readonly IServiceProvider _serviceProvider;
-        public TicTacToeFactory(IServiceProvider serviceProvider)
+        private FactoryContainer FactoryContainer { get; set; }
+
+        public TicTacToeFactory(FactoryContainer factoryContainer)
         {
-            _serviceProvider = serviceProvider;
+            FactoryContainer = factoryContainer;
         }
 
         public IDatabaseBuilder NewDatabaseBuilder()
         {
-            return LocateService<IDatabaseBuilder>();
+            return FactoryContainer.GetInstance<IDatabaseBuilder>();
         }
 
         public IGame NewGame()
         {
-            return LocateService<IGame>();
+            return FactoryContainer.GetInstance<IGame>();
         }
 
         public IGame NewGame(IEnumerable<Move> moves)
@@ -51,20 +53,12 @@ namespace Arcesoft.TicTacToe.GameImplementation
             switch (type)
             {
                 case ArtificialIntelligenceTypes.BruteForce:
-                    return LocateService<BruteForce>();
+                    return FactoryContainer.GetInstance<BruteForce>();
                 case ArtificialIntelligenceTypes.OmniscientGod:
-                    return LocateService<OmniscientGod>();
+                    return FactoryContainer.GetInstance<OmniscientGod>();
                 default:
                     throw new ArgumentOutOfRangeException(nameof(type), $"Unable to create AI for type '{type}'. No implementation found for this type.");
             }
-        }
-
-        private T LocateService<T>()
-            where T : class
-        {
-            var service = _serviceProvider.GetService(typeof(T));
-
-            return service as T;
         }
     }
 }

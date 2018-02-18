@@ -1,58 +1,55 @@
-﻿using System;
+﻿using Arcesoft.TicTacToe.Evolution.DependencyInjection;
+using Arcesoft.TicTacToe.Evolution.Reproduction;
+using Arcesoft.TicTacToe.Evolution.Reproduction.Strategies;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using TicTacToe.Evolution.Serialization;
+using Arcesoft.TicTacToe.Evolution.Selection;
+using Arcesoft.TicTacToe.Evolution.Selection.Strategies;
+using Arcesoft.TicTacToe.Evolution.Environs;
 
 namespace Arcesoft.TicTacToe.Evolution
 {
-	public class EvolutionFactory : IEvolutionFactory,IGameFactory
-	{
+    internal class EvolutionFactory : IEvolutionFactory, IInternalEvolutionFactory
+    {
+        private FactoryContainer FactoryContainer { get; set; }
 
-		public virtual IGame NewGame()
-		{
-			return new Game();
-		}
-		public virtual IRandom CreateRandom()
-		{
-			return new GameRng();
-		}
+        public EvolutionFactory(FactoryContainer factoryContainer)
+        {
+            FactoryContainer = factoryContainer;
+        }
 
-		public virtual Population NewPopulation(PopulationDto dto)
-		{
-			var yo = dto;
+        public IBreeder CreateBreeder(BreederType breederType)
+        {
+            switch (breederType)
+            {
+                case BreederType.ASexual:
+                    return FactoryContainer.GetInstance<AsexualBreeder>();
+                default:
+                    throw new ArgumentOutOfRangeException(nameof(breederType));
+            }
+        }
 
-			return null;
-		}
-		public virtual Population NewPopulation()
-		{
-			var settings = new PopulationSettings()
-			{
-				MaximumMatchesPerIndividual = 5,
-				MaximumSize = 200,
-				MutationRate = .01D
-			};
+        public IFitnessEvaluator CreateFitnessEvaluator(FitnessEvaluatorType fitnessEvaluatorType)
+        {
+            switch (fitnessEvaluatorType)
+            {
+                case FitnessEvaluatorType.AllOrNothing:
+                    return FactoryContainer.GetInstance<AllOrNothingFitnessEvaluator>();
+                default:
+                    throw new ArgumentOutOfRangeException(nameof(fitnessEvaluatorType));
+            }
+        }
 
-			var rng = new GameRng();
-
-			return new Population(
-				settings,
-				new Selector(this,settings.MaximumMatchesPerIndividual),
-				new Culler(),
-				new Breeder(rng));
-		}
-	}
-	public interface IGameFactory
-	{
-		IGame NewGame();
-	}
-	public interface IEvolutionFactory
-	{
-		Population NewPopulation();
-	}
+        public IPopulation CreatePopulation(EvolutionSettings evolutionSettings)
+        {
+            var population = FactoryContainer.GetInstance<IPopulation>();
 
 
-
-	
+            return population;
+        }
+    }
 }
+

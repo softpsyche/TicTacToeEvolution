@@ -1,4 +1,7 @@
-﻿using System;
+﻿using Arcesoft.TicTacToe.Evolution.Mutations;
+using Arcesoft.TicTacToe.Evolution.Organisms;
+using Arcesoft.TicTacToe.Evolution.Selection;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,69 +9,100 @@ using System.Threading.Tasks;
 
 namespace Arcesoft.TicTacToe.Evolution.Environs
 {
-	public class Population
-	{
-		public String Name
-		{
-			get;
-			set;
-		}
-		public Int32 MaximumSize
-		{
-			get;
-			set;
-		}
-		public Double MutationRate
-		{
-			get;
-			set;
-		}
+    internal class Population : IPopulation
+    {
+        private IInternalEvolutionFactory EvolutionFactory { get; set; }
+        private IMutator Mutator { get; set; }
+        private IMatchBuilder MatchBuilder { get; set; }
+        private IMatchEvaluator MatchEvaluator { get; set; }
+        private IBreeder _breeder;
+        private IBreeder Breeder
+        {
+            get
+            {
+                if (_breeder == null)
+                {
+                    _breeder = EvolutionFactory.CreateBreeder(Settings.BreederType);
+                }
 
-		private PopulationSettings Settings { get; set; }
-		public IEnumerable<Individual> GetIndividuals()
-		{
-			return Individuals;
-		}
+                return _breeder;
+            }
+        }
+        private IFitnessEvaluator _fitnessEvaluator;
+        private IFitnessEvaluator FitnessEvaluator
+        {
+            get
+            {
+                if (_fitnessEvaluator == null)
+                {
+                    _fitnessEvaluator = EvolutionFactory.CreateFitnessEvaluator(Settings.FitnessEvaluatorType);
+                }
 
-		private List<Individual> Individuals { get; set; }
-		private Selector Selector { get; set; }
-		private Culler Culler { get; set; }
-		private Breeder Breeder { get; set; }
+                return _fitnessEvaluator;
+            }
+        }
 
-		public void Evolve()
-		{
-			//Evaluate the fitness of the individuals
-			var fitnessResults = Selector.EvaluateFitness(Individuals);
-
-			//Get the survivors
-			var survivors = Culler.Cull(fitnessResults, Settings.MaximumSize);
-
-			//breed based on the survivors
-			this.Individuals = Breeder.Breed(survivors,this.Settings.MaximumSize, this.Settings.MutationRate).ToList();
-
-			if (fitnessResults.OrderByDescending(a => a.Score).First().Score > 100)
-			{
-				var yo = "yes";
-			}
-
-			//make any environmental tweaks here??
-			//EnvironmentalFactors.AdvanceEnvironment();
-
-			//Set the next generation
-			//PopulationHistory.Record(nextGeneration);
-		}
-
-		public Population(PopulationSettings settings, Selector selector, Culler culler, Breeder breeder)
-		{
-			this.Settings = settings;
-
-			this.Selector = selector;
-			this.Culler = culler;
-			this.Breeder = breeder;
-
-			this.Individuals = this.Breeder.NewIndividuals(this.Settings.MaximumSize);
-		}
+        public EvolutionSettings Settings { get; set; }
+        private List<Individual> Individuals { get; set; }
+        public Guid Id { get; internal set; }
+        public string Name { get; internal set; }
+        public long Generation { get; internal set; }
 
 
-	}
+        public Population(
+            IInternalEvolutionFactory evolutionFactory,
+            IMutator mutator,
+            IMatchBuilder matchBuilder,
+            IMatchEvaluator matchEvaluator)
+        {
+            EvolutionFactory = evolutionFactory;
+            Mutator = mutator;
+            MatchBuilder = matchBuilder;
+            MatchEvaluator = matchEvaluator;
+        }
+
+        public void Evolve()
+        {
+            //initialize if we have not already
+            Initialize();
+
+            //Compete: evaluate the fitness of the individuals
+            var fitnessScores = CalculateFitnessScores(Individuals);
+
+            //Breed: Breed based on fitness scores
+            var newGeneration = Breeder.Breed(fitnessScores, Settings).ToList();
+
+            //Mutate: apply mutations to new generation
+            Mutator.Mutate(newGeneration, Settings);
+
+            //set the new individuals
+            Individuals = newGeneration;
+
+            //progress the next generation
+            Generation++;
+        }
+
+        private List<FitnessScore> CalculateFitnessScores(IEnumerable<Individual> individuals)
+        {
+            //build tournament matches
+            var matches = MatchBuilder.Build(individuals, Settings.MatchTournaments);
+
+            //create a ledger
+            var ledger = MatchEvaluator.Evaluate(matches.ToArray());
+
+            //evaluate the fitness
+            return FitnessEvaluator.Evaluate(individuals, ledger).ToList();
+        }
+
+        private void Initialize()
+        {
+            if (Individuals != null)
+            {
+                return;
+            }
+
+            Individuals = new List<Individual>();
+
+        }
+    }
 }
