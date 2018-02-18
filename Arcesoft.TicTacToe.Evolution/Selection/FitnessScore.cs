@@ -11,5 +11,6 @@ namespace Arcesoft.TicTacToe.Evolution.Selection
     {
         public Individual Individual { get; set; }
         public double Score { get; set; }
+        public double PercentageOfAllScores { get; set; }
     }
 }

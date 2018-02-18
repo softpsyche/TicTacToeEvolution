@@ -25,7 +25,7 @@ namespace Arcesoft.TicTacToe.Evolution.Tests
             return table.CreateSet(a => a.ToGene()).ToList();
         }
 
-        private static Gene ToGene(this TableRow tableRow)
+        public static Gene ToGene(this TableRow tableRow)
         {
             return new Gene(
                 tableRow[nameof(Gene.Turn)].ToEnumeration<Turn>(),

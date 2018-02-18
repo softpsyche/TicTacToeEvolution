@@ -6,7 +6,7 @@ Background:
 	Given I have a container
 	Given I have a tictactoe factory
 
-Scenario: Individual get genes correctly
+Scenario: Individual should get genes correctly
 	Given I have an individual
 	When I set the following genes on the individual
 		| Turn  | Priority | Alleles   |

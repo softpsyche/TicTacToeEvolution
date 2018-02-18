@@ -94,12 +94,12 @@ namespace Arcesoft.TicTacToe.Evolution.Tests
         }
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Individual get genes correctly")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Individual should get genes correctly")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Organisms")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("Behavioral")]
-        public virtual void IndividualGetGenesCorrectly()
+        public virtual void IndividualShouldGetGenesCorrectly()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Individual get genes correctly", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Individual should get genes correctly", ((string[])(null)));
 #line 9
 this.ScenarioSetup(scenarioInfo);
 #line 5

@@ -11,7 +11,7 @@ namespace Arcesoft.TicTacToe.Evolution.Organisms
 	/// Represents a single response strategy to a given board position.
 	/// This class is immutable. Flyweight pattern?
 	/// </summary>
-	public class Gene : IComparable<Gene>, IComparable
+	public sealed class Gene
 	{
 		public const Int32 MaximumPriority = 100;
 		public const Int32 MaximumMoves = 9;
@@ -107,34 +107,33 @@ namespace Arcesoft.TicTacToe.Evolution.Organisms
 			return null;
 		}
 
-		public override string ToString()
-		{
-            return base.ToString();
-			//return String.Format("(M:{0}|P:{1}) - {2}", this.Move, this.Priority, this.Alleles.ToVisualString());
-		}
-		#region IComparable
-		public int CompareTo(Gene other)
-		{
-			if (other == null) return 1;
+        public override string ToString()
+        {
+            return $"P{Priority.ToString("00")}: T{Turn.ToInteger()}: {Alleles.ToAlleleString()}";
+            //return String.Format("(M:{0}|P:{1}) - {2}", this.Move, this.Priority, this.Alleles.ToVisualString());
+        }
 
-			return Priority.CompareTo(other.Priority);
-		}
-		public int CompareTo(object obj)
-		{
-			if (obj == null) return 1;
+        #region Equals override
+        public override bool Equals(object obj)
+        {
+            var other = obj as Gene;
+            if (other == null) return false;
 
-			var typeItem = obj as Gene;
-			if (typeItem != null)
-			{
-				return Priority.CompareTo(typeItem.Priority);
-			}
-			else
-			{
-				throw new ArgumentException("Invalid type specifed for obj in comparison");
-			}
-		}
-		#endregion
-	}
+            return
+                other.Priority == Priority &&
+                other.Turn == Turn &&
+                other.Alleles.ToAlleleString().Equals(Alleles.ToAlleleString());
+        }
+
+        public override int GetHashCode()
+        {
+            return
+                Priority.GetHashCode() ^
+                Turn.GetHashCode() ^
+                Alleles.ToAlleleString().GetHashCode();
+        }
+        #endregion
+    }
 
 
 }

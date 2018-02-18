@@ -17,91 +17,6 @@ namespace Arcesoft.TicTacToe.Evolution.Tests
     [Binding]
     public class SelectionSteps:Steps
     {
-        protected MatchBuilder MatchBuilder
-        {
-            get
-            {
-                return GetScenarioContextItemOrDefault<MatchBuilder>();
-            }
-            set
-            {
-                CurrentContext.Set(value);
-            }
-        }
-
-        protected MatchEvaluator MatchEvaluator
-        {
-            get
-            {
-                return GetScenarioContextItemOrDefault<MatchEvaluator>();
-            }
-            set
-            {
-                CurrentContext.Set(value);
-            }
-        }
-
-        protected IFitnessEvaluator FitnessEvaluator
-        {
-            get
-            {
-                return GetScenarioContextItemOrDefault<IFitnessEvaluator>();
-            }
-            set
-            {
-                CurrentContext.Set(value);
-            }
-        }
-
-        protected Individual[] Individuals
-        {
-            get
-            {
-                return GetScenarioContextItemOrDefault<Individual[]>(nameof(Individuals));
-            }
-            set
-            {
-                CurrentContext.Set(value,nameof(Individuals));
-            }
-        }
-
-        protected List<Match> Matches
-        {
-            get
-            {
-                return GetScenarioContextItemOrDefault<List<Match>>(nameof(Matches));
-            }
-            set
-            {
-                CurrentContext.Set(value, nameof(Matches));
-            }
-        }
-
-        protected Ledger Ledger
-        {
-            get
-            {
-                return GetScenarioContextItemOrDefault<Ledger>();
-            }
-            set
-            {
-                CurrentContext.Set(value);
-            }
-        }
-
-        protected List<FitnessScore> FitnessScores
-        {
-            get
-            {
-                return GetScenarioContextItemOrDefault<List<FitnessScore>>();
-            }
-            set
-            {
-                CurrentContext.Set(value);
-            }
-        }
-        
-
         [Given(@"I have a match builder")]
         public void GivenIHaveAMatchBuilder()
         {
@@ -246,15 +161,14 @@ namespace Arcesoft.TicTacToe.Evolution.Tests
             Invoke(() => FitnessScores = FitnessEvaluator.Evaluate(Individuals, Ledger).ToList());
         }
 
-        [Then(@"I expect the fitness score for individual '(.*)' to be '(.*)'")]
-        public void ThenIExpectTheFitnessScoreForIndividualToBe(Guid individualId, double score)
+        [Then(@"I expect the fitness scores to contain the following")]
+        public void ThenIExpectTheFitnessScoresToContainTheFollowing(Table table)
         {
-            var fitnessScore = FitnessScores.SingleOrDefault(a => a.Individual.Id == individualId);
+            var anonType = FitnessScores.Select(a => new { IndividualId = a.Individual.Id, a.Score,a.PercentageOfAllScores });
 
-            fitnessScore.Should().NotBeNull();
-
-            fitnessScore.Score.Should().BeApproximately(score, .000001);
+            table.CompareToSet(anonType);
         }
+
 
 
     }

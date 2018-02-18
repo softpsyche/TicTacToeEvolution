@@ -66,39 +66,17 @@ namespace Arcesoft.TicTacToe.Evolution.Selection
 
                 if (move.HasValue)
                 {
-                    if (game.IsMoveValid(move.Value))
-                    {
-                        //give the player who made a move some points...
-                        UpdateScoresOrLedger(
-                            game.CurrentPlayer == Player.X ? match.PlayerX : match.PlayerO,
-                            match,
-                            MetricType.Moved,
-                            ledger,
-                            includeDescription ? $"Moved to '{move.Value}' for board {game.GameBoardString}" : null);
+                    UpdateScoresOrLedger(
+                        game.CurrentPlayer == Player.X ? match.PlayerX : match.PlayerO,
+                        match,
+                        MetricType.Moved,
+                        ledger,
+                        includeDescription ? $"Moved to '{move.Value}' for board {game.GameBoardString}" : null);
 
 
-                        //the super narrow path to game continuation...
-                        game.Move(move.Value);
-                        EvaluateInternal(game, match, ledger, includeDescription);
-                    }
-                    else
-                    {
-                        //The player making the move loses
-                        UpdateScoresOrLedger(
-                            game.CurrentPlayer == Player.X ? match.PlayerX : match.PlayerO,
-                            match,
-                            MetricType.LostDueToInvalidMove,
-                            ledger,
-                            includeDescription ? $"Lost due to no move for board {game.GameBoardString}" : null);
-
-                        //The other player wins by default, specifically wins due to invalid move
-                        UpdateScoresOrLedger(
-                            game.CurrentPlayer == Player.X ? match.PlayerO : match.PlayerX,
-                            match,
-                            MetricType.WonDueToInvalidMove,
-                            ledger,
-                            includeDescription ? $"Won due to no move for board {game.GameBoardString}" : null);
-                    }
+                    //the super narrow path to game continuation...
+                    game.Move(move.Value);
+                    EvaluateInternal(game, match, ledger, includeDescription);
                 }
                 else
                 {

@@ -8,12 +8,12 @@ Background:
 	Given I have a container
 	Given I have a tictactoe factory
 
-Scenario: Should build many matches correctly
+Scenario: Match builder should build many matches correctly
 	Given I have a match builder
 	Given I have '50' individuals
 	When I repeat the test '500' times using '5' tournaments and '50' individuals
 
-Scenario Outline: Should build matches for a
+Scenario Outline: Match builder should build matches for a
 	Given I have a match builder
 	Given I have '<Individuals>' individuals
 	When I build matches with '<Tournaments>' tournaments for my given individuals
@@ -29,7 +29,7 @@ Scenario Outline: Should build matches for a
 		| set with too many tournaments | 10          | 15          | 9                   | 90              |
 		| invalid set                   | 3           | 1           | 1                   | 3               |
 
-Scenario: Should evaluate match correctly if players have no moves
+Scenario: Match evaluator should evaluate when there are no moves
 	Given I have a match evaluator
 	Given I have the following individuals
 		| Name  |
@@ -44,7 +44,7 @@ Scenario: Should evaluate match correctly if players have no moves
 		| John           | X      | LostDueToNoMoves |
 		| Sally          | O      | WonDueToNoMoves  |
 
-Scenario: Should evaluate match correctly for invalid move
+Scenario: Match evaluator should evaluate WonDueToNoMoves/LostDueToNoMoves for player X/O
 	Given I have a match evaluator
 	Given I have the following individuals
 		| Name  |
@@ -77,7 +77,17 @@ Scenario: Should evaluate match correctly for invalid move
 		| Sally          | O      | LostDueToNoMoves | Lost due to no move for board O___XX___  |
 		| John           | X      | WonDueToNoMoves  | Won due to no move for board O___XX___   |
 
-Scenario: Should evaluate fitness for all or nothing 
+Scenario: Match evaluator should evaluate WonDueToNoMoves/LostDueToNoMoves for player O/X
+
+Scenario: Match evaluator should evaluate win/loss game for player X/O
+
+Scenario: Match evaluator should evaluate win/loss game for player O/X
+
+Scenario: Match evaluator should evaluate tie game
+
+
+
+Scenario: AllOrNothing Fitness evaluator should evaluate fitness
 	Given I have a fitness evaluator of type 'AllOrNothing'
 	Given I have the following individuals
         | Name  | Id                                   |
@@ -123,7 +133,9 @@ Scenario: Should evaluate fitness for all or nothing
 		| 99000000-0000-0000-0000-000000000002 | 20000000-0000-0000-0000-000000000000 | Moved                |
 		| 99000000-0000-0000-0000-000000000002 | 20000000-0000-0000-0000-000000000000 | Tied                 |
 	When I evaluate fitness
-	Then I expect the fitness score for individual '10000000-0000-0000-0000-000000000000' to be '.625'
-	Then I expect the fitness score for individual '20000000-0000-0000-0000-000000000000' to be '.7'
+	Then I expect the fitness scores to contain the following
+		| IndividualId                         | Score | PercentageOfAllScores |
+		| 10000000-0000-0000-0000-000000000000 | .625  | 0.471698              |
+		| 20000000-0000-0000-0000-000000000000 | .7    | 0.528302              |
 
 

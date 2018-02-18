@@ -6,9 +6,8 @@ using System.Threading.Tasks;
 
 namespace Arcesoft.TicTacToe.Evolution.Mutations
 {
-    public class MutationSettings
+    public interface IMutationSettings
     {
-        public double PointMutationRate { get; set; }
-
+        double MutationRate { get; }
     }
 }

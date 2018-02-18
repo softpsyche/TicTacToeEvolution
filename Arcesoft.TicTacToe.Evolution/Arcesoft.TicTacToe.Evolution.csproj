@@ -48,6 +48,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="EvolutionSettings.cs" />
+    <Compile Include="Organisms\GeneCache.cs" />
+    <Compile Include="Reproduction\IReproductionSettings.cs" />
+    <Compile Include="Reproduction\Strategies\AsexualBreeder.cs" />
     <Compile Include="Selection\FitnessEvaluatorType.cs" />
     <Compile Include="Selection\FitnessScore.cs" />
     <Compile Include="Selection\IFitnessEvaluator.cs" />
@@ -57,31 +61,25 @@
     <Compile Include="Selection\Match.cs" />
     <Compile Include="Selection\MatchBuilder.cs" />
     <Compile Include="Selection\MatchEvaluator.cs" />
-    <Compile Include="Selection\MatchResult.cs" />
     <Compile Include="Selection\MetricType.cs" />
     <Compile Include="Selection\Strategies\AllOrNothingFitnessEvaluator.cs" />
-    <None Include="Reproduction\Breeder.cs" />
-    <None Include="Reproduction\Culler.cs" />
+    <Compile Include="Reproduction\IBreeder.cs" />
     <Compile Include="GameExtensions.cs" />
     <Compile Include="IRandomExtensions.cs" />
     <Compile Include="Mutations\IMutator.cs" />
     <Compile Include="Mutations\MutationSettings.cs" />
     <Compile Include="Organisms\Allele.cs" />
     <None Include="EvolutionFactory.cs" />
-    <None Include="PopulationSettings.cs" />
     <None Include="Extensions.cs" />
     <Compile Include="Mutations\Mutator.cs" />
-    <None Include="Selector.cs" />
     <Compile Include="Organisms\AlleleConstants.cs" />
     <Compile Include="Organisms\AlleleExtensions.cs" />
     <Compile Include="Organisms\Gene.cs" />
-    <None Include="Homeless.cs" />
     <None Include="Serialization\DtoMapper.cs" />
     <None Include="Serialization\DtoMapperImplementations.cs" />
     <None Include="Serialization\DtoMapperRepository.cs" />
     <None Include="Serialization\DtoImplementations.cs" />
     <None Include="Serialization\JsonSerializer.cs" />
-    <None Include="WorkerThread.cs" />
     <Compile Include="Organisms\Individual.cs" />
     <None Include="Environs\Population.cs" />
     <Compile Include="Organisms\TurnExtensions.cs" />

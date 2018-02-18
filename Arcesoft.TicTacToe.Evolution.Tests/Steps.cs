@@ -5,6 +5,8 @@ using SimpleInjector;
 using Arcesoft.TicTacToe.Evolution.Organisms;
 using Arcesoft.TicTacToe.Entities;
 using System.Collections.Generic;
+using Arcesoft.TicTacToe.Evolution.Selection;
+using Arcesoft.TicTacToe.Evolution.Mutations;
 
 namespace Arcesoft.TicTacToe.Evolution.Tests
 {
@@ -120,7 +122,126 @@ namespace Arcesoft.TicTacToe.Evolution.Tests
             }
         }
 
-        
+        protected MatchBuilder MatchBuilder
+        {
+            get
+            {
+                return GetScenarioContextItemOrDefault<MatchBuilder>();
+            }
+            set
+            {
+                CurrentContext.Set(value);
+            }
+        }
+
+        protected MatchEvaluator MatchEvaluator
+        {
+            get
+            {
+                return GetScenarioContextItemOrDefault<MatchEvaluator>();
+            }
+            set
+            {
+                CurrentContext.Set(value);
+            }
+        }
+
+        protected IFitnessEvaluator FitnessEvaluator
+        {
+            get
+            {
+                return GetScenarioContextItemOrDefault<IFitnessEvaluator>();
+            }
+            set
+            {
+                CurrentContext.Set(value);
+            }
+        }
+
+        protected Individual[] Individuals
+        {
+            get
+            {
+                return GetScenarioContextItemOrDefault<Individual[]>(nameof(Individuals));
+            }
+            set
+            {
+                CurrentContext.Set(value, nameof(Individuals));
+            }
+        }
+
+        protected List<Match> Matches
+        {
+            get
+            {
+                return GetScenarioContextItemOrDefault<List<Match>>(nameof(Matches));
+            }
+            set
+            {
+                CurrentContext.Set(value, nameof(Matches));
+            }
+        }
+
+        protected Ledger Ledger
+        {
+            get
+            {
+                return GetScenarioContextItemOrDefault<Ledger>();
+            }
+            set
+            {
+                CurrentContext.Set(value);
+            }
+        }
+
+        protected List<FitnessScore> FitnessScores
+        {
+            get
+            {
+                return GetScenarioContextItemOrDefault<List<FitnessScore>>();
+            }
+            set
+            {
+                CurrentContext.Set(value);
+            }
+        }
+
+        protected IMutator Mutator
+        {
+            get
+            {
+                return GetScenarioContextItemOrDefault<IMutator>();
+            }
+            set
+            {
+                CurrentContext.Set(value);
+            }
+        }
+
+        protected EvolutionSettings EvolutionSettings
+        {
+            get
+            {
+                return GetScenarioContextItemOrDefault<EvolutionSettings>();
+            }
+            set
+            {
+                CurrentContext.Set(value);
+            }
+        }
+
+        protected IBreeder Breeder
+        {
+            get
+            {
+                return GetScenarioContextItemOrDefault<IBreeder>();
+            }
+            set
+            {
+                CurrentContext.Set(value);
+            }
+        }
+
 
         protected void Invoke(Action action)
         {

@@ -7,81 +7,79 @@ using System.Threading.Tasks;
 
 namespace Arcesoft.TicTacToe.Evolution.Mutations
 {
+    /// <summary>
+    /// See this site https://ghr.nlm.nih.gov/primer/mutationsanddisorders/possiblemutations
+    /// for some ideas on types of mutations
+    /// </summary>
     public class Mutator : IMutator
     {
         private IRandom RandomNumberGenerator { get; set; }
 
-        public Mutator(IRandom rng)
+        private GeneCache GeneCache { get; set; }
+
+        public Mutator(IRandom rng, GeneCache geneCache)
         {
             RandomNumberGenerator = rng;
+            GeneCache = geneCache;
         }
 
-        public void Mutate(IEnumerable<Individual> individuals, MutationSettings mutationSettings)
+        public void Mutate(IEnumerable<Individual> individuals, IMutationSettings mutationSettings)
         {
             individuals.ForEach(a => MutateIndividual(a, mutationSettings));
         }
 
-        public void MutateIndividual(Individual individual, MutationSettings mutationSettings)
+        public void MutateIndividual(Individual individual, IMutationSettings mutationSettings)
         {
-            //point mutations...
-            ApplyPointMutations(individual, mutationSettings);
+            var newGenes = individual.Genes.ToList();
 
-            //copy mutations
-        }
-
-        private void ApplyPointMutations(Individual individual, MutationSettings mutationSettings)
-        {
-            var genes = individual.Genes.ToArray();
-            for (int i = 0; i < genes.Length; i++)
+            for (int i = 0; i < newGenes.Count; i++)
             {
-                genes[i] = MutateGene(genes[i], mutationSettings);
-            }
-
-            individual.Genes = genes;
-        }
-
-        public Gene MutateGene(Gene gene, MutationSettings mutationSettings)
-        {
-            var mutationRoll = RandomNumberGenerator.NextDouble();
-
-            //if we have a mutation
-            if (mutationRoll <= mutationSettings.PointMutationRate)
-            {
-                Int32 priority = gene.Priority;
-                Turn turn = gene.Turn;
-                Allele[] alleles = gene.GetAlleles();
-
-                //we use 11 to decide which element to mutate
-                //0 = priority
-                //1 = move
-                //2-10 = the allele to mutate
-                var whichToMutate = RandomNumberGenerator.Next(0, 11);
-
-                switch (whichToMutate)
+                if (MutationOccurred(mutationSettings.MutationRate))
                 {
-                    case 0:
-                        priority = RandomNumberGenerator.Next(100);
-                        break;
-                    case 1:
-                        turn = RandomNumberGenerator.Next(9).ToTurn();
-                        break;
-                    default:
-                        alleles[whichToMutate - 2] = RandomAllele();
-                        break;
+                    //for now we will just allow point mutations..
+                    newGenes[i] = ApplyPointMutation(newGenes[i]);
                 }
-
-                return new Gene(turn, priority, alleles);
             }
 
-            //flyweight lets us do this
-            return gene;
+            individual.Genes = newGenes;
+        }
+
+        private bool MutationOccurred(double mutationRate) => RandomNumberGenerator.NextDouble() <= mutationRate;
+
+        #region Point mutation (Missense or nonsense)
+
+        public Gene ApplyPointMutation(Gene gene)
+        {
+            Int32 priority = gene.Priority;
+            Turn turn = gene.Turn;
+            Allele[] alleles = gene.GetAlleles();
+
+            //we use 11 to decide which element to mutate
+            //0 = priority
+            //1 = move
+            //2-10 = the allele to mutate
+            var whichToMutate = RandomNumberGenerator.Next(0, 11);
+
+            switch (whichToMutate)
+            {
+                case 0:
+                    priority = RandomNumberGenerator.NextExcept(100, priority);
+                    break;
+                case 1:
+                    turn = RandomNumberGenerator.NextExcept(9, turn.ToInteger()).ToTurn();
+                    break;
+                default:
+                    alleles[whichToMutate - 2] = (Allele)RandomNumberGenerator.NextExcept(enumValues.Length, (int)alleles[whichToMutate - 2]);
+                    break;
+            }
+
+            var newGene = GeneCache.CreateOrGet(turn, priority, alleles);
+
+            return newGene;
         }
 
         private static Array enumValues = Enum.GetValues(typeof(Allele));
 
-        private Allele RandomAllele()
-        {
-            return (Allele)enumValues.GetValue(RandomNumberGenerator.Next(enumValues.Length));
-        }
+        #endregion
     }
 }

@@ -7,11 +7,15 @@ using System.Threading.Tasks;
 
 namespace Arcesoft.TicTacToe.Evolution.Organisms
 {
+    /// <summary>
+    /// TODO: parent ids??
+    /// </summary>
 	public class Individual
 	{
         public string Name { get; set; }
         public Guid Id { get; internal set; }
         private List<Gene> _geneList = null;
+        private List<Guid> _parentIdList = null;
 		public IEnumerable<Gene> Genes
         {
             get
@@ -25,6 +29,23 @@ namespace Arcesoft.TicTacToe.Evolution.Organisms
                 _geneList.AddRange(value);
             }
         }
+        public IEnumerable<Guid> ParentIds
+        {
+            get
+            {
+                //ok, we hand this out which is risky ONLY if they cast to list...
+                return _parentIdList ?? Enumerable.Empty<Guid>();
+            }
+            set
+            {
+                if (_parentIdList == null)
+                {
+                    _parentIdList = new List<Guid>();
+                }
+                _parentIdList.Clear();
+                _parentIdList.AddRange(value);
+            }
+        }
 
 		public Individual()
 		{
@@ -35,6 +56,7 @@ namespace Arcesoft.TicTacToe.Evolution.Organisms
         {
             //we can copy the references here because genes are IMMUTABLE. Flyweight anyone?
             Genes = source.Genes;
+            ParentIds = new[] { source.Id };
         }
 
         public Move? TryFindMove(IGame game)

@@ -15,8 +15,8 @@ namespace Arcesoft.TicTacToe.Evolution.Organisms
         DontCare = 0,
         Empty = 1,
         OccupiedAny = 2,
-        OccupiedX = 4,
-        OccupiedO = 8,
-        Response = 16
+        OccupiedX = 3,
+        OccupiedO = 4,
+        Response = 5
     }
 }

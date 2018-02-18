@@ -14,8 +14,9 @@ namespace Arcesoft.TicTacToe.Evolution.Selection.Strategies
     {
         public IEnumerable<FitnessScore> Evaluate(IEnumerable<Individual> individuals, Ledger ledger)
         {
+
             //just the wins is all we care about here...
-            return individuals
+            var scores = individuals
                 .Join(
                     ledger.Entries.GroupBy(a => a.IndividualId),
                     a => a.Id,
@@ -25,7 +26,20 @@ namespace Arcesoft.TicTacToe.Evolution.Selection.Strategies
                         Individual = Individual,
                         Score = 1D - Entries.LossRatio()
                     }
-                    );
+                    ).ToList();
+
+            var scoreTotal = scores.Sum(a => a.Score);
+            //should never happen but hey...wtf..code defensively, I always say
+            if (scoreTotal == 0)
+            {
+                scores.ForEach(a => a.PercentageOfAllScores = Math.Round(1D / scores.Count(),6));
+            }
+            else
+            {
+                scores.ForEach(a => a.PercentageOfAllScores = Math.Round(a.Score / scoreTotal,6));
+            }
+
+            return scores;
         }
     }
 }

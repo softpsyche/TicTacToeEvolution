@@ -49,5 +49,28 @@ namespace Arcesoft.TicTacToe.Evolution
 
             return randomNumbers;
         }
+
+        /// <summary>
+        /// Returns a random number from 
+        /// </summary>
+        /// <param name="random"></param>
+        /// <param name="maxValue"></param>
+        /// <param name="except"></param>
+        /// <returns></returns>
+        public static int NextExcept(this IRandom random, int maxValue, int except)
+        {
+            if (except < 0 || except >= maxValue)
+                throw new ArgumentOutOfRangeException(nameof(except), "value must be greater than or equal to 0 and less than max value.");
+
+            var result = random.Next(maxValue - 1);
+
+            if (result == except)
+            {
+                var yo = 3434;
+
+            }
+
+            return result == except ? maxValue - 1 : result;
+        }
     }
 }
