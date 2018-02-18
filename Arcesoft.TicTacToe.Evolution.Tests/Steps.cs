@@ -7,6 +7,7 @@ using Arcesoft.TicTacToe.Entities;
 using System.Collections.Generic;
 using Arcesoft.TicTacToe.Evolution.Selection;
 using Arcesoft.TicTacToe.Evolution.Mutations;
+using Moq;
 
 namespace Arcesoft.TicTacToe.Evolution.Tests
 {
@@ -122,11 +123,11 @@ namespace Arcesoft.TicTacToe.Evolution.Tests
             }
         }
 
-        protected MatchBuilder MatchBuilder
+        protected IMatchBuilder MatchBuilder
         {
             get
             {
-                return GetScenarioContextItemOrDefault<MatchBuilder>();
+                return GetScenarioContextItemOrDefault<IMatchBuilder>();
             }
             set
             {
@@ -134,11 +135,35 @@ namespace Arcesoft.TicTacToe.Evolution.Tests
             }
         }
 
-        protected MatchEvaluator MatchEvaluator
+        protected Mock<IMatchBuilder> MatchBuilderMock
         {
             get
             {
-                return GetScenarioContextItemOrDefault<MatchEvaluator>();
+                return GetScenarioContextItemOrDefault<Mock<IMatchBuilder>>();
+            }
+            set
+            {
+                CurrentContext.Set(value);
+            }
+        }
+
+        protected IMatchEvaluator MatchEvaluator
+        {
+            get
+            {
+                return GetScenarioContextItemOrDefault<IMatchEvaluator>();
+            }
+            set
+            {
+                CurrentContext.Set(value);
+            }
+        }
+
+        protected Mock<IMatchEvaluator> MatchEvaluatorMock
+        {
+            get
+            {
+                return GetScenarioContextItemOrDefault<Mock<IMatchEvaluator>>();
             }
             set
             {
@@ -170,11 +195,11 @@ namespace Arcesoft.TicTacToe.Evolution.Tests
             }
         }
 
-        protected List<Match> Matches
+        protected List<Selection.Match> Matches
         {
             get
             {
-                return GetScenarioContextItemOrDefault<List<Match>>(nameof(Matches));
+                return GetScenarioContextItemOrDefault<List<Selection.Match>>(nameof(Matches));
             }
             set
             {

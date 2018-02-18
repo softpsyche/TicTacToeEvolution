@@ -11,6 +11,7 @@ using TechTalk.SpecFlow;
 using TechTalk.SpecFlow.Assist;
 using SpecFlow.Assist.Dynamic;
 using Arcesoft.TicTacToe.Evolution.Selection.Strategies;
+using Moq;
 
 namespace Arcesoft.TicTacToe.Evolution.Tests
 {
@@ -20,7 +21,7 @@ namespace Arcesoft.TicTacToe.Evolution.Tests
         [Given(@"I have a match builder")]
         public void GivenIHaveAMatchBuilder()
         {
-            MatchBuilder = Container.GetInstance<MatchBuilder>();
+            MatchBuilder = Container.GetInstance<IMatchBuilder>();
         }
 
         [Given(@"I have the following individuals")]
@@ -107,11 +108,11 @@ namespace Arcesoft.TicTacToe.Evolution.Tests
         public void GivenICreateMatchesForTheFollowingIndividuals(Table table)
         {
             var set = table.CreateDynamicSet();
-            var matches = new List<Match>();
+            var matches = new List<Selection.Match>();
 
             foreach (var item in set)
             {
-                matches.Add(new Match()
+                matches.Add(new Selection.Match()
                 {
                     PlayerX = Individuals.Single(a => a.Name == item.PlayerXName),
                     PlayerO = Individuals.Single(a => a.Name == item.PlayerOName),
@@ -124,7 +125,7 @@ namespace Arcesoft.TicTacToe.Evolution.Tests
         [Given(@"I have a match evaluator")]
         public void GivenIHaveAMatchEvaluator()
         {
-            MatchEvaluator = Container.GetInstance<MatchEvaluator>();
+            MatchEvaluator = Container.GetInstance<IMatchEvaluator>();
         }
 
 
@@ -155,10 +156,26 @@ namespace Arcesoft.TicTacToe.Evolution.Tests
             };
         }
 
+        [Given(@"I mock the match evaluator")]
+        public void GivenIMockTheMatchEvaluator()
+        {
+            MatchEvaluatorMock = new Moq.Mock<IMatchEvaluator>();
+
+            Container.RegisterSingleton(MatchEvaluatorMock.Object);
+        }
+
+        [Given(@"I setup the match evaluator evaluate method to return the following ledger")]
+        public void GivenISetupTheMatchEvaluatorEvaluateMethodToReturnTheFollowingLedger(Table table)
+        {
+            MatchEvaluatorMock
+                .Setup(a => a.Evaluate(It.IsAny<IEnumerable<Selection.Match>>()))
+                .Returns(new Ledger() { Entries = table.CreateSet<LedgerEntry>().ToList() });
+        }
+
         [When(@"I evaluate fitness")]
         public void WhenIEvaluateFitness()
         {
-            Invoke(() => FitnessScores = FitnessEvaluator.Evaluate(Individuals, Ledger).ToList());
+            Invoke(() => FitnessScores = FitnessEvaluator.Evaluate(Individuals, EvolutionSettings).ToList());
         }
 
         [Then(@"I expect the fitness scores to contain the following")]
@@ -167,6 +184,23 @@ namespace Arcesoft.TicTacToe.Evolution.Tests
             var anonType = FitnessScores.Select(a => new { IndividualId = a.Individual.Id, a.Score,a.PercentageOfAllScores });
 
             table.CompareToSet(anonType);
+        }
+
+
+        [Given(@"I mock the match builder")]
+        public void GivenIMockTheMatchBuilder()
+        {
+            MatchBuilderMock = new Mock<IMatchBuilder>();
+
+            Container.RegisterSingleton(MatchBuilderMock.Object); ;
+        }
+
+        [Given(@"I setup the match builder build method to return the following matches")]
+        public void GivenISetupTheMatchBuilderBuildMethodToReturnTheFollowingMatches(Table table)
+        {
+            MatchBuilderMock
+                .Setup(a => a.Build(It.IsAny<IEnumerable<Individual>>(), It.IsAny<int>()))
+                .Returns(table.CreateSet<Selection.Match>().ToList());
         }
 
 

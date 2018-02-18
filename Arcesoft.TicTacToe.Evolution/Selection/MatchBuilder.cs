@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Arcesoft.TicTacToe.Evolution.Selection
 {
-    public class MatchBuilder
+    public class MatchBuilder: IMatchBuilder
     {
         private IRandom Random { get; set; }
 

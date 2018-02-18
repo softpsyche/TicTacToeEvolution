@@ -509,22 +509,18 @@ this.ScenarioSetup(scenarioInfo);
 #line 7
 this.FeatureBackground();
 #line 91
- testRunner.Given("I have a fitness evaluator of type \'AllOrNothing\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+ testRunner.Given("I have a container", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 92
+ testRunner.Given("I mock the match builder", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
             TechTalk.SpecFlow.Table table10 = new TechTalk.SpecFlow.Table(new string[] {
-                        "Name",
                         "Id"});
             table10.AddRow(new string[] {
-                        "John",
-                        "10000000-0000-0000-0000-000000000000"});
-            table10.AddRow(new string[] {
-                        "Sally",
-                        "20000000-0000-0000-0000-000000000000"});
-            table10.AddRow(new string[] {
-                        "Wayne",
-                        "30000000-0000-0000-0000-000000000000"});
-#line 92
- testRunner.Given("I have the following individuals", ((string)(null)), table10, "Given ");
+                        "00000000-0000-0000-0000-000000000000"});
+#line 93
+ testRunner.Given("I setup the match builder build method to return the following matches", ((string)(null)), table10, "Given ");
+#line 96
+ testRunner.Given("I mock the match evaluator", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
             TechTalk.SpecFlow.Table table11 = new TechTalk.SpecFlow.Table(new string[] {
                         "MatchId",
@@ -675,24 +671,50 @@ this.FeatureBackground();
                         "20000000-0000-0000-0000-000000000000",
                         "Tied"});
 #line 97
- testRunner.Given("I have the following ledger", ((string)(null)), table11, "Given ");
+ testRunner.Given("I setup the match evaluator evaluate method to return the following ledger", ((string)(null)), table11, "Given ");
 #line 135
- testRunner.When("I evaluate fitness", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.Given("I have a fitness evaluator of type \'AllOrNothing\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
             TechTalk.SpecFlow.Table table12 = new TechTalk.SpecFlow.Table(new string[] {
+                        "MatchTournaments"});
+            table12.AddRow(new string[] {
+                        "5"});
+#line 136
+ testRunner.Given("I have the following evolution settings", ((string)(null)), table12, "Given ");
+#line 139
+ testRunner.Given("I have a tictactoe factory", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line hidden
+            TechTalk.SpecFlow.Table table13 = new TechTalk.SpecFlow.Table(new string[] {
+                        "Name",
+                        "Id"});
+            table13.AddRow(new string[] {
+                        "John",
+                        "10000000-0000-0000-0000-000000000000"});
+            table13.AddRow(new string[] {
+                        "Sally",
+                        "20000000-0000-0000-0000-000000000000"});
+            table13.AddRow(new string[] {
+                        "Wayne",
+                        "30000000-0000-0000-0000-000000000000"});
+#line 140
+ testRunner.Given("I have the following individuals", ((string)(null)), table13, "Given ");
+#line 145
+ testRunner.When("I evaluate fitness", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+            TechTalk.SpecFlow.Table table14 = new TechTalk.SpecFlow.Table(new string[] {
                         "IndividualId",
                         "Score",
                         "PercentageOfAllScores"});
-            table12.AddRow(new string[] {
+            table14.AddRow(new string[] {
                         "10000000-0000-0000-0000-000000000000",
                         ".625",
                         "0.471698"});
-            table12.AddRow(new string[] {
+            table14.AddRow(new string[] {
                         "20000000-0000-0000-0000-000000000000",
                         ".7",
                         "0.528302"});
-#line 136
- testRunner.Then("I expect the fitness scores to contain the following", ((string)(null)), table12, "Then ");
+#line 146
+ testRunner.Then("I expect the fitness scores to contain the following", ((string)(null)), table14, "Then ");
 #line hidden
             this.ScenarioCleanup();
         }

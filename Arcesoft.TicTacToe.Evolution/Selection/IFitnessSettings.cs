@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace Arcesoft.TicTacToe.Evolution.Selection
 {
-    public interface IMatchEvaluator
+    public interface IFitnessSettings
     {
-        Ledger Evaluate(IEnumerable<Match> matches);
+        int MatchTournaments { get; set; }
     }
 }

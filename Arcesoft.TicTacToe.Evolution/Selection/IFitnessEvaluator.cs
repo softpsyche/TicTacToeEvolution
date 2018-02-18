@@ -9,6 +9,6 @@ namespace Arcesoft.TicTacToe.Evolution.Selection
 {
     public interface IFitnessEvaluator
     {
-        IEnumerable<FitnessScore> Evaluate(IEnumerable<Individual> individuals, Ledger ledger);
+        IEnumerable<FitnessScore> Evaluate(IEnumerable<Individual> individuals, IFitnessSettings settings);
     }
 }

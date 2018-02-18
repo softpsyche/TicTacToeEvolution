@@ -88,13 +88,13 @@ Scenario: Match evaluator should evaluate tie game
 
 
 Scenario: AllOrNothing Fitness evaluator should evaluate fitness
-	Given I have a fitness evaluator of type 'AllOrNothing'
-	Given I have the following individuals
-        | Name  | Id                                   |
-        | John  | 10000000-0000-0000-0000-000000000000 |
-        | Sally | 20000000-0000-0000-0000-000000000000 |
-        | Wayne | 30000000-0000-0000-0000-000000000000 |
-	Given I have the following ledger
+	Given I have a container
+	Given I mock the match builder
+	Given I setup the match builder build method to return the following matches
+		| Id                                   |
+		| 00000000-0000-0000-0000-000000000000 |
+	Given I mock the match evaluator
+	Given I setup the match evaluator evaluate method to return the following ledger
 		| MatchId                              | IndividualId                         | MetricType           |
 		| 10000000-0000-0000-0000-000000000000 | 10000000-0000-0000-0000-000000000000 | Moved                |
 		| 10000000-0000-0000-0000-000000000000 | 10000000-0000-0000-0000-000000000000 | Lost                 |
@@ -132,6 +132,16 @@ Scenario: AllOrNothing Fitness evaluator should evaluate fitness
 		| 90000000-0000-0000-0000-000000000002 | 20000000-0000-0000-0000-000000000000 | Tied                 |
 		| 99000000-0000-0000-0000-000000000002 | 20000000-0000-0000-0000-000000000000 | Moved                |
 		| 99000000-0000-0000-0000-000000000002 | 20000000-0000-0000-0000-000000000000 | Tied                 |
+	Given I have a fitness evaluator of type 'AllOrNothing'
+	Given I have the following evolution settings
+         | MatchTournaments |
+         | 5                |
+	Given I have a tictactoe factory
+	Given I have the following individuals
+        | Name  | Id                                   |
+        | John  | 10000000-0000-0000-0000-000000000000 |
+        | Sally | 20000000-0000-0000-0000-000000000000 |
+        | Wayne | 30000000-0000-0000-0000-000000000000 |
 	When I evaluate fitness
 	Then I expect the fitness scores to contain the following
 		| IndividualId                         | Score | PercentageOfAllScores |

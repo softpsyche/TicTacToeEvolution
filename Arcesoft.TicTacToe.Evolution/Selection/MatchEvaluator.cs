@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Arcesoft.TicTacToe.Evolution.Selection
 {
-    public class MatchEvaluator
+    public class MatchEvaluator:IMatchEvaluator
     {
         private ITicTacToeFactory TicTacToeFactory { get; set; }
 
@@ -17,7 +17,7 @@ namespace Arcesoft.TicTacToe.Evolution.Selection
             TicTacToeFactory = ticTacToeFactory;
         }
 
-        public Ledger Evaluate(params Match[] matches)
+        public Ledger Evaluate(IEnumerable<Match> matches)
         {
             Ledger ledger = new Ledger();
             var game = TicTacToeFactory.NewGame();

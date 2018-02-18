@@ -13,8 +13,6 @@ namespace Arcesoft.TicTacToe.Evolution.Environs
     {
         private IInternalEvolutionFactory EvolutionFactory { get; set; }
         private IMutator Mutator { get; set; }
-        private IMatchBuilder MatchBuilder { get; set; }
-        private IMatchEvaluator MatchEvaluator { get; set; }
         private IBreeder _breeder;
         private IBreeder Breeder
         {
@@ -51,14 +49,10 @@ namespace Arcesoft.TicTacToe.Evolution.Environs
 
         public Population(
             IInternalEvolutionFactory evolutionFactory,
-            IMutator mutator,
-            IMatchBuilder matchBuilder,
-            IMatchEvaluator matchEvaluator)
+            IMutator mutator)
         {
             EvolutionFactory = evolutionFactory;
             Mutator = mutator;
-            MatchBuilder = matchBuilder;
-            MatchEvaluator = matchEvaluator;
         }
 
         public void Evolve()
@@ -67,7 +61,7 @@ namespace Arcesoft.TicTacToe.Evolution.Environs
             Initialize();
 
             //Compete: evaluate the fitness of the individuals
-            var fitnessScores = CalculateFitnessScores(Individuals);
+            var fitnessScores = FitnessEvaluator.Evaluate(Individuals, Settings);
 
             //Breed: Breed based on fitness scores
             var newGeneration = Breeder.Breed(fitnessScores, Settings).ToList();
@@ -80,18 +74,6 @@ namespace Arcesoft.TicTacToe.Evolution.Environs
 
             //progress the next generation
             Generation++;
-        }
-
-        private List<FitnessScore> CalculateFitnessScores(IEnumerable<Individual> individuals)
-        {
-            //build tournament matches
-            var matches = MatchBuilder.Build(individuals, Settings.MatchTournaments);
-
-            //create a ledger
-            var ledger = MatchEvaluator.Evaluate(matches.ToArray());
-
-            //evaluate the fitness
-            return FitnessEvaluator.Evaluate(individuals, ledger).ToList();
         }
 
         private void Initialize()

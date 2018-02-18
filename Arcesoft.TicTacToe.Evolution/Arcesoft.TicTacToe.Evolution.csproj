@@ -61,6 +61,7 @@
     <Compile Include="Selection\FitnessEvaluatorType.cs" />
     <Compile Include="Selection\FitnessScore.cs" />
     <Compile Include="Selection\IFitnessEvaluator.cs" />
+    <Compile Include="Selection\IFitnessSettings.cs" />
     <Compile Include="Selection\IMatchBuilder.cs" />
     <Compile Include="Selection\IMatchEvaluator.cs" />
     <Compile Include="Selection\Ledger.cs" />
