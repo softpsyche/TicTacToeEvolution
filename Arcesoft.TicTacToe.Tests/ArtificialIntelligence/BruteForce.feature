@@ -1,5 +1,4 @@
-﻿@BetterTestingApproach
-@Unit
+﻿@Behavioral
 Feature: BruteForce
 	Verify that the brute force artificial intelligence works correctly
 

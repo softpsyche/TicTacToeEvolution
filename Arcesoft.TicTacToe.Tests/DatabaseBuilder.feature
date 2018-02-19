@@ -1,5 +1,4 @@
-﻿@BetterTestingApproach
-@Unit
+﻿@Behavioral
 Feature: DatabaseBuilder
 	Verify building game database works correctly
 

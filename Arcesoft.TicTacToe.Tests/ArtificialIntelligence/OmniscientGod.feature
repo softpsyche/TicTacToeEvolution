@@ -1,5 +1,4 @@
-﻿@BetterTestingApproach
-@Unit
+﻿@Behavioral
 Feature: OmniscientGod
 	Verify that the omniscientgod artificial intelligence works correctly
 
