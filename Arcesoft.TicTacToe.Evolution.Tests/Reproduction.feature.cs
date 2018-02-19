@@ -90,6 +90,8 @@ namespace Arcesoft.TicTacToe.Evolution.Tests
  testRunner.Given("I have a container", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 7
  testRunner.Given("I have a tictactoe factory", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 8
+ testRunner.Given("I have an evolution factory", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
         }
         
@@ -100,7 +102,7 @@ namespace Arcesoft.TicTacToe.Evolution.Tests
         public virtual void ASexualBreederShouldBreedIndividuals()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("ASexual breeder should breed individuals", ((string[])(null)));
-#line 9
+#line 10
 this.ScenarioSetup(scenarioInfo);
 #line 5
 this.FeatureBackground();
@@ -113,9 +115,9 @@ this.FeatureBackground();
                         "1.0",
                         "10",
                         "5"});
-#line 10
+#line 11
  testRunner.Given("I have the following evolution settings", ((string)(null)), table1, "Given ");
-#line 13
+#line 14
  testRunner.Given("I have an asexual breeder", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
             TechTalk.SpecFlow.Table table2 = new TechTalk.SpecFlow.Table(new string[] {
@@ -133,7 +135,7 @@ this.FeatureBackground();
             table2.AddRow(new string[] {
                         "Delta",
                         "40000000-0000-0000-0000-000000000000"});
-#line 14
+#line 15
  testRunner.Given("I have the following individuals", ((string)(null)), table2, "Given ");
 #line hidden
             TechTalk.SpecFlow.Table table3 = new TechTalk.SpecFlow.Table(new string[] {
@@ -166,7 +168,7 @@ this.FeatureBackground();
                         "Fifth",
                         "5",
                         "DDDDDDDDD"});
-#line 20
+#line 21
  testRunner.Given("I have the following genes on my individuals", ((string)(null)), table3, "Given ");
 #line hidden
             TechTalk.SpecFlow.Table table4 = new TechTalk.SpecFlow.Table(new string[] {
@@ -189,9 +191,9 @@ this.FeatureBackground();
                         "40000000-0000-0000-0000-000000000000",
                         ".0",
                         "0"});
-#line 27
+#line 28
  testRunner.Given("I have the following fitness scores for my individuals", ((string)(null)), table4, "Given ");
-#line 33
+#line 34
  testRunner.When("I breed my individuals", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
             TechTalk.SpecFlow.Table table5 = new TechTalk.SpecFlow.Table(new string[] {
@@ -216,9 +218,9 @@ this.FeatureBackground();
                         "30000000-0000-0000-0000-000000000000"});
             table5.AddRow(new string[] {
                         "30000000-0000-0000-0000-000000000000"});
-#line 34
+#line 35
  testRunner.Then("I expect the new generation of individuals to contain", ((string)(null)), table5, "Then ");
-#line 46
+#line 47
  testRunner.Then("I expect the size of the new generation to be exactly \'10\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             TechTalk.SpecFlow.Table table6 = new TechTalk.SpecFlow.Table(new string[] {
@@ -233,7 +235,7 @@ this.FeatureBackground();
                         "Second",
                         "20",
                         "RDX_X_ODA"});
-#line 47
+#line 48
  testRunner.Then("I expect \'3\' individuals with parents \'10000000-0000-0000-0000-000000000000\' to c" +
                     "ontain the following genes", ((string)(null)), table6, "Then ");
 #line hidden
@@ -245,7 +247,7 @@ this.FeatureBackground();
                         "Third",
                         "50",
                         "DXO___RAA"});
-#line 51
+#line 52
  testRunner.Then("I expect \'5\' individuals with parents \'20000000-0000-0000-0000-000000000000\' to c" +
                     "ontain the following genes", ((string)(null)), table7, "Then ");
 #line hidden
@@ -257,7 +259,7 @@ this.FeatureBackground();
                         "Fourth",
                         "25",
                         "DDD_O_DDD"});
-#line 54
+#line 55
  testRunner.Then("I expect \'2\' individuals with parents \'30000000-0000-0000-0000-000000000000\' to c" +
                     "ontain the following genes", ((string)(null)), table8, "Then ");
 #line hidden
@@ -271,7 +273,7 @@ this.FeatureBackground();
         public virtual void ASexualBreederShouldDownsizePopulationAccordingly()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("ASexual breeder should downsize population accordingly", ((string[])(null)));
-#line 58
+#line 59
 this.ScenarioSetup(scenarioInfo);
 #line 5
 this.FeatureBackground();
@@ -284,9 +286,9 @@ this.FeatureBackground();
                         "1.0",
                         "3",
                         "5"});
-#line 59
+#line 60
  testRunner.Given("I have the following evolution settings", ((string)(null)), table9, "Given ");
-#line 62
+#line 63
  testRunner.Given("I have an asexual breeder", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
             TechTalk.SpecFlow.Table table10 = new TechTalk.SpecFlow.Table(new string[] {
@@ -304,7 +306,7 @@ this.FeatureBackground();
             table10.AddRow(new string[] {
                         "Delta",
                         "40000000-0000-0000-0000-000000000000"});
-#line 63
+#line 64
  testRunner.Given("I have the following individuals", ((string)(null)), table10, "Given ");
 #line hidden
             TechTalk.SpecFlow.Table table11 = new TechTalk.SpecFlow.Table(new string[] {
@@ -337,7 +339,7 @@ this.FeatureBackground();
                         "Fifth",
                         "5",
                         "DDDDDDDDD"});
-#line 69
+#line 70
  testRunner.Given("I have the following genes on my individuals", ((string)(null)), table11, "Given ");
 #line hidden
             TechTalk.SpecFlow.Table table12 = new TechTalk.SpecFlow.Table(new string[] {
@@ -360,9 +362,9 @@ this.FeatureBackground();
                         "40000000-0000-0000-0000-000000000000",
                         ".0",
                         "0"});
-#line 76
+#line 77
  testRunner.Given("I have the following fitness scores for my individuals", ((string)(null)), table12, "Given ");
-#line 82
+#line 83
  testRunner.When("I breed my individuals", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
             TechTalk.SpecFlow.Table table13 = new TechTalk.SpecFlow.Table(new string[] {
@@ -373,9 +375,9 @@ this.FeatureBackground();
                         "20000000-0000-0000-0000-000000000000"});
             table13.AddRow(new string[] {
                         "20000000-0000-0000-0000-000000000000"});
-#line 83
+#line 84
  testRunner.Then("I expect the new generation of individuals to contain", ((string)(null)), table13, "Then ");
-#line 88
+#line 89
  testRunner.Then("I expect the size of the new generation to be exactly \'3\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
@@ -388,7 +390,7 @@ this.FeatureBackground();
         public virtual void ASexualBreederShouldObeyChildBearingLimits()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("ASexual breeder should obey child bearing limits", ((string[])(null)));
-#line 90
+#line 91
 this.ScenarioSetup(scenarioInfo);
 #line 5
 this.FeatureBackground();
@@ -401,9 +403,9 @@ this.FeatureBackground();
                         "1.0",
                         "10",
                         "3"});
-#line 91
+#line 92
  testRunner.Given("I have the following evolution settings", ((string)(null)), table14, "Given ");
-#line 94
+#line 95
  testRunner.Given("I have an asexual breeder", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
             TechTalk.SpecFlow.Table table15 = new TechTalk.SpecFlow.Table(new string[] {
@@ -421,7 +423,7 @@ this.FeatureBackground();
             table15.AddRow(new string[] {
                         "Delta",
                         "40000000-0000-0000-0000-000000000000"});
-#line 95
+#line 96
  testRunner.Given("I have the following individuals", ((string)(null)), table15, "Given ");
 #line hidden
             TechTalk.SpecFlow.Table table16 = new TechTalk.SpecFlow.Table(new string[] {
@@ -454,7 +456,7 @@ this.FeatureBackground();
                         "Fifth",
                         "5",
                         "DDDDDDDDD"});
-#line 101
+#line 102
  testRunner.Given("I have the following genes on my individuals", ((string)(null)), table16, "Given ");
 #line hidden
             TechTalk.SpecFlow.Table table17 = new TechTalk.SpecFlow.Table(new string[] {
@@ -477,9 +479,9 @@ this.FeatureBackground();
                         "40000000-0000-0000-0000-000000000000",
                         ".0",
                         "0"});
-#line 108
+#line 109
  testRunner.Given("I have the following fitness scores for my individuals", ((string)(null)), table17, "Given ");
-#line 114
+#line 115
  testRunner.When("I breed my individuals", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
             TechTalk.SpecFlow.Table table18 = new TechTalk.SpecFlow.Table(new string[] {
@@ -502,9 +504,9 @@ this.FeatureBackground();
                         "30000000-0000-0000-0000-000000000000"});
             table18.AddRow(new string[] {
                         "40000000-0000-0000-0000-000000000000"});
-#line 115
+#line 116
  testRunner.Then("I expect the new generation of individuals to contain", ((string)(null)), table18, "Then ");
-#line 126
+#line 127
  testRunner.Then("I expect the size of the new generation to be exactly \'9\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();

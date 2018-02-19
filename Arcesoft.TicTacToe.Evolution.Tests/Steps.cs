@@ -8,10 +8,11 @@ using System.Collections.Generic;
 using Arcesoft.TicTacToe.Evolution.Selection;
 using Arcesoft.TicTacToe.Evolution.Mutations;
 using Moq;
+using Arcesoft.TicTacToe.Evolution.Environs;
 
 namespace Arcesoft.TicTacToe.Evolution.Tests
 {
-    public abstract class Steps
+    internal abstract class Steps
     {
         protected ScenarioContext CurrentContext => ScenarioContext.Current;
 
@@ -56,6 +57,18 @@ namespace Arcesoft.TicTacToe.Evolution.Tests
             get
             {
                 return GetScenarioContextItemOrDefault<ITicTacToeFactory>();
+            }
+            set
+            {
+                CurrentContext.Set(value);
+            }
+        }
+
+        protected IInternalEvolutionFactory EvolutionFactory
+        {
+            get
+            {
+                return GetScenarioContextItemOrDefault<IInternalEvolutionFactory>();
             }
             set
             {
@@ -260,6 +273,18 @@ namespace Arcesoft.TicTacToe.Evolution.Tests
             get
             {
                 return GetScenarioContextItemOrDefault<IBreeder>();
+            }
+            set
+            {
+                CurrentContext.Set(value);
+            }
+        }
+
+        protected IPopulation Population
+        {
+            get
+            {
+                return GetScenarioContextItemOrDefault<IPopulation>();
             }
             set
             {

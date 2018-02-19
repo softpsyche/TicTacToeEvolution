@@ -1,12 +1,11 @@
 ﻿@Behavioral
 Feature: Selection
-	In order to avoid silly mistakes
-	As a math idiot
-	I want to be told the sum of two numbers
+	Verify selection functionality
 
 Background: 
 	Given I have a container
 	Given I have a tictactoe factory
+	Given I have an evolution factory
 
 Scenario: Match builder should build many matches correctly
 	Given I have a match builder

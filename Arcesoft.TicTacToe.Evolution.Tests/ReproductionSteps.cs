@@ -66,7 +66,7 @@ namespace Arcesoft.TicTacToe.Evolution.Tests
         public void ThenIExpectTheNewGenerationOfIndividualsToContain(Table table)
         {
             table
-                .CompareToSet(Individuals.Select(a => new { ParentIds = ToParentIdsString(a) }));
+                .CompareToSet(Individuals.Select(a => new { ParentIds = a.ToParentIdsString() }));
         }
 
         [Then(@"I expect the size of the new generation to be exactly '(.*)'")]
@@ -80,7 +80,7 @@ namespace Arcesoft.TicTacToe.Evolution.Tests
         public void ThenIExpectIndividualsWithParentsToContainTheFollowingGenes(int count, string parentIds, Table table)
         {
             var subset = Individuals
-                .Where(a => ToParentIdsString(a) == parentIds)
+                .Where(a => a.ToParentIdsString() == parentIds)
                 .ToList();
 
             subset.Count.Should().Be(count);
@@ -97,12 +97,6 @@ namespace Arcesoft.TicTacToe.Evolution.Tests
                     ));
                 });
                
-        }
-
-
-        private string ToParentIdsString(Individual individual)
-        {
-            return string.Join(",", individual.ParentIds.Select(b => b.ToString()));
         }
 
     }

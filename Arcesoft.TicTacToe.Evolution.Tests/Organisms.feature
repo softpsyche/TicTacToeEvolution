@@ -5,6 +5,7 @@ Feature: Organisms
 Background: 
 	Given I have a container
 	Given I have a tictactoe factory
+	Given I have an evolution factory
 
 Scenario: Individual should get genes correctly
 	Given I have an individual

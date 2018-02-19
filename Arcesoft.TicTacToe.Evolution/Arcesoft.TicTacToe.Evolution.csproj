@@ -33,6 +33,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="LiteDB, Version=4.1.1.0, Culture=neutral, PublicKeyToken=4ee40123013c9f27, processorArchitecture=MSIL">
+      <HintPath>..\packages\LiteDB.4.1.1\lib\net40\LiteDB.dll</HintPath>
+    </Reference>
     <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.10.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
@@ -55,6 +58,13 @@
     <Compile Include="IEvolutionFactory.cs" />
     <Compile Include="IInternalEvolutionFactory.cs" />
     <Compile Include="Organisms\GeneCache.cs" />
+    <Compile Include="Organisms\GeneExtensions.cs" />
+    <Compile Include="Organisms\IGeneCache.cs" />
+    <Compile Include="Persistance\DataAccess.cs" />
+    <Compile Include="Persistance\IDataAccess.cs" />
+    <Compile Include="Persistance\IPopulationRepository.cs" />
+    <Compile Include="Persistance\LiteDatabaseFactory.cs" />
+    <Compile Include="Persistance\PopulationRepository.cs" />
     <Compile Include="Reproduction\BreederType.cs" />
     <Compile Include="Reproduction\IReproductionSettings.cs" />
     <Compile Include="Reproduction\Strategies\AsexualBreeder.cs" />

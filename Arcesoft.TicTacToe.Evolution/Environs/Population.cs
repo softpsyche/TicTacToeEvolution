@@ -41,33 +41,57 @@ namespace Arcesoft.TicTacToe.Evolution.Environs
         }
 
         public EvolutionSettings Settings { get; set; }
-        private List<Individual> Individuals { get; set; }
+        public List<Individual> Individuals { get; internal set; }
+        IEnumerable<Individual> IPopulation.Individuals => Individuals;
+
         public Guid Id { get; internal set; }
         public string Name { get; internal set; }
         public long Generation { get; internal set; }
 
 
+
         public Population(
             IInternalEvolutionFactory evolutionFactory,
-            IMutator mutator)
+            IMutator mutator,
+            EvolutionSettings evolutionSettings)
         {
             EvolutionFactory = evolutionFactory;
             Mutator = mutator;
+            Settings = evolutionSettings;
         }
 
-        public void Evolve()
+        public void Evolve(int cycles = 1)
         {
             //initialize if we have not already
-            Initialize();
+            Initialize(Settings);
 
+            for (int i = 0; i < cycles; i++)
+            {
+                Evolve(Settings, Individuals);
+            }
+        }
+
+        public void AddIndividuals(IEnumerable<Individual> individuals)//todo? allow replace???
+        {
+            if (individuals == null) return;
+
+            //initialize if we have not already
+            Initialize(Settings);
+
+            //add the migrants
+            Individuals.AddRange(individuals);
+        }
+
+        private void Evolve(EvolutionSettings settings, List<Individual> evolveList)
+        {
             //Compete: evaluate the fitness of the individuals
-            var fitnessScores = FitnessEvaluator.Evaluate(Individuals, Settings);
+            var fitnessScores = FitnessEvaluator.Evaluate(evolveList, settings);
 
             //Breed: Breed based on fitness scores
-            var newGeneration = Breeder.Breed(fitnessScores, Settings).ToList();
+            var newGeneration = Breeder.Breed(fitnessScores, settings).ToList();
 
             //Mutate: apply mutations to new generation
-            Mutator.Mutate(newGeneration, Settings);
+            Mutator.Mutate(newGeneration, settings);
 
             //set the new individuals
             Individuals = newGeneration;
@@ -76,15 +100,17 @@ namespace Arcesoft.TicTacToe.Evolution.Environs
             Generation++;
         }
 
-        private void Initialize()
+        private void Initialize(EvolutionSettings settings)
         {
             if (Individuals != null)
             {
                 return;
             }
 
-            Individuals = new List<Individual>();
+            var newIndividual = EvolutionFactory.CreateIndividual(settings.MaximumGenesPerIndividual);
+            newIndividual.Name = "Eve";
 
+            Individuals = newIndividual.Copy(settings.MaximumPopulationSize).ToList();
         }
     }
 }

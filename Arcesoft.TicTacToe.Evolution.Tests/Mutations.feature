@@ -4,6 +4,7 @@ Feature: Mutations
 
 Background: 
 	Given I have a container
+	Given I have an evolution factory
 	Given I have a mutator
 
 Scenario: Should mutate all genes when mutation rate is 100 percent

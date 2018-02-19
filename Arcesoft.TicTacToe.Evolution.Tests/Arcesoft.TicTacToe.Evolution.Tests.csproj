@@ -86,6 +86,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CommonSteps.cs" />
+    <Compile Include="Extensions.cs" />
     <Compile Include="Mutations.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -98,6 +99,18 @@
       <DependentUpon>Organisms.feature</DependentUpon>
     </Compile>
     <Compile Include="OrganismsSteps.cs" />
+    <Compile Include="Persistance.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Persistance.feature</DependentUpon>
+    </Compile>
+    <Compile Include="PersistenceSteps.cs" />
+    <Compile Include="Population.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Population.feature</DependentUpon>
+    </Compile>
+    <Compile Include="PopulationSteps.cs" />
     <Compile Include="Reproduction.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -126,6 +139,14 @@
       <LastGenOutput>Organisms.feature.cs</LastGenOutput>
     </None>
     <None Include="packages.config" />
+    <None Include="Persistance.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>Persistance.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Population.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>Population.feature.cs</LastGenOutput>
+    </None>
     <None Include="Reproduction.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>Reproduction.feature.cs</LastGenOutput>

@@ -5,6 +5,7 @@ Feature: Reproduction
 Background: 
 	Given I have a container
 	Given I have a tictactoe factory
+	Given I have an evolution factory
 
 Scenario: ASexual breeder should breed individuals
 	Given I have the following evolution settings

@@ -44,8 +44,7 @@ namespace Arcesoft.TicTacToe.Evolution.Tests
         public static void FeatureSetup(Microsoft.VisualStudio.TestTools.UnitTesting.TestContext testContext)
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner(null, 0);
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Selection", "\tIn order to avoid silly mistakes\r\n\tAs a math idiot\r\n\tI want to be told the sum o" +
-                    "f two numbers", ProgrammingLanguage.CSharp, new string[] {
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Selection", "\tVerify selection functionality", ProgrammingLanguage.CSharp, new string[] {
                         "Behavioral"});
             testRunner.OnFeatureStart(featureInfo);
         }
@@ -86,11 +85,13 @@ namespace Arcesoft.TicTacToe.Evolution.Tests
         
         public virtual void FeatureBackground()
         {
-#line 7
-#line 8
+#line 5
+#line 6
  testRunner.Given("I have a container", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 9
+#line 7
  testRunner.Given("I have a tictactoe factory", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 8
+ testRunner.Given("I have an evolution factory", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
         }
         
@@ -101,15 +102,15 @@ namespace Arcesoft.TicTacToe.Evolution.Tests
         public virtual void MatchBuilderShouldBuildManyMatchesCorrectly()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Match builder should build many matches correctly", ((string[])(null)));
-#line 11
+#line 10
 this.ScenarioSetup(scenarioInfo);
-#line 7
+#line 5
 this.FeatureBackground();
-#line 12
+#line 11
  testRunner.Given("I have a match builder", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 13
+#line 12
  testRunner.Given("I have \'50\' individuals", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 14
+#line 13
  testRunner.When("I repeat the test \'500\' times using \'5\' tournaments and \'50\' individuals", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
             this.ScenarioCleanup();
@@ -118,19 +119,19 @@ this.FeatureBackground();
         public virtual void MatchBuilderShouldBuildMatchesForA(string name, string individuals, string tournaments, string expectedTournaments, string expectedMatches, string[] exampleTags)
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Match builder should build matches for a", exampleTags);
-#line 16
+#line 15
 this.ScenarioSetup(scenarioInfo);
-#line 7
+#line 5
 this.FeatureBackground();
-#line 17
+#line 16
  testRunner.Given("I have a match builder", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 18
+#line 17
  testRunner.Given(string.Format("I have \'{0}\' individuals", individuals), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 19
+#line 18
  testRunner.When(string.Format("I build matches with \'{0}\' tournaments for my given individuals", tournaments), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 20
+#line 19
  testRunner.Then(string.Format("I expect all given individuals to have at least \'{0}\' tournaments each", expectedTournaments), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 21
+#line 20
  testRunner.Then(string.Format("I expect the number of matches to be at least \'{0}\'", expectedMatches), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
@@ -148,7 +149,7 @@ this.FeatureBackground();
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:ExpectedMatches", "2")]
         public virtual void MatchBuilderShouldBuildMatchesForA_TinySet()
         {
-#line 16
+#line 15
 this.MatchBuilderShouldBuildMatchesForA("tiny set", "2", "1", "1", "2", ((string[])(null)));
 #line hidden
         }
@@ -165,7 +166,7 @@ this.MatchBuilderShouldBuildMatchesForA("tiny set", "2", "1", "1", "2", ((string
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:ExpectedMatches", "12")]
         public virtual void MatchBuilderShouldBuildMatchesForA_SmallSet()
         {
-#line 16
+#line 15
 this.MatchBuilderShouldBuildMatchesForA("small set", "4", "3", "3", "12", ((string[])(null)));
 #line hidden
         }
@@ -182,7 +183,7 @@ this.MatchBuilderShouldBuildMatchesForA("small set", "4", "3", "3", "12", ((stri
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:ExpectedMatches", "120")]
         public virtual void MatchBuilderShouldBuildMatchesForA_MediumSet()
         {
-#line 16
+#line 15
 this.MatchBuilderShouldBuildMatchesForA("medium set", "20", "6", "6", "120", ((string[])(null)));
 #line hidden
         }
@@ -199,7 +200,7 @@ this.MatchBuilderShouldBuildMatchesForA("medium set", "20", "6", "6", "120", ((s
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:ExpectedMatches", "500")]
         public virtual void MatchBuilderShouldBuildMatchesForA_LargeSet()
         {
-#line 16
+#line 15
 this.MatchBuilderShouldBuildMatchesForA("large set", "100", "5", "5", "500", ((string[])(null)));
 #line hidden
         }
@@ -216,7 +217,7 @@ this.MatchBuilderShouldBuildMatchesForA("large set", "100", "5", "5", "500", ((s
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:ExpectedMatches", "6000")]
         public virtual void MatchBuilderShouldBuildMatchesForA_HugeSet()
         {
-#line 16
+#line 15
 this.MatchBuilderShouldBuildMatchesForA("huge set", "1000", "6", "6", "6000", ((string[])(null)));
 #line hidden
         }
@@ -233,7 +234,7 @@ this.MatchBuilderShouldBuildMatchesForA("huge set", "1000", "6", "6", "6000", ((
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:ExpectedMatches", "90")]
         public virtual void MatchBuilderShouldBuildMatchesForA_SetWithTooManyTournaments()
         {
-#line 16
+#line 15
 this.MatchBuilderShouldBuildMatchesForA("set with too many tournaments", "10", "15", "9", "90", ((string[])(null)));
 #line hidden
         }
@@ -250,7 +251,7 @@ this.MatchBuilderShouldBuildMatchesForA("set with too many tournaments", "10", "
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:ExpectedMatches", "3")]
         public virtual void MatchBuilderShouldBuildMatchesForA_InvalidSet()
         {
-#line 16
+#line 15
 this.MatchBuilderShouldBuildMatchesForA("invalid set", "3", "1", "1", "3", ((string[])(null)));
 #line hidden
         }
@@ -262,11 +263,11 @@ this.MatchBuilderShouldBuildMatchesForA("invalid set", "3", "1", "1", "3", ((str
         public virtual void MatchEvaluatorShouldEvaluateWhenThereAreNoMoves()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Match evaluator should evaluate when there are no moves", ((string[])(null)));
-#line 32
+#line 31
 this.ScenarioSetup(scenarioInfo);
-#line 7
+#line 5
 this.FeatureBackground();
-#line 33
+#line 32
  testRunner.Given("I have a match evaluator", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
             TechTalk.SpecFlow.Table table1 = new TechTalk.SpecFlow.Table(new string[] {
@@ -275,7 +276,7 @@ this.FeatureBackground();
                         "John"});
             table1.AddRow(new string[] {
                         "Sally"});
-#line 34
+#line 33
  testRunner.Given("I have the following individuals", ((string)(null)), table1, "Given ");
 #line hidden
             TechTalk.SpecFlow.Table table2 = new TechTalk.SpecFlow.Table(new string[] {
@@ -284,9 +285,9 @@ this.FeatureBackground();
             table2.AddRow(new string[] {
                         "John",
                         "Sally"});
-#line 38
+#line 37
  testRunner.Given("I create matches for the following individuals", ((string)(null)), table2, "Given ");
-#line 41
+#line 40
  testRunner.When("I evaluate the matches", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
             TechTalk.SpecFlow.Table table3 = new TechTalk.SpecFlow.Table(new string[] {
@@ -301,7 +302,7 @@ this.FeatureBackground();
                         "Sally",
                         "O",
                         "WonDueToNoMoves"});
-#line 42
+#line 41
  testRunner.Then("I expect the ledger to contain", ((string)(null)), table3, "Then ");
 #line hidden
             this.ScenarioCleanup();
@@ -314,11 +315,11 @@ this.FeatureBackground();
         public virtual void MatchEvaluatorShouldEvaluateWonDueToNoMovesLostDueToNoMovesForPlayerXO()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Match evaluator should evaluate WonDueToNoMoves/LostDueToNoMoves for player X/O", ((string[])(null)));
-#line 47
+#line 46
 this.ScenarioSetup(scenarioInfo);
-#line 7
+#line 5
 this.FeatureBackground();
-#line 48
+#line 47
  testRunner.Given("I have a match evaluator", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
             TechTalk.SpecFlow.Table table4 = new TechTalk.SpecFlow.Table(new string[] {
@@ -327,7 +328,7 @@ this.FeatureBackground();
                         "John"});
             table4.AddRow(new string[] {
                         "Sally"});
-#line 49
+#line 48
  testRunner.Given("I have the following individuals", ((string)(null)), table4, "Given ");
 #line hidden
             TechTalk.SpecFlow.Table table5 = new TechTalk.SpecFlow.Table(new string[] {
@@ -346,7 +347,7 @@ this.FeatureBackground();
                         "",
                         "D",
                         ""});
-#line 53
+#line 52
  testRunner.Given("I add a gene to individual \'John\' for turn \'First\' with priority \'1\' and the foll" +
                     "owing alleles", ((string)(null)), table5, "Given ");
 #line hidden
@@ -366,7 +367,7 @@ this.FeatureBackground();
                         "",
                         "",
                         ""});
-#line 58
+#line 57
  testRunner.Given("I add a gene to individual \'Sally\' for turn \'Second\' with priority \'1\' and the fo" +
                     "llowing alleles", ((string)(null)), table6, "Given ");
 #line hidden
@@ -386,7 +387,7 @@ this.FeatureBackground();
                         "",
                         "",
                         ""});
-#line 63
+#line 62
  testRunner.Given("I add a gene to individual \'John\' for turn \'Third\' with priority \'1\' and the foll" +
                     "owing alleles", ((string)(null)), table7, "Given ");
 #line hidden
@@ -396,9 +397,9 @@ this.FeatureBackground();
             table8.AddRow(new string[] {
                         "John",
                         "Sally"});
-#line 68
+#line 67
  testRunner.Given("I create matches for the following individuals", ((string)(null)), table8, "Given ");
-#line 71
+#line 70
  testRunner.When("I evaluate the matches", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
             TechTalk.SpecFlow.Table table9 = new TechTalk.SpecFlow.Table(new string[] {
@@ -431,7 +432,7 @@ this.FeatureBackground();
                         "X",
                         "WonDueToNoMoves",
                         "Won due to no move for board O___XX___"});
-#line 72
+#line 71
  testRunner.Then("I expect the ledger to contain", ((string)(null)), table9, "Then ");
 #line hidden
             this.ScenarioCleanup();
@@ -444,9 +445,9 @@ this.FeatureBackground();
         public virtual void MatchEvaluatorShouldEvaluateWonDueToNoMovesLostDueToNoMovesForPlayerOX()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Match evaluator should evaluate WonDueToNoMoves/LostDueToNoMoves for player O/X", ((string[])(null)));
-#line 80
+#line 79
 this.ScenarioSetup(scenarioInfo);
-#line 7
+#line 5
 this.FeatureBackground();
 #line hidden
             this.ScenarioCleanup();
@@ -459,9 +460,9 @@ this.FeatureBackground();
         public virtual void MatchEvaluatorShouldEvaluateWinLossGameForPlayerXO()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Match evaluator should evaluate win/loss game for player X/O", ((string[])(null)));
-#line 82
+#line 81
 this.ScenarioSetup(scenarioInfo);
-#line 7
+#line 5
 this.FeatureBackground();
 #line hidden
             this.ScenarioCleanup();
@@ -474,9 +475,9 @@ this.FeatureBackground();
         public virtual void MatchEvaluatorShouldEvaluateWinLossGameForPlayerOX()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Match evaluator should evaluate win/loss game for player O/X", ((string[])(null)));
-#line 84
+#line 83
 this.ScenarioSetup(scenarioInfo);
-#line 7
+#line 5
 this.FeatureBackground();
 #line hidden
             this.ScenarioCleanup();
@@ -489,9 +490,9 @@ this.FeatureBackground();
         public virtual void MatchEvaluatorShouldEvaluateTieGame()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Match evaluator should evaluate tie game", ((string[])(null)));
-#line 86
+#line 85
 this.ScenarioSetup(scenarioInfo);
-#line 7
+#line 5
 this.FeatureBackground();
 #line hidden
             this.ScenarioCleanup();
@@ -504,22 +505,22 @@ this.FeatureBackground();
         public virtual void AllOrNothingFitnessEvaluatorShouldEvaluateFitness()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("AllOrNothing Fitness evaluator should evaluate fitness", ((string[])(null)));
-#line 90
+#line 89
 this.ScenarioSetup(scenarioInfo);
-#line 7
+#line 5
 this.FeatureBackground();
-#line 91
+#line 90
  testRunner.Given("I have a container", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 92
+#line 91
  testRunner.Given("I mock the match builder", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
             TechTalk.SpecFlow.Table table10 = new TechTalk.SpecFlow.Table(new string[] {
                         "Id"});
             table10.AddRow(new string[] {
                         "00000000-0000-0000-0000-000000000000"});
-#line 93
+#line 92
  testRunner.Given("I setup the match builder build method to return the following matches", ((string)(null)), table10, "Given ");
-#line 96
+#line 95
  testRunner.Given("I mock the match evaluator", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
             TechTalk.SpecFlow.Table table11 = new TechTalk.SpecFlow.Table(new string[] {
@@ -670,18 +671,18 @@ this.FeatureBackground();
                         "99000000-0000-0000-0000-000000000002",
                         "20000000-0000-0000-0000-000000000000",
                         "Tied"});
-#line 97
+#line 96
  testRunner.Given("I setup the match evaluator evaluate method to return the following ledger", ((string)(null)), table11, "Given ");
-#line 135
+#line 134
  testRunner.Given("I have a fitness evaluator of type \'AllOrNothing\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
             TechTalk.SpecFlow.Table table12 = new TechTalk.SpecFlow.Table(new string[] {
                         "MatchTournaments"});
             table12.AddRow(new string[] {
                         "5"});
-#line 136
+#line 135
  testRunner.Given("I have the following evolution settings", ((string)(null)), table12, "Given ");
-#line 139
+#line 138
  testRunner.Given("I have a tictactoe factory", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
             TechTalk.SpecFlow.Table table13 = new TechTalk.SpecFlow.Table(new string[] {
@@ -696,9 +697,9 @@ this.FeatureBackground();
             table13.AddRow(new string[] {
                         "Wayne",
                         "30000000-0000-0000-0000-000000000000"});
-#line 140
+#line 139
  testRunner.Given("I have the following individuals", ((string)(null)), table13, "Given ");
-#line 145
+#line 144
  testRunner.When("I evaluate fitness", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
             TechTalk.SpecFlow.Table table14 = new TechTalk.SpecFlow.Table(new string[] {
@@ -713,7 +714,7 @@ this.FeatureBackground();
                         "20000000-0000-0000-0000-000000000000",
                         ".7",
                         "0.528302"});
-#line 146
+#line 145
  testRunner.Then("I expect the fitness scores to contain the following", ((string)(null)), table14, "Then ");
 #line hidden
             this.ScenarioCleanup();

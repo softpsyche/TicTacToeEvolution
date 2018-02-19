@@ -13,7 +13,7 @@ using Arcesoft.TicTacToe.Evolution.Organisms;
 namespace Arcesoft.TicTacToe.Evolution.Tests
 {
     [Binding]
-    public class MutationsSteps : Steps
+    internal class MutationsSteps : Steps
     {
         [Given(@"I have a mutator")]
         public void GivenIHaveAMutator()

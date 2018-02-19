@@ -1,4 +1,5 @@
-﻿using SimpleInjector;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using SimpleInjector;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,6 +12,18 @@ namespace Arcesoft.TicTacToe.Evolution.Tests
     [Binding]
     internal class CommonSteps : Steps
     {
+        [Then(@"Todo")]
+        public void ThenTodo()
+        {
+#if (DEBUG)
+            var yo = 34;
+
+            var result = yo.ToString();
+#endif
+
+            Assert.Inconclusive("We still gots some work todo...");
+        }
+
         [Given(@"I expect an exception to be thrown")]
         public void GivenIExpectAnExceptionToBeThrown()
         {
@@ -39,6 +52,13 @@ namespace Arcesoft.TicTacToe.Evolution.Tests
         {
             TicTacToeFactory = Container.GetInstance<ITicTacToeFactory>();
         }
+
+        [Given(@"I have an evolution factory")]
+        public void GivenIHaveAnEvolutionFactory()
+        {
+            EvolutionFactory = Container.GetInstance<IInternalEvolutionFactory>();
+        }
+
 
 
         [Given(@"I start a new game")]

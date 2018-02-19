@@ -16,7 +16,7 @@ using Moq;
 namespace Arcesoft.TicTacToe.Evolution.Tests
 {
     [Binding]
-    public class SelectionSteps:Steps
+    internal class SelectionSteps:Steps
     {
         [Given(@"I have a match builder")]
         public void GivenIHaveAMatchBuilder()
@@ -64,7 +64,7 @@ namespace Arcesoft.TicTacToe.Evolution.Tests
             List<Individual> listy = new List<Individual>();
             for (int i = 0; i < total; i++)
             {
-                listy.Add(Container.GetInstance<Individual>());
+                listy.Add(EvolutionFactory.CreateIndividual(0));
             }
 
             Individuals = listy.ToArray();

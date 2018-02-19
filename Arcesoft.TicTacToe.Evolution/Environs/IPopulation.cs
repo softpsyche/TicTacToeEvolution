@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Arcesoft.TicTacToe.Evolution.Organisms;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,5 +9,14 @@ namespace Arcesoft.TicTacToe.Evolution.Environs
 {
     public interface IPopulation
     {
+        Guid Id { get; }
+        string Name { get; }
+        long Generation { get; }
+        EvolutionSettings Settings { get; set; }
+        IEnumerable<Individual> Individuals { get; }
+
+        void Evolve(int cycles = 1);
+
+        void AddIndividuals(IEnumerable<Individual> individuals);
     }
 }

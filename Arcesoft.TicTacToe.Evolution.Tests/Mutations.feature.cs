@@ -89,6 +89,8 @@ namespace Arcesoft.TicTacToe.Evolution.Tests
 #line 6
  testRunner.Given("I have a container", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 7
+ testRunner.Given("I have an evolution factory", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 8
  testRunner.Given("I have a mutator", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
         }
@@ -100,7 +102,7 @@ namespace Arcesoft.TicTacToe.Evolution.Tests
         public virtual void ShouldMutateAllGenesWhenMutationRateIs100Percent()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Should mutate all genes when mutation rate is 100 percent", ((string[])(null)));
-#line 9
+#line 10
 this.ScenarioSetup(scenarioInfo);
 #line 5
 this.FeatureBackground();
@@ -109,7 +111,7 @@ this.FeatureBackground();
                         "MutationRate"});
             table1.AddRow(new string[] {
                         "1.0"});
-#line 10
+#line 11
  testRunner.Given("I have the following evolution settings", ((string)(null)), table1, "Given ");
 #line hidden
             TechTalk.SpecFlow.Table table2 = new TechTalk.SpecFlow.Table(new string[] {
@@ -128,9 +130,9 @@ this.FeatureBackground();
                         "Ninth",
                         "0",
                         "DXO___RAA"});
-#line 13
+#line 14
  testRunner.Given("I have an individual with the following genes", ((string)(null)), table2, "Given ");
-#line 18
+#line 19
  testRunner.When("I mutate my given individual", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
             TechTalk.SpecFlow.Table table3 = new TechTalk.SpecFlow.Table(new string[] {
@@ -149,9 +151,9 @@ this.FeatureBackground();
                         "Ninth",
                         "0",
                         "DXO___RAA"});
-#line 19
+#line 20
  testRunner.Then("I expect the individual to not contain any of the following genes", ((string)(null)), table3, "Then ");
-#line 24
+#line 25
  testRunner.Then("I expect the individual to contain \'3\' genes", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
@@ -164,7 +166,7 @@ this.FeatureBackground();
         public virtual void ShouldNotMutateAnyGenesWhenMutationRateIs0Percent()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Should not mutate any genes when mutation rate is 0 percent", ((string[])(null)));
-#line 26
+#line 27
 this.ScenarioSetup(scenarioInfo);
 #line 5
 this.FeatureBackground();
@@ -173,7 +175,7 @@ this.FeatureBackground();
                         "MutationRate"});
             table4.AddRow(new string[] {
                         "0.0"});
-#line 27
+#line 28
  testRunner.Given("I have the following evolution settings", ((string)(null)), table4, "Given ");
 #line hidden
             TechTalk.SpecFlow.Table table5 = new TechTalk.SpecFlow.Table(new string[] {
@@ -288,9 +290,9 @@ this.FeatureBackground();
                         "Ninth",
                         "2",
                         "DDDDDDDDD"});
-#line 30
+#line 31
  testRunner.Given("I have an individual with the following genes", ((string)(null)), table5, "Given ");
-#line 59
+#line 60
  testRunner.When("I mutate my given individual", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
             TechTalk.SpecFlow.Table table6 = new TechTalk.SpecFlow.Table(new string[] {
@@ -405,9 +407,9 @@ this.FeatureBackground();
                         "Ninth",
                         "2",
                         "DDDDDDDDD"});
-#line 60
+#line 61
  testRunner.Then("I expect the individual to contain the following genes", ((string)(null)), table6, "Then ");
-#line 89
+#line 90
  testRunner.Then("I expect the individual to contain \'27\' genes", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();

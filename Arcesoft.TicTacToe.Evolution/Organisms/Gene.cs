@@ -9,17 +9,28 @@ namespace Arcesoft.TicTacToe.Evolution.Organisms
 {
 	/// <summary>
 	/// Represents a single response strategy to a given board position.
-	/// This class is immutable. Flyweight pattern?
+	/// This class is immutable and threadsafe. Flyweight pattern anyone? Oh yeah...
 	/// </summary>
 	public sealed class Gene
 	{
 		public const Int32 MaximumPriority = 100;
 		public const Int32 MaximumMoves = 9;
 
-		/// <summary>
-		/// Controls the priority of this gene when it is searched
-		/// </summary>
-		public Int32 Priority { get; private set; }
+        public static readonly Gene EmptyGene = new Gene(Turn.First, 0, new[] {
+            Allele.DontCare,
+            Allele.DontCare,
+            Allele.DontCare,
+            Allele.DontCare,
+            Allele.DontCare,
+            Allele.DontCare,
+            Allele.DontCare,
+            Allele.DontCare,
+            Allele.DontCare});
+
+        /// <summary>
+        /// Controls the priority of this gene when it is searched
+        /// </summary>
+        public Int32 Priority { get; private set; }
 
 		/// <summary>
 		/// Controls what moves this gene is valid for
@@ -29,7 +40,7 @@ namespace Arcesoft.TicTacToe.Evolution.Organisms
 		private Allele[] Alleles { get; set; }
 		public Move? Response => IndexOfFirstResponse();
 
-        public Allele[] GetAlleles() => this.Alleles.ToArray();
+        public Allele[] GetAlleles() => Alleles.ToArray();
 
         public Gene(Turn turn)
 		{
@@ -44,13 +55,26 @@ namespace Arcesoft.TicTacToe.Evolution.Organisms
 			Alleles = alleles.ToArray();
 		}
 
-		/// <summary>
-		/// Returns true if the gene is a viable match for the given game.
-		/// </summary>
-		/// <param name="gene"></param>
-		/// <param name="game"></param>
-		/// <returns></returns>
-		public Boolean IsMatch(String gameBoardString)
+        public List<Gene> Copy(int numberOfCopies)
+        {
+            //best copy EVER. since we be flyweightin' this is totally legal
+            var copyList = new List<Gene>();
+
+            for (int i = 0; i < numberOfCopies; i++)
+            {
+                copyList.Add(this);
+            }
+
+            return copyList;
+        }
+
+        /// <summary>
+        /// Returns true if the gene is a viable match for the given game.
+        /// </summary>
+        /// <param name="gene"></param>
+        /// <param name="game"></param>
+        /// <returns></returns>
+        public Boolean IsMatch(String gameBoardString)
 		{
 			for (var i = 0; i < gameBoardString.Length; i++)
 			{

@@ -90,6 +90,8 @@ namespace Arcesoft.TicTacToe.Evolution.Tests
  testRunner.Given("I have a container", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 7
  testRunner.Given("I have a tictactoe factory", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 8
+ testRunner.Given("I have an evolution factory", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
         }
         
@@ -100,11 +102,11 @@ namespace Arcesoft.TicTacToe.Evolution.Tests
         public virtual void IndividualShouldGetGenesCorrectly()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Individual should get genes correctly", ((string[])(null)));
-#line 9
+#line 10
 this.ScenarioSetup(scenarioInfo);
 #line 5
 this.FeatureBackground();
-#line 10
+#line 11
  testRunner.Given("I have an individual", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
             TechTalk.SpecFlow.Table table1 = new TechTalk.SpecFlow.Table(new string[] {
@@ -119,7 +121,7 @@ this.FeatureBackground();
                         "Third",
                         "99",
                         "RDX_X_ODA"});
-#line 11
+#line 12
  testRunner.When("I set the following genes on the individual", ((string)(null)), table1, "When ");
 #line hidden
             TechTalk.SpecFlow.Table table2 = new TechTalk.SpecFlow.Table(new string[] {
@@ -134,7 +136,7 @@ this.FeatureBackground();
                         "Third",
                         "99",
                         "RDX_X_ODA"});
-#line 15
+#line 16
  testRunner.Then("The individual should contain the following genes", ((string)(null)), table2, "Then ");
 #line hidden
             this.ScenarioCleanup();
@@ -147,7 +149,7 @@ this.FeatureBackground();
         public virtual void IndividualShouldCopyCorrectly()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Individual should copy correctly", ((string[])(null)));
-#line 20
+#line 21
 this.ScenarioSetup(scenarioInfo);
 #line 5
 this.FeatureBackground();
@@ -168,9 +170,9 @@ this.FeatureBackground();
                         "Ninth",
                         "0",
                         "DXO___RAA"});
-#line 21
+#line 22
  testRunner.Given("I have an individual with the following genes", ((string)(null)), table3, "Given ");
-#line 26
+#line 27
  testRunner.When("I make \'2\' copies of the individual", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
             TechTalk.SpecFlow.Table table4 = new TechTalk.SpecFlow.Table(new string[] {
@@ -189,9 +191,9 @@ this.FeatureBackground();
                         "Ninth",
                         "0",
                         "DXO___RAA"});
-#line 27
+#line 28
  testRunner.Then("All individual copies should contain the following genes", ((string)(null)), table4, "Then ");
-#line 32
+#line 33
  testRunner.Then("There should be exactly \'2\' individual copies", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
@@ -204,7 +206,7 @@ this.FeatureBackground();
         public virtual void IndividualShouldFindMove()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Individual should find move", ((string[])(null)));
-#line 34
+#line 35
 this.ScenarioSetup(scenarioInfo);
 #line 5
 this.FeatureBackground();
@@ -225,9 +227,9 @@ this.FeatureBackground();
                         "X",
                         "",
                         "O"});
-#line 35
+#line 36
  testRunner.Given("I have a new game in the following state", ((string)(null)), table5, "Given ");
-#line 40
+#line 41
  testRunner.Given("I have an individual", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
             TechTalk.SpecFlow.Table table6 = new TechTalk.SpecFlow.Table(new string[] {
@@ -246,7 +248,7 @@ this.FeatureBackground();
                         "X",
                         "",
                         "O"});
-#line 41
+#line 42
  testRunner.Given("I add a gene to my individual for turn \'Sixth\' with priority \'1\' and the followin" +
                     "g alleles", ((string)(null)), table6, "Given ");
 #line hidden
@@ -266,7 +268,7 @@ this.FeatureBackground();
                         "D",
                         "",
                         "O"});
-#line 46
+#line 47
  testRunner.Given("I add a gene to my individual for turn \'Seventh\' with priority \'2\' and the follow" +
                     "ing alleles", ((string)(null)), table7, "Given ");
 #line hidden
@@ -286,7 +288,7 @@ this.FeatureBackground();
                         "D",
                         "R",
                         "O"});
-#line 51
+#line 52
  testRunner.Given("I add a gene to my individual for turn \'Seventh\' with priority \'18\' and the follo" +
                     "wing alleles", ((string)(null)), table8, "Given ");
 #line hidden
@@ -306,12 +308,12 @@ this.FeatureBackground();
                         "D",
                         "",
                         "O"});
-#line 56
+#line 57
  testRunner.Given("I add a gene to my individual for turn \'Seventh\' with priority \'7\' and the follow" +
                     "ing alleles", ((string)(null)), table9, "Given ");
-#line 61
- testRunner.When("I try to find a move for the current game with my individual", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 62
+ testRunner.When("I try to find a move for the current game with my individual", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 63
  testRunner.Then("I expect the move to be \'Northern\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
@@ -324,7 +326,7 @@ this.FeatureBackground();
         public virtual void IndividualShouldNotFindMove()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Individual should not find move", ((string[])(null)));
-#line 64
+#line 65
 this.ScenarioSetup(scenarioInfo);
 #line 5
 this.FeatureBackground();
@@ -345,9 +347,9 @@ this.FeatureBackground();
                         "",
                         "",
                         ""});
-#line 65
+#line 66
  testRunner.Given("I have a new game in the following state", ((string)(null)), table10, "Given ");
-#line 70
+#line 71
  testRunner.Given("I have an individual", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
             TechTalk.SpecFlow.Table table11 = new TechTalk.SpecFlow.Table(new string[] {
@@ -366,7 +368,7 @@ this.FeatureBackground();
                         "",
                         "",
                         ""});
-#line 71
+#line 72
   testRunner.Given("I add a gene to my individual for turn \'First\' with priority \'1\' and the followin" +
                     "g alleles", ((string)(null)), table11, "Given ");
 #line hidden
@@ -386,12 +388,12 @@ this.FeatureBackground();
                         "",
                         "X",
                         ""});
-#line 76
+#line 77
  testRunner.Given("I add a gene to my individual for turn \'First\' with priority \'1\' and the followin" +
                     "g alleles", ((string)(null)), table12, "Given ");
-#line 81
- testRunner.When("I try to find a move for the current game with my individual", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 82
+ testRunner.When("I try to find a move for the current game with my individual", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 83
  testRunner.Then("I expect the move to be null", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
@@ -404,7 +406,7 @@ this.FeatureBackground();
         public virtual void IndividualShouldFindResponsesCorrectly()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Individual should find responses correctly", ((string[])(null)));
-#line 84
+#line 85
 this.ScenarioSetup(scenarioInfo);
 #line 5
 this.FeatureBackground();
@@ -425,9 +427,9 @@ this.FeatureBackground();
                         "",
                         "",
                         ""});
-#line 85
+#line 86
  testRunner.Given("I have a new game in the following state", ((string)(null)), table13, "Given ");
-#line 90
+#line 91
  testRunner.Given("I have an individual", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
             TechTalk.SpecFlow.Table table14 = new TechTalk.SpecFlow.Table(new string[] {
@@ -446,7 +448,7 @@ this.FeatureBackground();
                         "",
                         "R",
                         ""});
-#line 91
+#line 92
  testRunner.Given("I add a gene to my individual for turn \'Third\' with priority \'3\' and the followin" +
                     "g alleles", ((string)(null)), table14, "Given ");
 #line hidden
@@ -466,7 +468,7 @@ this.FeatureBackground();
                         "D",
                         "",
                         ""});
-#line 96
+#line 97
  testRunner.Given("I add a gene to my individual for turn \'Third\' with priority \'5\' and the followin" +
                     "g alleles", ((string)(null)), table15, "Given ");
 #line hidden
@@ -486,7 +488,7 @@ this.FeatureBackground();
                         "",
                         "",
                         ""});
-#line 101
+#line 102
  testRunner.Given("I add a gene to my individual for turn \'Third\' with priority \'1\' and the followin" +
                     "g alleles", ((string)(null)), table16, "Given ");
 #line hidden
@@ -506,10 +508,10 @@ this.FeatureBackground();
                         "",
                         "",
                         ""});
-#line 106
+#line 107
  testRunner.Given("I add a gene to my individual for turn \'First\' with priority \'7\' and the followin" +
                     "g alleles", ((string)(null)), table17, "Given ");
-#line 111
+#line 112
  testRunner.When("I find responses for the current game with my individual", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
             TechTalk.SpecFlow.Table table18 = new TechTalk.SpecFlow.Table(new string[] {
@@ -520,7 +522,7 @@ this.FeatureBackground();
                         "Southern"});
             table18.AddRow(new string[] {
                         "Northern"});
-#line 112
+#line 113
  testRunner.Then("I expect the responses to contain in the following order", ((string)(null)), table18, "Then ");
 #line hidden
             this.ScenarioCleanup();

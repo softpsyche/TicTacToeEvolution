@@ -11,13 +11,13 @@ namespace Arcesoft.TicTacToe.Evolution.Mutations
     /// See this site https://ghr.nlm.nih.gov/primer/mutationsanddisorders/possiblemutations
     /// for some ideas on types of mutations
     /// </summary>
-    public class Mutator : IMutator
+    internal class Mutator : IMutator
     {
         private IRandom RandomNumberGenerator { get; set; }
 
-        private GeneCache GeneCache { get; set; }
+        private IGeneCache GeneCache { get; set; }
 
-        public Mutator(IRandom rng, GeneCache geneCache)
+        public Mutator(IRandom rng, IGeneCache geneCache)
         {
             RandomNumberGenerator = rng;
             GeneCache = geneCache;

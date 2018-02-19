@@ -11,12 +11,12 @@ using TechTalk.SpecFlow;
 namespace Arcesoft.TicTacToe.Evolution.Tests
 {
     [Binding]
-    public class OrganismsSteps : Steps
+    internal class OrganismsSteps : Steps
     {
         [Given(@"I have an individual")]
         public void GivenIHaveAnIndividual()
         {
-            Individual = Container.GetInstance<Individual>();
+            Individual = EvolutionFactory.CreateIndividual(0);
         }
 
         [When(@"I set the following genes on the individual")]
@@ -36,7 +36,7 @@ namespace Arcesoft.TicTacToe.Evolution.Tests
         {
             Invoke(() =>
             {
-                Individual = Container.GetInstance<Individual>();
+                Individual = EvolutionFactory.CreateIndividual(0);
 
                 Individual.Genes = table.ToGenes();
             });
