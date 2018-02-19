@@ -1,5 +1,4 @@
-﻿@BetterTestingApproach
-@Unit
+﻿@Behavioral
 Feature: Game
 Verify that the tic tac toe game follows the domain specifications
 
@@ -205,11 +204,30 @@ Scenario: Game should detect 'X' win for diagonal slope
 		|   |   | X |
 	Then The available legal moves should be empty
 
-#Todo: can a non C# programmer complete this test?
 Scenario: Game should detect 'X' win for diagonal grade
-	Given Todo
-	When Todo
-	Then Todo
+	Given I start a new game with the following moves
+		| Move      |
+		| SouthWest |
+		| Western   |
+		| Center    |
+		| Eastern   |
+	When I make the move 'NorthEast'
+	Then The move history should be
+		| Move      |
+		| SouthWest |
+		| Western   |
+		| Center    |
+		| Eastern   |
+		| NorthEast |
+	Then The game state should be 'XWin'
+	Then The game should be over
+	Then The total moves made should be '5'
+	Then The game board should look like
+		| A | B | C |
+		|   |   | X |
+		| O | X | O |
+		| X |   |   |
+	Then The available legal moves should be empty
 
 #A more compact way to write the tests for wins for O but at the expense of readability? Should we change this...
 Scenario Outline: Game should detect 'O' win for
