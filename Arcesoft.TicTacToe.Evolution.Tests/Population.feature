@@ -40,12 +40,4 @@ Scenario: Population should promote fittest for many cycles
 		| First | 0        | ____R____ |
 		| Third | 0        | DDDDDDDDR |
 
-@ignore
-Scenario: Population running for fun!
-	Given I have an evolution factory
-	Given I have the following evolution settings
-         | MutationRate | MaximumPopulationSize | IndividualChildBearingLimit | MaximumGenesPerIndividual | BreederType | FitnessEvaluatorType | MatchTournaments |
-         | .03          | 400                   | 5                           | 100                       | ASexual     | AllOrNothing         | 5                |
-	Given I have a population
-	When I have lots of fun
 

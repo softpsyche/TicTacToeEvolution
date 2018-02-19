@@ -94,11 +94,6 @@
     <Compile Include="Organisms\AlleleConstants.cs" />
     <Compile Include="Organisms\AlleleExtensions.cs" />
     <Compile Include="Organisms\Gene.cs" />
-    <None Include="Serialization\DtoMapper.cs" />
-    <None Include="Serialization\DtoMapperImplementations.cs" />
-    <None Include="Serialization\DtoMapperRepository.cs" />
-    <None Include="Serialization\DtoImplementations.cs" />
-    <None Include="Serialization\JsonSerializer.cs" />
     <Compile Include="Organisms\Individual.cs" />
     <Compile Include="Environs\Population.cs" />
     <Compile Include="Organisms\TurnExtensions.cs" />

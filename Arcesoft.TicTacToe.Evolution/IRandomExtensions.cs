@@ -64,12 +64,6 @@ namespace Arcesoft.TicTacToe.Evolution
 
             var result = random.Next(maxValue - 1);
 
-            if (result == except)
-            {
-                var yo = 3434;
-
-            }
-
             return result == except ? maxValue - 1 : result;
         }
     }

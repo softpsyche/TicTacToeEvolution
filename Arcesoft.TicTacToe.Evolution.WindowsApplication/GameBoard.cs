@@ -7,159 +7,168 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Arcesoft.TicTacToe.Entities;
 
 namespace Arcesoft.TicTacToe.Evolution.WindowsApplication
 {
-	public partial class GameBoard : UserControl
-	{
-		private String BoardState { get; set; }
-		public GameBoard()
-		{
-			InitializeComponent();
-			this.DoubleBuffered = true;
+    public partial class GameBoard : UserControl
+    {
+        private IGame _game;
 
-			//this.BoardState = "XXXOOOXXX";
-			this.BlackPen = new Pen(Brushes.Black, 10);
-		}
+        public IGame Game
+        {
+            get
+            {
+                return _game;
+            }
+            set
+            {
+                if (ReferenceEquals(value, _game) == false)
+                {
+                    _game = Game;
+                    Invalidate();
+                }
+            }
+        }
+        private String BoardState { get; set; }
+        public GameBoard()
+        {
+            InitializeComponent();
+            this.DoubleBuffered = true;
 
-		private Int32 SquareWidth
-		{
-			get
-			{
-				return this.Width / 3;
-			}
-		}
-		private Int32 SquareHeight
-		{
-			get
-			{
-				return this.Height / 3;
-			}
-		}
-		private Pen BlackPen
-		{
-			get;
-			 set;
-		}
+            //this.BoardState = "XXXOOOXXX";
+            this.BlackPen = new Pen(Brushes.Black, 10);
+        }
 
-		protected override void OnPaint(PaintEventArgs e)
-		{
-			base.OnPaint(e);
+        private Int32 SquareWidth
+        {
+            get
+            {
+                return this.Width / 3;
+            }
+        }
+        private Int32 SquareHeight
+        {
+            get
+            {
+                return this.Height / 3;
+            }
+        }
+        private Pen BlackPen
+        {
+            get;
+            set;
+        }
 
-			e.Graphics.FillRectangle(Brushes.White, e.ClipRectangle);
+        protected override void OnPaint(PaintEventArgs e)
+        {
+            base.OnPaint(e);
 
-			e.Graphics.DrawLine(BlackPen, new Point(SquareWidth, 0), new Point(SquareWidth, this.Height));
-			e.Graphics.DrawLine(BlackPen, new Point(SquareWidth * 2, 0), new Point(SquareWidth * 2, this.Height));
-			e.Graphics.DrawLine(BlackPen, new Point(0, SquareHeight), new Point(Width, SquareHeight));
-			e.Graphics.DrawLine(BlackPen, new Point(0, SquareHeight * 2), new Point(Width, SquareHeight * 2));
+            e.Graphics.FillRectangle(Brushes.White, e.ClipRectangle);
 
-			for (Int32 y = 0; y < 3; y++)
-			{
-				for (Int32 x = 0; x < 3; x++)
-				{
-					DrawSquare(e, GetBoardCharacter(x,y), x, y);
-				}
-			}
-		}
-		private String GetBoardCharacter(int x, int y)
-		{
-			var dude = new GameMove(y, x).ToInteger();
+            if (Game == null)
+            {
+                e.Graphics.DrawString("No game selected", SystemFonts.DefaultFont, Brushes.Black, e.ClipRectangle);
+                return;
+            }
 
-			if(BoardState != null && BoardState.Length > dude)
-			{
-				return BoardState[dude].ToString();
-			}
-			
-			return String.Empty;
-		}
-		private void DrawSquare(PaintEventArgs e, String character, Int32 x, Int32 y)
-		{
-			Rectangle drawRect = new Rectangle(
-				x * SquareWidth,
-				y * SquareHeight,
-				SquareWidth,
-				SquareHeight);
+            e.Graphics.DrawLine(BlackPen, new Point(SquareWidth, 0), new Point(SquareWidth, this.Height));
+            e.Graphics.DrawLine(BlackPen, new Point(SquareWidth * 2, 0), new Point(SquareWidth * 2, this.Height));
+            e.Graphics.DrawLine(BlackPen, new Point(0, SquareHeight), new Point(Width, SquareHeight));
+            e.Graphics.DrawLine(BlackPen, new Point(0, SquareHeight * 2), new Point(Width, SquareHeight * 2));
 
-			drawRect = Rectangle.Inflate(drawRect, -15, -15);
+            for (Int32 y = 0; y < 3; y++)
+            {
+                for (Int32 x = 0; x < 3; x++)
+                {
+                    DrawSquare(e, GetBoardCharacter(x, y), x, y);
+                }
+            }
+        }
 
-			if (character == "X")
-			{
-				e.Graphics.DrawLine(this.BlackPen, drawRect.Location, new Point(drawRect.Right, drawRect.Bottom));
-				e.Graphics.DrawLine(this.BlackPen, new Point(drawRect.Left, drawRect.Bottom), new Point(drawRect.Right, drawRect.Top));
-			}
-			else if (character == "O")
-			{
-				e.Graphics.DrawEllipse(this.BlackPen, drawRect);
-			}
-		}
+        private String GetBoardCharacter(int x, int y)
+        {
+            var dude = (y * 3);
 
-		public event EventHandler<MoveRequestEventArgs> MoveRequested;
-		private void OnMoveRequested(GameMove move)
-		{
-			var temp = this.MoveRequested;
+            if (BoardState != null && BoardState.Length > dude)
+            {
+                return BoardState[dude].ToString();
+            }
 
-			if (temp != null)
-			{
-				temp(this, new MoveRequestEventArgs() { Move = move });
-			}
-		}
+            return String.Empty;
+        }
 
-		public void SetBoardState(String gameBoardState)
-		{
-			this.BoardState = gameBoardState;
-			this.Invalidate();
-		}
+        private void DrawSquare(PaintEventArgs e, String character, Int32 x, Int32 y)
+        {
+            Rectangle drawRect = new Rectangle(
+                x * SquareWidth,
+                y * SquareHeight,
+                SquareWidth,
+                SquareHeight);
 
-		private void GameBoard_Click(object sender, EventArgs e)
-		{
+            drawRect = Rectangle.Inflate(drawRect, -15, -15);
 
-		}
+            if (character == BoardConstants.SquareXString)
+            {
+                e.Graphics.DrawLine(this.BlackPen, drawRect.Location, new Point(drawRect.Right, drawRect.Bottom));
+                e.Graphics.DrawLine(this.BlackPen, new Point(drawRect.Left, drawRect.Bottom), new Point(drawRect.Right, drawRect.Top));
+            }
+            else if (character == BoardConstants.SquareOString)
+            {
+                e.Graphics.DrawEllipse(this.BlackPen, drawRect);
+            }
+        }
 
-		private void GameBoard_MouseUp(object sender, MouseEventArgs e)
-		{
-			Int32 xCoord;
-			Int32 yCoord;
+        private void GameBoard_Click(object sender, EventArgs e)
+        {
 
-			var height = this.Height / 3;
-			var width = this.Width / 3;
+        }
 
-			if (e.Location.X < width)
-			{
-				xCoord = 0;
-			}
-			else if (e.Location.X < width * 2)
-			{
-				xCoord = 1;
-			}
-			else
-			{
-				xCoord = 2;
-			}
+        private void GameBoard_MouseUp(object sender, MouseEventArgs e)
+        {
+            Int32 xCoord;
+            Int32 yCoord;
 
-			if (e.Location.Y < height)
-			{
-				yCoord = 0;
-			}
-			else if (e.Location.Y < height * 2)
-			{
-				yCoord = 1;
-			}
-			else
-			{
-				yCoord = 2;
-			}
+            var height = this.Height / 3;
+            var width = this.Width / 3;
 
-			this.OnMoveRequested(new GameMove(yCoord, xCoord));
+            if (e.Location.X < width)
+            {
+                xCoord = 0;
+            }
+            else if (e.Location.X < width * 2)
+            {
+                xCoord = 1;
+            }
+            else
+            {
+                xCoord = 2;
+            }
 
-		}
-	}
+            if (e.Location.Y < height)
+            {
+                yCoord = 0;
+            }
+            else if (e.Location.Y < height * 2)
+            {
+                yCoord = 1;
+            }
+            else
+            {
+                yCoord = 2;
+            }
 
-	public class MoveRequestEventArgs:EventArgs
-	{
-		public GameMove Move
-		{
-			get;
-			set;
-		}
-	}
+            MakeMove(yCoord, xCoord);
+        }
+
+        private Move ToMove(int yCoord, int xCoord)
+        {
+            return (Move)((yCoord * 3) + xCoord);
+        }
+
+        private void MakeMove(int yCoord, int xCoord)
+        {
+
+        }
+    }
 }

@@ -239,48 +239,6 @@ this.FeatureBackground();
 #line hidden
             this.ScenarioCleanup();
         }
-        
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Population running for fun!")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Population")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("Behavioral")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.IgnoreAttribute()]
-        public virtual void PopulationRunningForFun()
-        {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Population running for fun!", new string[] {
-                        "ignore"});
-#line 44
-this.ScenarioSetup(scenarioInfo);
-#line 5
-this.FeatureBackground();
-#line 45
- testRunner.Given("I have an evolution factory", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line hidden
-            TechTalk.SpecFlow.Table table7 = new TechTalk.SpecFlow.Table(new string[] {
-                        "MutationRate",
-                        "MaximumPopulationSize",
-                        "IndividualChildBearingLimit",
-                        "MaximumGenesPerIndividual",
-                        "BreederType",
-                        "FitnessEvaluatorType",
-                        "MatchTournaments"});
-            table7.AddRow(new string[] {
-                        ".03",
-                        "400",
-                        "5",
-                        "100",
-                        "ASexual",
-                        "AllOrNothing",
-                        "5"});
-#line 46
- testRunner.Given("I have the following evolution settings", ((string)(null)), table7, "Given ");
-#line 49
- testRunner.Given("I have a population", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 50
- testRunner.When("I have lots of fun", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line hidden
-            this.ScenarioCleanup();
-        }
     }
 }
 #pragma warning restore

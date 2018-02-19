@@ -63,18 +63,5 @@ namespace Arcesoft.TicTacToe.Evolution.Tests
         }
 
 
-        [When(@"I have lots of fun")]
-        public void WhenIHaveLotsOfFun()
-        {
-            while (true)
-            {
-                Population.Evolve(100);
-
-                var yo = 34;
-
-            }
-        }
-
-
     }
 }

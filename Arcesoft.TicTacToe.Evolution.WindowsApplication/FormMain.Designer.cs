@@ -55,8 +55,6 @@
 			// 
 			this.backgroundWorkerMain.WorkerReportsProgress = true;
 			this.backgroundWorkerMain.WorkerSupportsCancellation = true;
-			this.backgroundWorkerMain.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorkerMain_DoWork);
-			this.backgroundWorkerMain.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.backgroundWorkerMain_ProgressChanged);
 			// 
 			// splitContainerMain
 			// 
@@ -98,7 +96,6 @@
 			this.buttonSave.TabIndex = 1;
 			this.buttonSave.Text = "Save";
 			this.buttonSave.UseVisualStyleBackColor = true;
-			this.buttonSave.Click += new System.EventHandler(this.buttonSave_Click);
 			// 
 			// gameBoardMain
 			// 
@@ -106,7 +103,6 @@
 			this.gameBoardMain.Name = "gameBoardMain";
 			this.gameBoardMain.Size = new System.Drawing.Size(113, 26);
 			this.gameBoardMain.TabIndex = 1;
-			this.gameBoardMain.MoveRequested += new System.EventHandler<TicTacToe.Evolution.WindowsApplication.MoveRequestEventArgs>(this.gameBoardMain_MoveRequested);
 			// 
 			// FormMain
 			// 
@@ -119,7 +115,6 @@
 			this.Name = "FormMain";
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
 			this.Text = "Form1";
-			this.Load += new System.EventHandler(this.FormMain_Load);
 			this.Shown += new System.EventHandler(this.FormMain_Shown);
 			this.splitContainerMain.Panel1.ResumeLayout(false);
 			this.splitContainerMain.Panel2.ResumeLayout(false);
