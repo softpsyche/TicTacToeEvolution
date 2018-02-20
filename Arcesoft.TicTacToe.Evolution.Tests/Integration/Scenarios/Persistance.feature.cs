@@ -92,6 +92,8 @@ namespace Arcesoft.TicTacToe.Evolution.Tests.Integration.Scenarios
  testRunner.Given("I have an evolution factory", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 8
  testRunner.Given("I have a data access", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 9
+ testRunner.Given("I delete all individuals", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
         }
         
@@ -102,7 +104,7 @@ namespace Arcesoft.TicTacToe.Evolution.Tests.Integration.Scenarios
         public virtual void DataAccessShouldSavePopulation()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Data access should save population", ((string[])(null)));
-#line 10
+#line 11
 this.ScenarioSetup(scenarioInfo);
 #line 5
 this.FeatureBackground();
@@ -123,14 +125,14 @@ this.FeatureBackground();
                         "ASexual",
                         "AllOrNothing",
                         "1"});
-#line 11
+#line 12
  testRunner.Given("I have the following evolution settings", ((string)(null)), table1, "Given ");
 #line hidden
             TechTalk.SpecFlow.Table table2 = new TechTalk.SpecFlow.Table(new string[] {
                         "Id"});
             table2.AddRow(new string[] {
                         "99000000-0000-0000-0000-000000000000"});
-#line 14
+#line 15
  testRunner.Given("I delete the following populations", ((string)(null)), table2, "Given ");
 #line hidden
             TechTalk.SpecFlow.Table table3 = new TechTalk.SpecFlow.Table(new string[] {
@@ -141,9 +143,9 @@ this.FeatureBackground();
                         "99000000-0000-0000-0000-000000000000",
                         "Giggidy",
                         "5500"});
-#line 17
+#line 18
  testRunner.Given("I have the following population", ((string)(null)), table3, "Given ");
-#line 20
+#line 21
  testRunner.Given("I clear all individuals from my population", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
             TechTalk.SpecFlow.Table table4 = new TechTalk.SpecFlow.Table(new string[] {
@@ -158,7 +160,7 @@ this.FeatureBackground();
                         "Ninth",
                         "34",
                         "DDDDDDDDR"});
-#line 21
+#line 22
  testRunner.Given("I add an individual called \'Alpha\' with id \'10000000-0000-0000-0000-000000000000\'" +
                     " and with the following genes to my population", ((string)(null)), table4, "Given ");
 #line hidden
@@ -174,7 +176,7 @@ this.FeatureBackground();
                         "Third",
                         "4",
                         "DDD__DDDR"});
-#line 25
+#line 26
  testRunner.Given("I add an individual called \'Beta\' with id \'20000000-0000-0000-0000-000000000000\' " +
                     "and with the following genes to my population", ((string)(null)), table5, "Given ");
 #line hidden
@@ -190,7 +192,7 @@ this.FeatureBackground();
                         "Eigth",
                         "20",
                         "__DDDDDDR"});
-#line 29
+#line 30
  testRunner.Given("I add an individual called \'Gamma\' with id \'30000000-0000-0000-0000-000000000000\'" +
                     " and with the following genes to my population", ((string)(null)), table6, "Given ");
 #line hidden
@@ -206,10 +208,10 @@ this.FeatureBackground();
                         "Eigth",
                         "20",
                         "__DDDDDDR"});
-#line 33
+#line 34
  testRunner.Given("I add an individual called \'Cappa\' with id \'40000000-0000-0000-0000-000000000000\'" +
                     " and with the following genes to my population", ((string)(null)), table7, "Given ");
-#line 37
+#line 38
  testRunner.Given("I save my population", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
             TechTalk.SpecFlow.Table table8 = new TechTalk.SpecFlow.Table(new string[] {
@@ -220,7 +222,7 @@ this.FeatureBackground();
                         "99000000-0000-0000-0000-000000000000",
                         "Giggidy",
                         "5500"});
-#line 38
+#line 39
  testRunner.Then("I expect the saved population to contain", ((string)(null)), table8, "Then ");
 #line hidden
             TechTalk.SpecFlow.Table table9 = new TechTalk.SpecFlow.Table(new string[] {
@@ -239,7 +241,7 @@ this.FeatureBackground();
                         "ASexual",
                         "AllOrNothing",
                         "1"});
-#line 41
+#line 42
  testRunner.Then("I expect the saved population to contain the following evolution settings", ((string)(null)), table9, "Then ");
 #line hidden
             TechTalk.SpecFlow.Table table10 = new TechTalk.SpecFlow.Table(new string[] {
@@ -296,7 +298,7 @@ this.FeatureBackground();
                         "Eigth",
                         "20",
                         "__DDDDDDR"});
-#line 44
+#line 45
  testRunner.Then("I expect the saved population to contain the following individuals", ((string)(null)), table10, "Then ");
 #line hidden
             this.ScenarioCleanup();
@@ -309,7 +311,7 @@ this.FeatureBackground();
         public virtual void DataAccessShouldFindPopulations()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Data access should find populations", ((string[])(null)));
-#line 55
+#line 56
 this.ScenarioSetup(scenarioInfo);
 #line 5
 this.FeatureBackground();
@@ -330,7 +332,7 @@ this.FeatureBackground();
                         "ASexual",
                         "AllOrNothing",
                         "1"});
-#line 56
+#line 57
  testRunner.Given("I have the following evolution settings", ((string)(null)), table11, "Given ");
 #line hidden
             TechTalk.SpecFlow.Table table12 = new TechTalk.SpecFlow.Table(new string[] {
@@ -343,7 +345,7 @@ this.FeatureBackground();
                         "30000000-0000-0000-0000-000000000000"});
             table12.AddRow(new string[] {
                         "40000000-0000-0000-0000-000000000000"});
-#line 59
+#line 60
  testRunner.Given("I delete the following populations", ((string)(null)), table12, "Given ");
 #line hidden
             TechTalk.SpecFlow.Table table13 = new TechTalk.SpecFlow.Table(new string[] {
@@ -361,11 +363,11 @@ this.FeatureBackground();
             table13.AddRow(new string[] {
                         "40000000-0000-0000-0000-000000000000",
                         "Coolio"});
-#line 65
+#line 66
  testRunner.Given("I have the following populations", ((string)(null)), table13, "Given ");
-#line 71
- testRunner.Given("I save my populations", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 72
+ testRunner.Given("I save my populations", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 73
  testRunner.When("I find populations by name \'gIGgIDY\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
             TechTalk.SpecFlow.Table table14 = new TechTalk.SpecFlow.Table(new string[] {
@@ -377,7 +379,7 @@ this.FeatureBackground();
             table14.AddRow(new string[] {
                         "30000000-0000-0000-0000-000000000000",
                         "QuagmadiusGiggidyTheThird"});
-#line 73
+#line 74
  testRunner.Then("I expect the find populations search results to only contain", ((string)(null)), table14, "Then ");
 #line hidden
             this.ScenarioCleanup();

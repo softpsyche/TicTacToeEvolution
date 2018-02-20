@@ -6,6 +6,7 @@ Background:
 	Given I have a container
 	Given I have an evolution factory
 	Given I have a data access
+	Given I delete all individuals
 
 Scenario: Data access should save population
 	Given I have the following evolution settings

@@ -93,5 +93,12 @@ namespace Arcesoft.TicTacToe.Evolution.Tests.Integration
 
             PopulationSearchResults.Count.Should().Be(table.RowCount);
         }
+
+        [Given(@"I delete all individuals")]
+        public void GivenIDeleteAllIndividuals()
+        {
+            ScenarioContext.Current.Pending();
+        }
+
     }
 }
