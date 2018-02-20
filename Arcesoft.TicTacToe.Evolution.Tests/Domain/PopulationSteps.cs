@@ -18,13 +18,13 @@ namespace Arcesoft.TicTacToe.Evolution.Tests.Domain
         [Given(@"I have a population")]
         public void GivenIHaveAPopulation()
         {
-            Population = EvolutionFactory.CreatePopulation(EvolutionSettings);
+            Population = EvolutionFactory.CreatePopulation(PopulationSettings);
         }
 
         [Given(@"I have the following population")]
         public void GivenIHaveTheFollowingPopulation(Table table)
         {
-            Population = EvolutionFactory.CreatePopulation(EvolutionSettings);
+            Population = EvolutionFactory.CreatePopulation(PopulationSettings);
 
             table.FillInstance(Population);
         }

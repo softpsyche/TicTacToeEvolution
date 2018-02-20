@@ -15,6 +15,6 @@ namespace Arcesoft.TicTacToe.Evolution
     /// </summary>
     public interface IEvolutionFactory
     {
-        IPopulation CreatePopulation(EvolutionSettings evolutionSettings);
+        IPopulation CreatePopulation(PopulationSettings settings);
     }
 }

@@ -32,6 +32,7 @@ namespace Arcesoft.TicTacToe.Evolution.DependencyInjection
             container.Register<IMatchEvaluator, MatchEvaluator>();
 
             //persistance
+            container.Register<IRegionRepository, RegionRepository>();
             container.Register<IPopulationRepository, PopulationRepository>();
             container.Register<IDataAccess, DataAccess>();
 

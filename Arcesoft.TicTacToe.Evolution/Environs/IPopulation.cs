@@ -12,7 +12,7 @@ namespace Arcesoft.TicTacToe.Evolution.Environs
         Guid Id { get; }
         string Name { get; set; }
         long Generation { get; }
-        EvolutionSettings Settings { get; set; }
+        PopulationSettings Settings { get; set; }
         IEnumerable<Individual> Individuals { get; }
 
         void Evolve(int cycles = 1);

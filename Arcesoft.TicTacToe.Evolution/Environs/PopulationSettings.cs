@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Arcesoft.TicTacToe.Evolution
 {
-    public class EvolutionSettings : IMutationSettings, IReproductionSettings,IFitnessSettings
+    public class PopulationSettings : IMutationSettings, IReproductionSettings, IFitnessSettings
     {
         public double MutationRate { get; set; }
 

@@ -59,7 +59,7 @@ namespace Arcesoft.TicTacToe.Evolution.Tests.Domain
         [When(@"I breed my individuals")]
         public void WhenIBreedMyIndividuals()
         {
-            Invoke(() => Individuals = Breeder.Breed(FitnessScores, EvolutionSettings).ToArray());
+            Invoke(() => Individuals = Breeder.Breed(FitnessScores, PopulationSettings).ToArray());
         }
 
         [Then(@"I expect the new generation of individuals to contain")]

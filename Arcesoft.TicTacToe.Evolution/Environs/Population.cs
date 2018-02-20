@@ -43,7 +43,7 @@ namespace Arcesoft.TicTacToe.Evolution.Environs
             }
         }
 
-        public EvolutionSettings Settings { get; set; }
+        public PopulationSettings Settings { get; set; }
         public List<Individual> Individuals { get; internal set; }
         IEnumerable<Individual> IPopulation.Individuals => Individuals;
 
@@ -53,11 +53,11 @@ namespace Arcesoft.TicTacToe.Evolution.Environs
         public Population(
             IInternalEvolutionFactory evolutionFactory,
             IMutator mutator,
-            EvolutionSettings evolutionSettings)
+            PopulationSettings settings)
         {
             EvolutionFactory = evolutionFactory;
             Mutator = mutator;
-            Settings = evolutionSettings;
+            Settings = settings;
         }
 
         public void Evolve(int cycles = 1)
@@ -91,7 +91,7 @@ namespace Arcesoft.TicTacToe.Evolution.Environs
             }
         }
 
-        private void Evolve(EvolutionSettings settings, List<Individual> evolveList)
+        private void Evolve(PopulationSettings settings, List<Individual> evolveList)
         {
             //Compete: evaluate the fitness of the individuals
             var fitnessScores = FitnessEvaluator.Evaluate(evolveList, settings);
@@ -109,7 +109,7 @@ namespace Arcesoft.TicTacToe.Evolution.Environs
             Generation++;
         }
 
-        private void InitializeIndividuals(EvolutionSettings settings)
+        private void InitializeIndividuals(PopulationSettings settings)
         {
             if (Individuals != null)
             {

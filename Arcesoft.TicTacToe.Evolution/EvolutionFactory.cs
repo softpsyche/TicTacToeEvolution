@@ -67,12 +67,12 @@ namespace Arcesoft.TicTacToe.Evolution
             return individual;
         }
 
-        public IPopulation CreatePopulation(EvolutionSettings evolutionSettings)
+        public IPopulation CreatePopulation(PopulationSettings settings)
         {
             var population = new Population(
                 FactoryContainer.GetInstance<IInternalEvolutionFactory>(),
                 FactoryContainer.GetInstance<IMutator>(),
-                evolutionSettings);
+                settings);
 
             return population;
         }

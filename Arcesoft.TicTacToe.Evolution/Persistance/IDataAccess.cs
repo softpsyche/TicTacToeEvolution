@@ -11,10 +11,22 @@ namespace Arcesoft.TicTacToe.Evolution.Persistance
     {
         void SavePopulation(IPopulation population);
 
+        void DeleteAllPopulations();
+
         bool DeletePopulation(Guid id);
 
         IPopulation FindPopulation(Guid id);
 
         List<IPopulation> FindPopulations(string name);
+
+        void SaveRegion(IRegion region);
+
+        void DeleteAllRegions();
+
+        bool DeleteRegion(Guid Id);
+
+        IRegion FindRegion(Guid id);
+
+        List<IRegion> FindRegions(string name);
     }
 }

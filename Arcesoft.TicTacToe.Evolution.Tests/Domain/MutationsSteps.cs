@@ -24,13 +24,13 @@ namespace Arcesoft.TicTacToe.Evolution.Tests.Domain
         [Given(@"I have the following evolution settings")]
         public void GivenIHaveTheFollowingMutationSettings(Table table)
         {
-            EvolutionSettings = table.CreateInstance<EvolutionSettings>();
+            PopulationSettings = table.CreateInstance<PopulationSettings>();
         }
 
         [When(@"I mutate my given individual")]
         public void WhenIMutateMyGivenIndividual()
         {
-            Invoke(() => Mutator.MutateIndividual(Individual, EvolutionSettings));
+            Invoke(() => Mutator.MutateIndividual(Individual, PopulationSettings));
         }
 
         [Then(@"I expect the individual to not contain any of the following genes")]

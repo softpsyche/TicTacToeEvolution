@@ -26,7 +26,7 @@ namespace Arcesoft.TicTacToe.Evolution.Tests
             return table.CreateSet(a => a.ToGene()).ToList();
         }
 
-        public static IEnumerable<IPopulation> ToPopulations(this Table table,IInternalEvolutionFactory factory, EvolutionSettings evolutionSettings)
+        public static IEnumerable<IPopulation> ToPopulations(this Table table,IInternalEvolutionFactory factory, PopulationSettings evolutionSettings)
         {
             return table.CreateSet(a => factory.CreatePopulation(evolutionSettings)).ToList();
         }

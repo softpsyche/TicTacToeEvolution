@@ -12,9 +12,6 @@ Scenario: Data access should save population
 	Given I have the following evolution settings
         | MutationRate | MaximumPopulationSize | IndividualChildBearingLimit | MaximumGenesPerIndividual | BreederType | FitnessEvaluatorType | MatchTournaments |
         | 0            | 2                     | 5                           | 2                         | ASexual     | AllOrNothing         | 1                |
-	Given I delete the following populations
-		| Id                                   |
-		| 99000000-0000-0000-0000-000000000000 |
 	Given I have the following population
 		| Id                                   | Name    | Generation |
 		| 99000000-0000-0000-0000-000000000000 | Giggidy | 5500       |
@@ -57,12 +54,6 @@ Scenario: Data access should find populations
 	Given I have the following evolution settings
         | MutationRate | MaximumPopulationSize | IndividualChildBearingLimit | MaximumGenesPerIndividual | BreederType | FitnessEvaluatorType | MatchTournaments |
         | 0            | 2                     | 5                           | 2                         | ASexual     | AllOrNothing         | 1                |
-	Given I delete the following populations
-		| Id                                   |
-		| 10000000-0000-0000-0000-000000000000 |
-		| 20000000-0000-0000-0000-000000000000 |
-		| 30000000-0000-0000-0000-000000000000 |
-		| 40000000-0000-0000-0000-000000000000 |
 	Given I have the following populations
 		| Id                                   | Name                      |
 		| 10000000-0000-0000-0000-000000000000 | Giggidy                   |

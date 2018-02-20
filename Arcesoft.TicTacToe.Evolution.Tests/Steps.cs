@@ -257,11 +257,11 @@ namespace Arcesoft.TicTacToe.Evolution.Tests
             }
         }
 
-        protected EvolutionSettings EvolutionSettings
+        protected PopulationSettings PopulationSettings
         {
             get
             {
-                return GetScenarioContextItemOrDefault<EvolutionSettings>();
+                return GetScenarioContextItemOrDefault<PopulationSettings>();
             }
             set
             {

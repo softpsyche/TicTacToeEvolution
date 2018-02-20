@@ -11,5 +11,7 @@ namespace Arcesoft.TicTacToe.Evolution.Environs
         public Guid Id { get; internal set; } = Guid.NewGuid();
 
         public string Name { get; set; }
+
+        public DateTimeOffset DateCreated { get; internal set; } = DateTimeOffset.Now;
     }
 }

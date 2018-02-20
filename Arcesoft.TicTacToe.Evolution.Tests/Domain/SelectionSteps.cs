@@ -175,7 +175,7 @@ namespace Arcesoft.TicTacToe.Evolution.Tests.Domain
         [When(@"I evaluate fitness")]
         public void WhenIEvaluateFitness()
         {
-            Invoke(() => FitnessScores = FitnessEvaluator.Evaluate(Individuals, EvolutionSettings).ToList());
+            Invoke(() => FitnessScores = FitnessEvaluator.Evaluate(Individuals, PopulationSettings).ToList());
         }
 
         [Then(@"I expect the fitness scores to contain the following")]

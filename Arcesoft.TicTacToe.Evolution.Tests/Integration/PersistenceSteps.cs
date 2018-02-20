@@ -77,7 +77,7 @@ namespace Arcesoft.TicTacToe.Evolution.Tests.Integration
         [Given(@"I have the following populations")]
         public void GivenIHaveTheFollowingPopulations(Table table)
         {
-            Populations = table.ToPopulations(EvolutionFactory, EvolutionSettings);
+            Populations = table.ToPopulations(EvolutionFactory, PopulationSettings);
         }
 
         [When(@"I find populations by name '(.*)'")]
@@ -97,7 +97,7 @@ namespace Arcesoft.TicTacToe.Evolution.Tests.Integration
         [Given(@"I delete all individuals")]
         public void GivenIDeleteAllIndividuals()
         {
-            ScenarioContext.Current.Pending();
+            DataAccess.DeleteAllPopulations();
         }
 
     }
