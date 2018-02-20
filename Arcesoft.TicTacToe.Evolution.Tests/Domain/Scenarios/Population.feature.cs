@@ -10,7 +10,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace Arcesoft.TicTacToe.Evolution.Tests
+namespace Arcesoft.TicTacToe.Evolution.Tests.Domain.Scenarios
 {
     using TechTalk.SpecFlow;
     
@@ -45,7 +45,7 @@ namespace Arcesoft.TicTacToe.Evolution.Tests
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner(null, 0);
             TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Population", "Verify that the population is working as expected", ProgrammingLanguage.CSharp, new string[] {
-                        "Behavioral"});
+                        "Domain"});
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -62,7 +62,7 @@ namespace Arcesoft.TicTacToe.Evolution.Tests
             if (((testRunner.FeatureContext != null) 
                         && (testRunner.FeatureContext.FeatureInfo.Title != "Population")))
             {
-                global::Arcesoft.TicTacToe.Evolution.Tests.PopulationFeature.FeatureSetup(null);
+                global::Arcesoft.TicTacToe.Evolution.Tests.Domain.Scenarios.PopulationFeature.FeatureSetup(null);
             }
         }
         
@@ -94,7 +94,7 @@ namespace Arcesoft.TicTacToe.Evolution.Tests
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
         [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Population should promote fittest in one cycle")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Population")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("Behavioral")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("Domain")]
         public virtual void PopulationShouldPromoteFittestInOneCycle()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Population should promote fittest in one cycle", ((string[])(null)));
@@ -168,7 +168,7 @@ this.FeatureBackground();
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
         [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Population should promote fittest for many cycles")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Population")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("Behavioral")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("Domain")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.IgnoreAttribute()]
         public virtual void PopulationShouldPromoteFittestForManyCycles()
         {

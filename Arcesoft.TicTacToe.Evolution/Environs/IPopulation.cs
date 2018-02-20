@@ -1,4 +1,5 @@
-﻿using Arcesoft.TicTacToe.Evolution.Organisms;
+﻿using Arcesoft.TicTacToe.Evolution.Common;
+using Arcesoft.TicTacToe.Evolution.Organisms;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,10 +8,8 @@ using System.Threading.Tasks;
 
 namespace Arcesoft.TicTacToe.Evolution.Environs
 {
-    public interface IPopulation
+    public interface IPopulation: IIdentifiable
     {
-        Guid Id { get; }
-        string Name { get; }
         long Generation { get; }
         EvolutionSettings Settings { get; set; }
         IEnumerable<Individual> Individuals { get; }

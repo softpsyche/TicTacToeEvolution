@@ -1,4 +1,4 @@
-﻿@Behavioral
+﻿@Domain
 Feature: Reproduction
 	Validate all reproduction type functions
 

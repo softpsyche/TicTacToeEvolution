@@ -11,6 +11,9 @@ namespace Arcesoft.TicTacToe.Evolution.Environs
 {
     internal class Population : IPopulation
     {
+        public Guid Id { get; internal set; } = Guid.NewGuid();
+        public string Name { get; set; }
+
         private IInternalEvolutionFactory EvolutionFactory { get; set; }
         private IMutator Mutator { get; set; }
         private IBreeder _breeder;
@@ -44,11 +47,8 @@ namespace Arcesoft.TicTacToe.Evolution.Environs
         public List<Individual> Individuals { get; internal set; }
         IEnumerable<Individual> IPopulation.Individuals => Individuals;
 
-        public Guid Id { get; internal set; }
-        public string Name { get; internal set; }
+
         public long Generation { get; internal set; }
-
-
 
         public Population(
             IInternalEvolutionFactory evolutionFactory,

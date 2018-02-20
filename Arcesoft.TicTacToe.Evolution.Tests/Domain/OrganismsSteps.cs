@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using TechTalk.SpecFlow;
 
-namespace Arcesoft.TicTacToe.Evolution.Tests
+namespace Arcesoft.TicTacToe.Evolution.Tests.Domain
 {
     [Binding]
     internal class OrganismsSteps : Steps

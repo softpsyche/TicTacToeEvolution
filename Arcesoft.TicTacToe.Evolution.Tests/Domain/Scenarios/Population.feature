@@ -1,4 +1,4 @@
-﻿@Behavioral
+﻿@Domain
 Feature: Population
 Verify that the population is working as expected
 

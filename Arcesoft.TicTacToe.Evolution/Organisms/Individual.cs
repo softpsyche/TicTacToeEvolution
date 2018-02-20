@@ -1,4 +1,5 @@
 ﻿using Arcesoft.TicTacToe.Entities;
+using Arcesoft.TicTacToe.Evolution.Common;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,11 +11,12 @@ namespace Arcesoft.TicTacToe.Evolution.Organisms
     /// <summary>
     /// TODO: parent ids??
     /// </summary>
-	public class Individual
-	{
+	public class Individual : IIdentifiable
+    {
+        public Guid Id { get; internal set; } = Guid.NewGuid();
         public string Name { get; set; }
-        public Guid Id { get; internal set; }
-        private List<Gene> _geneList = null;
+        
+        private List<Gene> _geneList = new List<Gene>();
         private List<Guid> _parentIdList = null;
 		public IEnumerable<Gene> Genes
         {
@@ -47,12 +49,11 @@ namespace Arcesoft.TicTacToe.Evolution.Organisms
             }
         }
 
-		public Individual()
-		{
-            Id = Guid.NewGuid();
-            _geneList = new List<Gene>();
-		}
-        private Individual(Individual source) : this()
+        public Individual()
+        {
+
+        }
+        private Individual(Individual source)
         {
             //we can copy the references here because genes are IMMUTABLE. Flyweight anyone?
             Genes = source.Genes;

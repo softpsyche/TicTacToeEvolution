@@ -10,7 +10,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace Arcesoft.TicTacToe.Evolution.Tests
+namespace Arcesoft.TicTacToe.Evolution.Tests.Domain.Scenarios
 {
     using TechTalk.SpecFlow;
     
@@ -45,7 +45,7 @@ namespace Arcesoft.TicTacToe.Evolution.Tests
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner(null, 0);
             TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Selection", "\tVerify selection functionality", ProgrammingLanguage.CSharp, new string[] {
-                        "Behavioral"});
+                        "Domain"});
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -62,7 +62,7 @@ namespace Arcesoft.TicTacToe.Evolution.Tests
             if (((testRunner.FeatureContext != null) 
                         && (testRunner.FeatureContext.FeatureInfo.Title != "Selection")))
             {
-                global::Arcesoft.TicTacToe.Evolution.Tests.SelectionFeature.FeatureSetup(null);
+                global::Arcesoft.TicTacToe.Evolution.Tests.Domain.Scenarios.SelectionFeature.FeatureSetup(null);
             }
         }
         
@@ -98,7 +98,7 @@ namespace Arcesoft.TicTacToe.Evolution.Tests
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
         [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Match builder should build many matches correctly")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Selection")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("Behavioral")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("Domain")]
         public virtual void MatchBuilderShouldBuildManyMatchesCorrectly()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Match builder should build many matches correctly", ((string[])(null)));
@@ -140,7 +140,7 @@ this.FeatureBackground();
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
         [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Match builder should build matches for a: tiny set")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Selection")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("Behavioral")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("Domain")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "tiny set")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:Name", "tiny set")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:Individuals", "2")]
@@ -157,7 +157,7 @@ this.MatchBuilderShouldBuildMatchesForA("tiny set", "2", "1", "1", "2", ((string
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
         [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Match builder should build matches for a: small set")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Selection")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("Behavioral")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("Domain")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "small set")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:Name", "small set")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:Individuals", "4")]
@@ -174,7 +174,7 @@ this.MatchBuilderShouldBuildMatchesForA("small set", "4", "3", "3", "12", ((stri
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
         [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Match builder should build matches for a: medium set")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Selection")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("Behavioral")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("Domain")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "medium set")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:Name", "medium set")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:Individuals", "20")]
@@ -191,7 +191,7 @@ this.MatchBuilderShouldBuildMatchesForA("medium set", "20", "6", "6", "120", ((s
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
         [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Match builder should build matches for a: large set")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Selection")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("Behavioral")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("Domain")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "large set")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:Name", "large set")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:Individuals", "100")]
@@ -208,7 +208,7 @@ this.MatchBuilderShouldBuildMatchesForA("large set", "100", "5", "5", "500", ((s
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
         [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Match builder should build matches for a: huge set")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Selection")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("Behavioral")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("Domain")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "huge set")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:Name", "huge set")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:Individuals", "1000")]
@@ -225,7 +225,7 @@ this.MatchBuilderShouldBuildMatchesForA("huge set", "1000", "6", "6", "6000", ((
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
         [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Match builder should build matches for a: set with too many tournaments")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Selection")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("Behavioral")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("Domain")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "set with too many tournaments")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:Name", "set with too many tournaments")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:Individuals", "10")]
@@ -242,7 +242,7 @@ this.MatchBuilderShouldBuildMatchesForA("set with too many tournaments", "10", "
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
         [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Match builder should build matches for a: invalid set")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Selection")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("Behavioral")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("Domain")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "invalid set")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:Name", "invalid set")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:Individuals", "3")]
@@ -259,7 +259,7 @@ this.MatchBuilderShouldBuildMatchesForA("invalid set", "3", "1", "1", "3", ((str
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
         [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Match evaluator should evaluate when there are no moves")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Selection")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("Behavioral")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("Domain")]
         public virtual void MatchEvaluatorShouldEvaluateWhenThereAreNoMoves()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Match evaluator should evaluate when there are no moves", ((string[])(null)));
@@ -311,7 +311,7 @@ this.FeatureBackground();
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
         [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Match evaluator should evaluate WonDueToNoMoves/LostDueToNoMoves for player X/O")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Selection")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("Behavioral")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("Domain")]
         public virtual void MatchEvaluatorShouldEvaluateWonDueToNoMovesLostDueToNoMovesForPlayerXO()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Match evaluator should evaluate WonDueToNoMoves/LostDueToNoMoves for player X/O", ((string[])(null)));
@@ -441,7 +441,7 @@ this.FeatureBackground();
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
         [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Match evaluator should evaluate WonDueToNoMoves/LostDueToNoMoves for player O/X")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Selection")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("Behavioral")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("Domain")]
         public virtual void MatchEvaluatorShouldEvaluateWonDueToNoMovesLostDueToNoMovesForPlayerOX()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Match evaluator should evaluate WonDueToNoMoves/LostDueToNoMoves for player O/X", ((string[])(null)));
@@ -456,7 +456,7 @@ this.FeatureBackground();
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
         [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Match evaluator should evaluate win/loss game for player X/O")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Selection")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("Behavioral")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("Domain")]
         public virtual void MatchEvaluatorShouldEvaluateWinLossGameForPlayerXO()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Match evaluator should evaluate win/loss game for player X/O", ((string[])(null)));
@@ -471,7 +471,7 @@ this.FeatureBackground();
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
         [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Match evaluator should evaluate win/loss game for player O/X")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Selection")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("Behavioral")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("Domain")]
         public virtual void MatchEvaluatorShouldEvaluateWinLossGameForPlayerOX()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Match evaluator should evaluate win/loss game for player O/X", ((string[])(null)));
@@ -486,7 +486,7 @@ this.FeatureBackground();
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
         [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Match evaluator should evaluate tie game")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Selection")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("Behavioral")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("Domain")]
         public virtual void MatchEvaluatorShouldEvaluateTieGame()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Match evaluator should evaluate tie game", ((string[])(null)));
@@ -501,7 +501,7 @@ this.FeatureBackground();
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
         [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("AllOrNothing Fitness evaluator should evaluate fitness")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Selection")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("Behavioral")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("Domain")]
         public virtual void AllOrNothingFitnessEvaluatorShouldEvaluateFitness()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("AllOrNothing Fitness evaluator should evaluate fitness", ((string[])(null)));

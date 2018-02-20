@@ -7,7 +7,7 @@ using TechTalk.SpecFlow;
 using Moq;
 using TechTalk.SpecFlow.Assist;
 
-namespace Arcesoft.TicTacToe.Evolution.Tests
+namespace Arcesoft.TicTacToe.Evolution.Tests.Domain
 {
     [Binding]
     internal class PersistenceSteps : Steps

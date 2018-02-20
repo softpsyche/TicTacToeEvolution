@@ -13,7 +13,7 @@ using SpecFlow.Assist.Dynamic;
 using Arcesoft.TicTacToe.Evolution.Selection.Strategies;
 using Moq;
 
-namespace Arcesoft.TicTacToe.Evolution.Tests
+namespace Arcesoft.TicTacToe.Evolution.Tests.Domain
 {
     [Binding]
     internal class SelectionSteps:Steps

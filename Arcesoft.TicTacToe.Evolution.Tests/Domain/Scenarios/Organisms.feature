@@ -1,4 +1,4 @@
-﻿@Behavioral
+﻿@Domain
 Feature: Organisms
 	Verify that tic tac toe individuals are working correctly
 

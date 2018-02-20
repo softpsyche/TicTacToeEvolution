@@ -51,9 +51,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Common\IIdentifiable.cs" />
     <Compile Include="DependencyInjection\Binder.cs" />
     <Compile Include="DependencyInjection\FactoryContainer.cs" />
     <Compile Include="Environs\IPopulation.cs" />
+    <Compile Include="Environs\IRegion.cs" />
+    <Compile Include="Environs\Region.cs" />
     <Compile Include="EvolutionSettings.cs" />
     <Compile Include="IEvolutionFactory.cs" />
     <Compile Include="IInternalEvolutionFactory.cs" />

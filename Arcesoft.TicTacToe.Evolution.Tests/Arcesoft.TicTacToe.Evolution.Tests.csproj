@@ -87,42 +87,42 @@
   <ItemGroup>
     <Compile Include="CommonSteps.cs" />
     <Compile Include="Extensions.cs" />
-    <Compile Include="Mutations.feature.cs">
+    <Compile Include="Domain\Scenarios\Mutations.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Mutations.feature</DependentUpon>
     </Compile>
-    <Compile Include="MutationsSteps.cs" />
-    <Compile Include="Organisms.feature.cs">
+    <Compile Include="Domain\MutationsSteps.cs" />
+    <Compile Include="Domain\Scenarios\Organisms.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Organisms.feature</DependentUpon>
     </Compile>
-    <Compile Include="OrganismsSteps.cs" />
-    <Compile Include="Persistance.feature.cs">
+    <Compile Include="Domain\OrganismsSteps.cs" />
+    <Compile Include="Domain\Scenarios\Persistance.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Persistance.feature</DependentUpon>
     </Compile>
-    <Compile Include="PersistenceSteps.cs" />
-    <Compile Include="Population.feature.cs">
+    <Compile Include="Domain\PersistenceSteps.cs" />
+    <Compile Include="Domain\Scenarios\Population.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Population.feature</DependentUpon>
     </Compile>
-    <Compile Include="PopulationSteps.cs" />
-    <Compile Include="Reproduction.feature.cs">
+    <Compile Include="Domain\PopulationSteps.cs" />
+    <Compile Include="Domain\Scenarios\Reproduction.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Reproduction.feature</DependentUpon>
     </Compile>
-    <Compile Include="ReproductionSteps.cs" />
-    <Compile Include="Selection.feature.cs">
+    <Compile Include="Domain\ReproductionSteps.cs" />
+    <Compile Include="Domain\Scenarios\Selection.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Selection.feature</DependentUpon>
     </Compile>
-    <Compile Include="SelectionSteps.cs" />
+    <Compile Include="Domain\SelectionSteps.cs" />
     <Compile Include="Steps.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TableExtensions.cs" />
@@ -130,28 +130,28 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-    <None Include="Mutations.feature">
+    <None Include="Domain\Scenarios\Mutations.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>Mutations.feature.cs</LastGenOutput>
     </None>
-    <None Include="Organisms.feature">
+    <None Include="Domain\Scenarios\Organisms.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>Organisms.feature.cs</LastGenOutput>
     </None>
     <None Include="packages.config" />
-    <None Include="Persistance.feature">
+    <None Include="Domain\Scenarios\Persistance.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>Persistance.feature.cs</LastGenOutput>
     </None>
-    <None Include="Population.feature">
+    <None Include="Domain\Scenarios\Population.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>Population.feature.cs</LastGenOutput>
     </None>
-    <None Include="Reproduction.feature">
+    <None Include="Domain\Scenarios\Reproduction.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>Reproduction.feature.cs</LastGenOutput>
     </None>
-    <None Include="Selection.feature">
+    <None Include="Domain\Scenarios\Selection.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>Selection.feature.cs</LastGenOutput>
     </None>
@@ -169,6 +169,9 @@
       <Project>{6535ee53-abfe-4c7c-9818-d2cbc58f23f0}</Project>
       <Name>Arcesoft.TicTacToe</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Integration\" />
   </ItemGroup>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

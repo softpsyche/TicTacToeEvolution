@@ -10,7 +10,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace Arcesoft.TicTacToe.Evolution.Tests
+namespace Arcesoft.TicTacToe.Evolution.Tests.Domain.Scenarios
 {
     using TechTalk.SpecFlow;
     
@@ -45,7 +45,7 @@ namespace Arcesoft.TicTacToe.Evolution.Tests
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner(null, 0);
             TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Persistance", "\tVerify persistance functionality", ProgrammingLanguage.CSharp, new string[] {
-                        "Behavioral"});
+                        "Domain"});
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -62,7 +62,7 @@ namespace Arcesoft.TicTacToe.Evolution.Tests
             if (((testRunner.FeatureContext != null) 
                         && (testRunner.FeatureContext.FeatureInfo.Title != "Persistance")))
             {
-                global::Arcesoft.TicTacToe.Evolution.Tests.PersistanceFeature.FeatureSetup(null);
+                global::Arcesoft.TicTacToe.Evolution.Tests.Domain.Scenarios.PersistanceFeature.FeatureSetup(null);
             }
         }
         
@@ -98,7 +98,7 @@ namespace Arcesoft.TicTacToe.Evolution.Tests
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
         [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Match builder should build many matches correctly")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Persistance")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("Behavioral")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("Domain")]
         public virtual void MatchBuilderShouldBuildManyMatchesCorrectly()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Match builder should build many matches correctly", ((string[])(null)));

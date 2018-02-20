@@ -10,7 +10,7 @@ using Arcesoft.TicTacToe.Evolution.Mutations;
 using TechTalk.SpecFlow.Assist;
 using Arcesoft.TicTacToe.Evolution.Organisms;
 
-namespace Arcesoft.TicTacToe.Evolution.Tests
+namespace Arcesoft.TicTacToe.Evolution.Tests.Domain
 {
     [Binding]
     internal class MutationsSteps : Steps

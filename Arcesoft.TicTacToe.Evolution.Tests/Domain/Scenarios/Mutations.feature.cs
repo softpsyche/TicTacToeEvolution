@@ -10,7 +10,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace Arcesoft.TicTacToe.Evolution.Tests
+namespace Arcesoft.TicTacToe.Evolution.Tests.Domain.Scenarios
 {
     using TechTalk.SpecFlow;
     
@@ -45,7 +45,7 @@ namespace Arcesoft.TicTacToe.Evolution.Tests
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner(null, 0);
             TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Mutations", "\tValidate all mutation level features", ProgrammingLanguage.CSharp, new string[] {
-                        "Behavioral"});
+                        "Domain"});
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -62,7 +62,7 @@ namespace Arcesoft.TicTacToe.Evolution.Tests
             if (((testRunner.FeatureContext != null) 
                         && (testRunner.FeatureContext.FeatureInfo.Title != "Mutations")))
             {
-                global::Arcesoft.TicTacToe.Evolution.Tests.MutationsFeature.FeatureSetup(null);
+                global::Arcesoft.TicTacToe.Evolution.Tests.Domain.Scenarios.MutationsFeature.FeatureSetup(null);
             }
         }
         
@@ -98,7 +98,7 @@ namespace Arcesoft.TicTacToe.Evolution.Tests
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
         [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Should mutate all genes when mutation rate is 100 percent")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Mutations")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("Behavioral")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("Domain")]
         public virtual void ShouldMutateAllGenesWhenMutationRateIs100Percent()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Should mutate all genes when mutation rate is 100 percent", ((string[])(null)));
@@ -162,7 +162,7 @@ this.FeatureBackground();
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
         [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Should not mutate any genes when mutation rate is 0 percent")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Mutations")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("Behavioral")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("Domain")]
         public virtual void ShouldNotMutateAnyGenesWhenMutationRateIs0Percent()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Should not mutate any genes when mutation rate is 0 percent", ((string[])(null)));

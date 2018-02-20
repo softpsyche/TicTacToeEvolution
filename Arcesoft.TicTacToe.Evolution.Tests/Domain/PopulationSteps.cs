@@ -10,7 +10,7 @@ using SpecFlow.Assist.Dynamic;
 using Arcesoft.TicTacToe.Evolution.Environs;
 using FluentAssertions;
 
-namespace Arcesoft.TicTacToe.Evolution.Tests
+namespace Arcesoft.TicTacToe.Evolution.Tests.Domain
 {
     [Binding]
     internal class PopulationSteps : Steps

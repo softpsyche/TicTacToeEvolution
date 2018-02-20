@@ -10,7 +10,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace Arcesoft.TicTacToe.Evolution.Tests
+namespace Arcesoft.TicTacToe.Evolution.Tests.Domain.Scenarios
 {
     using TechTalk.SpecFlow;
     
@@ -45,7 +45,7 @@ namespace Arcesoft.TicTacToe.Evolution.Tests
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner(null, 0);
             TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Organisms", "\tVerify that tic tac toe individuals are working correctly", ProgrammingLanguage.CSharp, new string[] {
-                        "Behavioral"});
+                        "Domain"});
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -62,7 +62,7 @@ namespace Arcesoft.TicTacToe.Evolution.Tests
             if (((testRunner.FeatureContext != null) 
                         && (testRunner.FeatureContext.FeatureInfo.Title != "Organisms")))
             {
-                global::Arcesoft.TicTacToe.Evolution.Tests.OrganismsFeature.FeatureSetup(null);
+                global::Arcesoft.TicTacToe.Evolution.Tests.Domain.Scenarios.OrganismsFeature.FeatureSetup(null);
             }
         }
         
@@ -98,7 +98,7 @@ namespace Arcesoft.TicTacToe.Evolution.Tests
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
         [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Individual should get genes correctly")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Organisms")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("Behavioral")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("Domain")]
         public virtual void IndividualShouldGetGenesCorrectly()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Individual should get genes correctly", ((string[])(null)));
@@ -145,7 +145,7 @@ this.FeatureBackground();
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
         [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Individual should copy correctly")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Organisms")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("Behavioral")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("Domain")]
         public virtual void IndividualShouldCopyCorrectly()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Individual should copy correctly", ((string[])(null)));
@@ -202,7 +202,7 @@ this.FeatureBackground();
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
         [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Individual should find move")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Organisms")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("Behavioral")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("Domain")]
         public virtual void IndividualShouldFindMove()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Individual should find move", ((string[])(null)));
@@ -322,7 +322,7 @@ this.FeatureBackground();
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
         [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Individual should not find move")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Organisms")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("Behavioral")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("Domain")]
         public virtual void IndividualShouldNotFindMove()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Individual should not find move", ((string[])(null)));
@@ -402,7 +402,7 @@ this.FeatureBackground();
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
         [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Individual should find responses correctly")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Organisms")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("Behavioral")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("Domain")]
         public virtual void IndividualShouldFindResponsesCorrectly()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Individual should find responses correctly", ((string[])(null)));

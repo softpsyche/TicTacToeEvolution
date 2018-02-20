@@ -1,4 +1,4 @@
-﻿@Behavioral
+﻿@Domain
 Feature: Selection
 	Verify selection functionality
 

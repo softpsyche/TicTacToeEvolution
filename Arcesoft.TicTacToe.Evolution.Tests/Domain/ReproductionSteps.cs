@@ -13,7 +13,7 @@ using TechTalk.SpecFlow.Assist;
 using Arcesoft.TicTacToe.Evolution.Organisms;
 using Arcesoft.TicTacToe.Evolution.Selection;
 
-namespace Arcesoft.TicTacToe.Evolution.Tests
+namespace Arcesoft.TicTacToe.Evolution.Tests.Domain
 {
     [Binding]
     class ReproductionSteps : Steps

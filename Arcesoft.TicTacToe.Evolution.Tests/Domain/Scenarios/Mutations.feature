@@ -1,4 +1,4 @@
-﻿@Behavioral
+﻿@Domain
 Feature: Mutations
 	Validate all mutation level features
 

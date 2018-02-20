@@ -1,4 +1,4 @@
-﻿@Behavioral
+﻿@Domain
 Feature: Persistance
 	Verify persistance functionality
 
