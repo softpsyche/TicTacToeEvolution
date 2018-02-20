@@ -1,4 +1,5 @@
 ﻿using Arcesoft.TicTacToe.Evolution.Environs;
+using Arcesoft.TicTacToe.Evolution.Models;
 using Arcesoft.TicTacToe.Evolution.Organisms;
 using Arcesoft.TicTacToe.Evolution.Persistance.Entities;
 using System;
@@ -7,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Arcesoft.TicTacToe.Evolution.Persistance
+namespace Arcesoft.TicTacToe.Evolution.Persistance.Mapping
 {
     internal static class MapperExtensions
     {
@@ -107,5 +108,23 @@ namespace Arcesoft.TicTacToe.Evolution.Persistance
                 geneString.Substring(1, 9).ToAlleles());
         }
         #endregion
-    }
+
+        #region Region
+        public static RegionEntity ToRegionEntity(this IRegion region)
+        {
+            return null;
+        }
+
+        public static Region ToRegion(this RegionEntity regionEntity)
+        {
+            return null;
+        }
+
+        public static List<RegionSearchResult> ToRegionSearchResults(this IEnumerable<RegionEntity> regionEntity)
+        {
+            return null;
+        }
+
+            #endregion
+        }
 }

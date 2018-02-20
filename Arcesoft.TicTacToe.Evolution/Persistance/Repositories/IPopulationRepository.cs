@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Arcesoft.TicTacToe.Evolution.Persistance
+namespace Arcesoft.TicTacToe.Evolution.Persistance.Repositories
 {
     internal interface IPopulationRepository
     {

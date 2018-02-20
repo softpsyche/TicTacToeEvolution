@@ -1,5 +1,9 @@
 ﻿using Arcesoft.TicTacToe.Evolution.Environs;
+using Arcesoft.TicTacToe.Evolution.Models;
 using Arcesoft.TicTacToe.Evolution.Organisms;
+using Arcesoft.TicTacToe.Evolution.Persistance.Entities;
+using Arcesoft.TicTacToe.Evolution.Persistance.Mapping;
+using Arcesoft.TicTacToe.Evolution.Persistance.Repositories;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -56,27 +60,39 @@ namespace Arcesoft.TicTacToe.Evolution.Persistance
 
         public void SaveRegion(IRegion region)
         {
-            throw new NotImplementedException();
+            RegionRepository.Insert(region.ToRegionEntity());
         }
 
         public void DeleteAllRegions()
         {
-            throw new NotImplementedException();
+            RegionRepository.DeleteAll();
         }
 
-        public bool DeleteRegion(Guid Id)
+        public bool DeleteRegion(Guid id)
         {
-            throw new NotImplementedException();
+            return RegionRepository.Delete(id);
         }
 
         public IRegion FindRegion(Guid id)
         {
-            throw new NotImplementedException();
+            var region = RegionRepository.Find(id).ToRegion();
+
+
+            return null;
         }
 
-        public List<IRegion> FindRegions(string name)
+        public List<RegionSearchResult> SearchRegionsByName(string name)
         {
-            throw new NotImplementedException();
+            return RegionRepository
+                .FindByName(name)
+                .ToRegionSearchResults();
+        }
+
+        public List<RegionSearchResult> SearchRegionsMostRecent(int maxDaysOld = 30, int limit = 100)
+        {
+            return RegionRepository
+                .FindMostRecent(maxDaysOld, limit)
+                .ToRegionSearchResults();
         }
     }
 }

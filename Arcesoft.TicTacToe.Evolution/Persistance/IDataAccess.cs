@@ -1,4 +1,6 @@
 ﻿using Arcesoft.TicTacToe.Evolution.Environs;
+using Arcesoft.TicTacToe.Evolution.Models;
+using Arcesoft.TicTacToe.Evolution.Persistance.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -27,6 +29,8 @@ namespace Arcesoft.TicTacToe.Evolution.Persistance
 
         IRegion FindRegion(Guid id);
 
-        List<IRegion> FindRegions(string name);
+        List<RegionSearchResult> SearchRegionsByName(string name);
+
+        List<RegionSearchResult> SearchRegionsMostRecent(int maxDaysOld = 30, int limit = 100);
     }
 }

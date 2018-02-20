@@ -8,6 +8,7 @@ using Arcesoft.TicTacToe.Evolution.Mutations;
 using Arcesoft.TicTacToe.Evolution.Selection;
 using Arcesoft.TicTacToe.Evolution.Organisms;
 using Arcesoft.TicTacToe.Evolution.Persistance;
+using Arcesoft.TicTacToe.Evolution.Persistance.Repositories;
 
 namespace Arcesoft.TicTacToe.Evolution.DependencyInjection
 {
