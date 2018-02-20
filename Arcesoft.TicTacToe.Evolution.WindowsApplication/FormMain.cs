@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Arcesoft.TicTacToe.Evolution.Environs;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,12 +13,13 @@ namespace Arcesoft.TicTacToe.Evolution.WindowsApplication
 {
 	public partial class FormMain : Form
 	{
-		//EvolutionFactory EvolutionFactory;
-		//Population Population { get; set; }
-		//JsonSerializer serializer;
+		private IEvolutionFactory EvolutionFactory { get; set; }
+		IPopulation Population { get; set; }
 
-		public FormMain()
+		public FormMain(IEvolutionFactory evolutionFactory)
 		{
+            EvolutionFactory = evolutionFactory;
+
 			InitializeComponent();
 
 			//this.EvolutionFactory = new EvolutionFactory();
@@ -52,74 +54,82 @@ namespace Arcesoft.TicTacToe.Evolution.WindowsApplication
 			//this.RunForever();
 		}
 
-		//private Game HumanGame = new Game();
-		//private void gameBoardMain_MoveRequested(object sender, MoveRequestEventArgs e)
-		//{
-		//	if (HumanGame.IsOver)
-		//	{
-		//		MessageBox.Show("Game is over");
-		//		return;
-		//	}
+        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("Are you sure?", "Close application", MessageBoxButtons.YesNoCancel) == DialogResult.Yes)
+            {
+                Close();
+            }
+        }
 
-		//	if (HumanGame.IsMoveValid(e.Move))
-		//	{
-		//		HumanGame.MakeMove(e.Move);
+        //private Game HumanGame = new Game();
+        //private void gameBoardMain_MoveRequested(object sender, MoveRequestEventArgs e)
+        //{
+        //	if (HumanGame.IsOver)
+        //	{
+        //		MessageBox.Show("Game is over");
+        //		return;
+        //	}
 
-		//		gameBoardMain.SetBoardState(this.HumanGame.GameBoardString);
-		//	}
-		//	else
-		//	{
-		//		MessageBox.Show("Invalid move to " + e.Move.ToInteger().ToString());
-		//	}
-		//}
+        //	if (HumanGame.IsMoveValid(e.Move))
+        //	{
+        //		HumanGame.MakeMove(e.Move);
 
-		//private void backgroundWorkerMain_DoWork(object sender, DoWorkEventArgs e)
-		//{
-		//	while (true)
-		//	{
-		//		if (backgroundWorkerMain.CancellationPending == true)
-		//		{
-		//			break;
-		//		}
+        //		gameBoardMain.SetBoardState(this.HumanGame.GameBoardString);
+        //	}
+        //	else
+        //	{
+        //		MessageBox.Show("Invalid move to " + e.Move.ToInteger().ToString());
+        //	}
+        //}
 
-		//		for (int i = 0; i < 1000; i++)
-		//		{
-		//			if (backgroundWorkerMain.CancellationPending == true)
-		//			{
-		//				break;
-		//			}
+        //private void backgroundWorkerMain_DoWork(object sender, DoWorkEventArgs e)
+        //{
+        //	while (true)
+        //	{
+        //		if (backgroundWorkerMain.CancellationPending == true)
+        //		{
+        //			break;
+        //		}
 
-		//			this.Population.Evolve();
+        //		for (int i = 0; i < 1000; i++)
+        //		{
+        //			if (backgroundWorkerMain.CancellationPending == true)
+        //			{
+        //				break;
+        //			}
 
-		//			if (i % 50 == 0)
-		//				backgroundWorkerMain.ReportProgress(0);
-		//		}
+        //			this.Population.Evolve();
 
-		//		serializer.SerializeToFile(this.Population, @"C:\" + this.Population.Name);
-		//	}
-		//}
+        //			if (i % 50 == 0)
+        //				backgroundWorkerMain.ReportProgress(0);
+        //		}
 
-		//private void FormMain_Load(object sender, EventArgs e)
-		//{
-		//	JsonSerializer serializer = new JsonSerializer();
-		//	var population = serializer.DeserializeFromFile(@"c:\Population.04_04_2016.AllNight.pop");
+        //		serializer.SerializeToFile(this.Population, @"C:\" + this.Population.Name);
+        //	}
+        //}
+
+        //private void FormMain_Load(object sender, EventArgs e)
+        //{
+        //	JsonSerializer serializer = new JsonSerializer();
+        //	var population = serializer.DeserializeFromFile(@"c:\Population.04_04_2016.AllNight.pop");
 
 
-		//	//this.Population = this.Context.CreatePopulation(population);
-		//}
+        //	//this.Population = this.Context.CreatePopulation(population);
+        //}
 
-		//private void buttonSave_Click(object sender, EventArgs e)
-		//{
+        //private void buttonSave_Click(object sender, EventArgs e)
+        //{
 
-		//}
+        //}
 
-		//private void backgroundWorkerMain_ProgressChanged(object sender, ProgressChangedEventArgs e)
-		//{
-		//	if (this.progressBarMain.Value == this.progressBarMain.Maximum)
-		//		this.progressBarMain.Value = 0;
+        //private void backgroundWorkerMain_ProgressChanged(object sender, ProgressChangedEventArgs e)
+        //{
+        //	if (this.progressBarMain.Value == this.progressBarMain.Maximum)
+        //		this.progressBarMain.Value = 0;
 
-		//	this.progressBarMain.PerformStep();
-		//}
+        //	this.progressBarMain.PerformStep();
+        //}
 
-	}
+    }
 }
