@@ -1,4 +1,5 @@
 ﻿using Arcesoft.TicTacToe.Entities;
+using Arcesoft.TicTacToe.Evolution.Environs;
 using Arcesoft.TicTacToe.Evolution.Organisms;
 using FluentAssertions;
 using SimpleInjector;
@@ -23,6 +24,11 @@ namespace Arcesoft.TicTacToe.Evolution.Tests
         public static IEnumerable<Gene> ToGenes(this Table table)
         {
             return table.CreateSet(a => a.ToGene()).ToList();
+        }
+
+        public static IEnumerable<IPopulation> ToPopulations(this Table table,IInternalEvolutionFactory factory, EvolutionSettings evolutionSettings)
+        {
+            return table.CreateSet(a => factory.CreatePopulation(evolutionSettings)).ToList();
         }
 
         public static Gene ToGene(this TableRow tableRow)

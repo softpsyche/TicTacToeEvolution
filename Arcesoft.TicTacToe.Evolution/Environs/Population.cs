@@ -63,7 +63,7 @@ namespace Arcesoft.TicTacToe.Evolution.Environs
         public void Evolve(int cycles = 1)
         {
             //initialize if we have not already
-            Initialize(Settings);
+            InitializeIndividuals(Settings);
 
             for (int i = 0; i < cycles; i++)
             {
@@ -71,15 +71,24 @@ namespace Arcesoft.TicTacToe.Evolution.Environs
             }
         }
 
-        public void AddIndividuals(IEnumerable<Individual> individuals)//todo? allow replace???
+        public void AddIndividuals(IEnumerable<Individual> individuals, bool replaceExisting = false)
         {
             if (individuals == null) return;
 
-            //initialize if we have not already
-            Initialize(Settings);
+            if (replaceExisting)
+            {
+                //TODO: we may need to rework some history here...maybe??
 
-            //add the migrants
-            Individuals.AddRange(individuals);
+                Individuals = individuals.ToList();
+            }
+            else
+            {
+                //initialize if we have not already
+                InitializeIndividuals(Settings);
+
+                //add the migrants
+                Individuals.AddRange(individuals);
+            }
         }
 
         private void Evolve(EvolutionSettings settings, List<Individual> evolveList)
@@ -100,7 +109,7 @@ namespace Arcesoft.TicTacToe.Evolution.Environs
             Generation++;
         }
 
-        private void Initialize(EvolutionSettings settings)
+        private void InitializeIndividuals(EvolutionSettings settings)
         {
             if (Individuals != null)
             {

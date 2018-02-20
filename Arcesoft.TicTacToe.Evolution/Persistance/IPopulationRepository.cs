@@ -10,6 +10,10 @@ namespace Arcesoft.TicTacToe.Evolution.Persistance
     {
         void Insert(PopulationEntity populationEntity);
 
+        bool Delete(Guid id);
+
+        PopulationEntity Find(Guid id);
+
         IEnumerable<PopulationEntity> FindByName(string name);
     }
 }

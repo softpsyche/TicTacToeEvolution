@@ -21,14 +21,31 @@ namespace Arcesoft.TicTacToe.Evolution.Tests.Domain
             Population = EvolutionFactory.CreatePopulation(EvolutionSettings);
         }
 
+        [Given(@"I have the following population")]
+        public void GivenIHaveTheFollowingPopulation(Table table)
+        {
+            Population = EvolutionFactory.CreatePopulation(EvolutionSettings);
+
+            table.FillInstance(Population);
+        }
+
+        [Given(@"I delete the following populations")]
+        public void GivenIDeleteTheFollowingPopulations(Table table)
+        {
+            var set = table.CreateDynamicSet();
+
+            set.ForEach(a => DataAccess.DeletePopulation(new Guid(a.Id)));
+        }
+
+
         [When(@"I evolve the population '(.*)' times")]
         public void WhenIEvolveThePopulationTimes(int cycles)
         {
             Invoke(() => Population.Evolve(cycles));
         }
 
-        [Given(@"I have an individual called '(.*)' with id '(.*)' and with the following genes")]
-        public void GivenIHaveAnIndividualCalledWithIdAndWithTheFollowingGenes(string name, Guid id, Table table)
+        [Given(@"I add an individual called '(.*)' with id '(.*)' and with the following genes to my population")]
+        public void GivenIAddAnIndividualCalledWithIdAndWithTheFollowingGenesToMyPopulation(string name, Guid id, Table table)
         {
             Invoke(() =>
             {
@@ -37,13 +54,9 @@ namespace Arcesoft.TicTacToe.Evolution.Tests.Domain
                 Individual.Id = id;
 
                 Individual.Genes = table.ToGenes();
-            });
-        }
 
-        [Given(@"I add my individual to the population")]
-        public void GivenIAddMyIndividualToThePopulation()
-        {
-            Population.AddIndividuals(new[] { Individual });
+                Population.AddIndividuals(new[] { Individual });
+            });
         }
 
         [Then(@"I expect the population to contain '(.*)' individuals with parent ids '(.*)' and the following genes")]

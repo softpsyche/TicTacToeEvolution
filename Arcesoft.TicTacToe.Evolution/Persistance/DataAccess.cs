@@ -26,12 +26,22 @@ namespace Arcesoft.TicTacToe.Evolution.Persistance
             PopulationRepository.Insert(population.ToPopulationEntity());
         }
 
+        public bool DeletePopulation(Guid id)
+        {
+            return PopulationRepository.Delete(id);
+        }
+
         public List<IPopulation> FindPopulations(string name)
         {
             return PopulationRepository
                 .FindByName(name)
                 .Select(a => a.ToPopulation(EvolutionFactory, GeneCache))
                 .ToList();
+        }
+
+        public IPopulation FindPopulation(Guid id)
+        {
+            return PopulationRepository.Find(id).ToPopulation(EvolutionFactory, GeneCache);
         }
     }
 }

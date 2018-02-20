@@ -51,7 +51,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Common\IIdentifiable.cs" />
     <Compile Include="DependencyInjection\Binder.cs" />
     <Compile Include="DependencyInjection\FactoryContainer.cs" />
     <Compile Include="Environs\IPopulation.cs" />
@@ -114,7 +113,9 @@
       <Name>Arcesoft.TicTacToe</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Common\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

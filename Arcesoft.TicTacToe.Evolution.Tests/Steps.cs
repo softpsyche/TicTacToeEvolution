@@ -9,6 +9,7 @@ using Arcesoft.TicTacToe.Evolution.Selection;
 using Arcesoft.TicTacToe.Evolution.Mutations;
 using Moq;
 using Arcesoft.TicTacToe.Evolution.Environs;
+using Arcesoft.TicTacToe.Evolution.Persistance;
 
 namespace Arcesoft.TicTacToe.Evolution.Tests
 {
@@ -285,6 +286,42 @@ namespace Arcesoft.TicTacToe.Evolution.Tests
             get
             {
                 return GetScenarioContextItemOrDefault<IPopulation>();
+            }
+            set
+            {
+                CurrentContext.Set(value);
+            }
+        }
+
+        protected IEnumerable<IPopulation> Populations
+        {
+            get
+            {
+                return GetScenarioContextItemOrDefault<IEnumerable<IPopulation>>();
+            }
+            set
+            {
+                CurrentContext.Set(value);
+            }
+        }
+
+        protected List<IPopulation> PopulationSearchResults
+        {
+            get
+            {
+                return GetScenarioContextItemOrDefault<List<IPopulation>>(nameof(PopulationSearchResults));
+            }
+            set
+            {
+                CurrentContext.Set(value, nameof(PopulationSearchResults));
+            }
+        }
+
+        protected IDataAccess DataAccess
+        {
+            get
+            {
+                return GetScenarioContextItemOrDefault<IDataAccess>();
             }
             set
             {

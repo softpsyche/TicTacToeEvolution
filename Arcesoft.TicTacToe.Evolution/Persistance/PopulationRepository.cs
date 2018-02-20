@@ -30,6 +30,26 @@ namespace Arcesoft.TicTacToe.Evolution.Persistance
             }
         }
 
+        public PopulationEntity Find(Guid id)
+        {
+            using (var db = Open())
+            {
+                var collection = db.GetCollection<PopulationEntity>();
+
+                return collection.FindById(id);
+            }
+        }
+
+        public bool Delete(Guid id)
+        {
+            using (var db = Open())
+            {
+                var collection = db.GetCollection<PopulationEntity>();
+
+                return collection.Delete(id);
+            }
+        }
+
         public IEnumerable<PopulationEntity> FindByName(string name)
         {
             using (var db = Open())
@@ -44,6 +64,9 @@ namespace Arcesoft.TicTacToe.Evolution.Persistance
         {
             return LiteDatabaseFactory.OpenOrCreate(ConnectionString);
         }
+
+
+
         private string ConnectionString => @"C:\TicTacToeEvolution.db";
     }
 
@@ -81,15 +104,21 @@ namespace Arcesoft.TicTacToe.Evolution.Persistance
                 Name = population.Name,
                 Generation = population.Generation,
                 Settings = population.Settings,
-                Individuals = population.Individuals.ToIndividualEntities().ToArray()
+                Individuals = population.Individuals?.ToIndividualEntities().ToArray()
             };
         }
 
         public static IEnumerable<IndividualEntity> ToIndividualEntities(this IEnumerable<Individual> individuals)
-            => individuals.Select(a => a.ToIndividualEntity());
+        {
+            if (individuals == null) return null;
+
+            return individuals.Select(a => a.ToIndividualEntity());
+        }
 
         public static IndividualEntity ToIndividualEntity(this Individual individual)
         {
+            if (individual == null) return null;
+
             return new IndividualEntity()
             {
                 Id = individual.Id,
@@ -125,11 +154,15 @@ namespace Arcesoft.TicTacToe.Evolution.Persistance
 
         public static List<Individual> ToIndividuals(this IEnumerable<IndividualEntity> individualEntities, IInternalEvolutionFactory factory, IGeneCache geneCache)
         {
+            if (individualEntities == null) return null;
+
             return individualEntities.Select(a => a.ToIndividual(factory, geneCache)).ToList();
         }
 
         public static Individual ToIndividual(this IndividualEntity individualEntity, IInternalEvolutionFactory factory, IGeneCache geneCache)
         {
+            if (individualEntity == null) return null;
+
             var individual = factory.CreateIndividual(0);
 
             individual.Id = individualEntity.Id;
@@ -150,9 +183,7 @@ namespace Arcesoft.TicTacToe.Evolution.Persistance
             return geneCache.CreateOrGet(
                 Convert.ToInt32(geneString.Substring(0, 1)).ToTurn(),
                 Convert.ToInt32(geneString.Substring(10, 2)),
-                geneString.Substring(2, 9).ToAlleles());
-
-            //$"{gene.Turn.ToInteger()}{gene.GetAlleles().ToAlleleString()}{gene.Priority.ToString("00")}";
+                geneString.Substring(1, 9).ToAlleles());
         }
         #endregion
     }

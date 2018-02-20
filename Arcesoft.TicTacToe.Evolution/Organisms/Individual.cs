@@ -1,5 +1,4 @@
 ﻿using Arcesoft.TicTacToe.Entities;
-using Arcesoft.TicTacToe.Evolution.Common;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,7 +10,7 @@ namespace Arcesoft.TicTacToe.Evolution.Organisms
     /// <summary>
     /// TODO: parent ids??
     /// </summary>
-	public class Individual : IIdentifiable
+	public class Individual 
     {
         public Guid Id { get; internal set; } = Guid.NewGuid();
         public string Name { get; set; }

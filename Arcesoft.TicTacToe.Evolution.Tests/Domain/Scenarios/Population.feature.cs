@@ -139,11 +139,9 @@ this.FeatureBackground();
                         "0",
                         "DDDDDDDDR"});
 #line 14
- testRunner.Given("I have an individual called \'SuperSayan\' with id \'10000000-0000-0000-0000-0000000" +
-                    "00000\' and with the following genes", ((string)(null)), table2, "Given ");
+ testRunner.Given("I add an individual called \'SuperSayan\' with id \'10000000-0000-0000-0000-00000000" +
+                    "0000\' and with the following genes to my population", ((string)(null)), table2, "Given ");
 #line 18
- testRunner.Given("I add my individual to the population", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 19
  testRunner.When("I evolve the population \'1\' times", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
             TechTalk.SpecFlow.Table table3 = new TechTalk.SpecFlow.Table(new string[] {
@@ -158,7 +156,7 @@ this.FeatureBackground();
                         "Third",
                         "0",
                         "DDDDDDDDR"});
-#line 20
+#line 19
  testRunner.Then("I expect the population to contain \'2\' individuals with parent ids \'10000000-0000" +
                     "-0000-0000-000000000000\' and the following genes", ((string)(null)), table3, "Then ");
 #line hidden
@@ -174,11 +172,11 @@ this.FeatureBackground();
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Population should promote fittest for many cycles", new string[] {
                         "ignore"});
-#line 26
+#line 25
 this.ScenarioSetup(scenarioInfo);
 #line 5
 this.FeatureBackground();
-#line 27
+#line 26
  testRunner.Given("I have an evolution factory", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
             TechTalk.SpecFlow.Table table4 = new TechTalk.SpecFlow.Table(new string[] {
@@ -197,9 +195,9 @@ this.FeatureBackground();
                         "ASexual",
                         "AllOrNothing",
                         "5"});
-#line 28
+#line 27
  testRunner.Given("I have the following evolution settings", ((string)(null)), table4, "Given ");
-#line 31
+#line 30
  testRunner.Given("I have a population", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
             TechTalk.SpecFlow.Table table5 = new TechTalk.SpecFlow.Table(new string[] {
@@ -214,12 +212,10 @@ this.FeatureBackground();
                         "Third",
                         "0",
                         "DDDDDDDDR"});
-#line 32
- testRunner.Given("I have an individual called \'SuperSayan\' with id \'10000000-0000-0000-0000-0000000" +
-                    "00000\' and with the following genes", ((string)(null)), table5, "Given ");
-#line 36
- testRunner.Given("I add my individual to the population", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 37
+#line 31
+ testRunner.Given("I add an individual called \'SuperSayan\' with id \'10000000-0000-0000-0000-00000000" +
+                    "0000\' and with the following genes to my population", ((string)(null)), table5, "Given ");
+#line 35
  testRunner.When("I evolve the population \'1000\' times", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
             TechTalk.SpecFlow.Table table6 = new TechTalk.SpecFlow.Table(new string[] {
@@ -234,7 +230,7 @@ this.FeatureBackground();
                         "Third",
                         "0",
                         "DDDDDDDDR"});
-#line 38
+#line 36
  testRunner.Then("I expect the entire population to contain the following genes", ((string)(null)), table6, "Then ");
 #line hidden
             this.ScenarioCleanup();
