@@ -116,7 +116,7 @@ this.FeatureBackground();
                         "10",
                         "5"});
 #line 11
- testRunner.Given("I have the following evolution settings", ((string)(null)), table1, "Given ");
+ testRunner.Given("I have the following population settings", ((string)(null)), table1, "Given ");
 #line 14
  testRunner.Given("I have an asexual breeder", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
@@ -287,7 +287,7 @@ this.FeatureBackground();
                         "3",
                         "5"});
 #line 60
- testRunner.Given("I have the following evolution settings", ((string)(null)), table9, "Given ");
+ testRunner.Given("I have the following population settings", ((string)(null)), table9, "Given ");
 #line 63
  testRunner.Given("I have an asexual breeder", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
@@ -404,7 +404,7 @@ this.FeatureBackground();
                         "10",
                         "3"});
 #line 92
- testRunner.Given("I have the following evolution settings", ((string)(null)), table14, "Given ");
+ testRunner.Given("I have the following population settings", ((string)(null)), table14, "Given ");
 #line 95
  testRunner.Given("I have an asexual breeder", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden

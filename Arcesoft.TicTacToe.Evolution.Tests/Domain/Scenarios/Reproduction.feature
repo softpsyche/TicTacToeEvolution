@@ -8,7 +8,7 @@ Background:
 	Given I have an evolution factory
 
 Scenario: ASexual breeder should breed individuals
-	Given I have the following evolution settings
+	Given I have the following population settings
          | MutationRate | MaximumPopulationSize | IndividualChildBearingLimit |
          | 1.0          | 10                    | 5                           |
 	Given I have an asexual breeder
@@ -57,7 +57,7 @@ Scenario: ASexual breeder should breed individuals
          | Fourth | 25       | DDD_O_DDD |
 
 Scenario: ASexual breeder should downsize population accordingly
-	Given I have the following evolution settings
+	Given I have the following population settings
          | MutationRate | MaximumPopulationSize | IndividualChildBearingLimit |
          | 1.0          | 3                     | 5                           |
 	Given I have an asexual breeder
@@ -89,7 +89,7 @@ Scenario: ASexual breeder should downsize population accordingly
 	Then I expect the size of the new generation to be exactly '3'
 
 Scenario: ASexual breeder should obey child bearing limits
-	Given I have the following evolution settings
+	Given I have the following population settings
          | MutationRate | MaximumPopulationSize | IndividualChildBearingLimit |
          | 1.0          | 10                    | 3                           |
 	Given I have an asexual breeder

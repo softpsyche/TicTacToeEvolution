@@ -53,9 +53,9 @@ namespace Arcesoft.TicTacToe.Evolution.Persistance
                 .ToList();
         }
 
-        public IPopulation FindPopulation(Guid id)
+        public IPopulation TryFindPopulation(Guid id)
         {
-            return PopulationRepository.Find(id).ToPopulation(EvolutionFactory, GeneCache);
+            return PopulationRepository.Find(id)?.ToPopulation(EvolutionFactory, GeneCache);
         }
 
         public void SaveRegion(IRegion region)
@@ -73,12 +73,19 @@ namespace Arcesoft.TicTacToe.Evolution.Persistance
             return RegionRepository.Delete(id);
         }
 
-        public IRegion FindRegion(Guid id)
+        public IRegion TryFindRegion(Guid id)
         {
-            var region = RegionRepository.Find(id).ToRegion();
+            var regionEntity = RegionRepository.Find(id);
 
+            if (regionEntity == null) return null;
 
-            return null;
+            var region = regionEntity.ToRegion(EvolutionFactory);
+
+            region.Populations = regionEntity.PopulationIds?
+                .Select(a => TryFindPopulation(a) as Population)
+                .ToList();
+
+            return region;
         }
 
         public List<RegionSearchResult> SearchRegionsByName(string name)

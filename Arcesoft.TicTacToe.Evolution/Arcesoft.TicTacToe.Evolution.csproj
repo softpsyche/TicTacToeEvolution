@@ -57,6 +57,7 @@
     <Compile Include="Environs\IRegion.cs" />
     <Compile Include="Environs\Region.cs" />
     <Compile Include="Environs\PopulationSettings.cs" />
+    <Compile Include="Environs\RegionSettings.cs" />
     <Compile Include="IEvolutionFactory.cs" />
     <Compile Include="IInternalEvolutionFactory.cs" />
     <Compile Include="Organisms\GeneCache.cs" />

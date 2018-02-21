@@ -132,7 +132,7 @@ Scenario: AllOrNothing Fitness evaluator should evaluate fitness
 		| 99000000-0000-0000-0000-000000000002 | 20000000-0000-0000-0000-000000000000 | Moved                |
 		| 99000000-0000-0000-0000-000000000002 | 20000000-0000-0000-0000-000000000000 | Tied                 |
 	Given I have a fitness evaluator of type 'AllOrNothing'
-	Given I have the following evolution settings
+	Given I have the following population settings
          | MatchTournaments |
          | 5                |
 	Given I have a tictactoe factory

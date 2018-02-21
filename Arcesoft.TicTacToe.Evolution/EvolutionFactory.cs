@@ -76,6 +76,14 @@ namespace Arcesoft.TicTacToe.Evolution
 
             return population;
         }
+
+        public IRegion CreateRegion(RegionSettings settings)
+        {
+            var region = new Region(
+                settings);
+
+            return region;
+        }
     }
 }
 

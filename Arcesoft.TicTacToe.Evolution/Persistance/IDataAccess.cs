@@ -17,7 +17,7 @@ namespace Arcesoft.TicTacToe.Evolution.Persistance
 
         bool DeletePopulation(Guid id);
 
-        IPopulation FindPopulation(Guid id);
+        IPopulation TryFindPopulation(Guid id);
 
         List<IPopulation> FindPopulations(string name);
 
@@ -27,7 +27,7 @@ namespace Arcesoft.TicTacToe.Evolution.Persistance
 
         bool DeleteRegion(Guid Id);
 
-        IRegion FindRegion(Guid id);
+        IRegion TryFindRegion(Guid id);
 
         List<RegionSearchResult> SearchRegionsByName(string name);
 

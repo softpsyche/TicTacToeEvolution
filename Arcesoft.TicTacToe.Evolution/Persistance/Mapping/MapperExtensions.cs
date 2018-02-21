@@ -112,19 +112,47 @@ namespace Arcesoft.TicTacToe.Evolution.Persistance.Mapping
         #region Region
         public static RegionEntity ToRegionEntity(this IRegion region)
         {
-            return null;
+            return new RegionEntity()
+            {
+                Id = region.Id,
+                Name = region.Name,
+                Age = region.Age,
+                DateCreated = region.DateCreated,
+                Settings = region.Settings,
+                PopulationIds = region.Populations?.Select(a => a.Id).ToArray()
+            };
         }
 
-        public static Region ToRegion(this RegionEntity regionEntity)
+        public static Region ToRegion(this RegionEntity regionEntity, IInternalEvolutionFactory factory)
         {
-            return null;
+            var region = factory.CreateRegion(regionEntity.Settings) as Region;
+
+            region.Id = regionEntity.Id;
+            region.Name = regionEntity.Name;
+            region.Age = regionEntity.Age;
+            region.DateCreated = regionEntity.DateCreated;
+
+            return region;
         }
 
         public static List<RegionSearchResult> ToRegionSearchResults(this IEnumerable<RegionEntity> regionEntity)
         {
-            return null;
+            if (regionEntity == null) return null;
+
+            return regionEntity.Select(a => a.ToRegionSearchResult()).ToList();
+        }
+        public static RegionSearchResult ToRegionSearchResult(this RegionEntity regionEntity)
+        {
+            if (regionEntity == null) return null;
+
+            return new RegionSearchResult()
+            {
+                Id = regionEntity.Id,
+                Name = regionEntity.Name,
+                DateCreated = regionEntity.DateCreated
+            };
         }
 
-            #endregion
-        }
+        #endregion
+    }
 }

@@ -9,7 +9,7 @@ Background:
 	Given I delete all individuals
 
 Scenario: Data access should save population
-	Given I have the following evolution settings
+	Given I have the following population settings
         | MutationRate | MaximumPopulationSize | IndividualChildBearingLimit | MaximumGenesPerIndividual | BreederType | FitnessEvaluatorType | MatchTournaments |
         | 0            | 2                     | 5                           | 2                         | ASexual     | AllOrNothing         | 1                |
 	Given I have the following population
@@ -51,7 +51,7 @@ Scenario: Data access should save population
 		| 40000000-0000-0000-0000-000000000000 | Cappa | Eigth  | 20       | __DDDDDDR |
 
 Scenario: Data access should find populations
-	Given I have the following evolution settings
+	Given I have the following population settings
         | MutationRate | MaximumPopulationSize | IndividualChildBearingLimit | MaximumGenesPerIndividual | BreederType | FitnessEvaluatorType | MatchTournaments |
         | 0            | 2                     | 5                           | 2                         | ASexual     | AllOrNothing         | 1                |
 	Given I have the following populations
@@ -66,4 +66,34 @@ Scenario: Data access should find populations
 		| Id                                   | Name                      |
 		| 10000000-0000-0000-0000-000000000000 | Giggidy                   |
 		| 30000000-0000-0000-0000-000000000000 | QuagmadiusGiggidyTheThird |
+
+Scenario: Data access should save region
+	Given I have the following population settings
+        | MutationRate | MaximumPopulationSize | IndividualChildBearingLimit | MaximumGenesPerIndividual | BreederType | FitnessEvaluatorType | MatchTournaments |
+        | 0            | 2                     | 5                           | 2                         | ASexual     | AllOrNothing         | 1                |
+	Given I have the following population
+		| Id                                   | Name    | Generation |
+		| 99000000-0000-0000-0000-000000000000 | Giggidy | 5500       |
+	Given I save my population
+	Given I evolve the population '1' times
+	Given I have the following region settings
+		| InternalMigrationEnabled | ExternalMigrationEnabled |
+		| true                     | true                     |
+	Given I 
+	#Then I expect the saved population to contain
+	#	| Id                                   | Name    | Generation |
+	#	| 99000000-0000-0000-0000-000000000000 | Giggidy | 5500       |
+	#Then I expect the saved population to contain the following evolution settings
+	#	| MutationRate | MaximumPopulationSize | IndividualChildBearingLimit | MaximumGenesPerIndividual | BreederType | FitnessEvaluatorType | MatchTournaments |
+ #       | 0            | 2                     | 5                           | 2                         | ASexual     | AllOrNothing         | 1                |
+	#Then I expect the saved population to contain the following individuals
+	#	| Id                                   | Name  | Turn   | Priority | Alleles   |
+	#	| 10000000-0000-0000-0000-000000000000 | Alpha | First  | 3        | ____R____ |
+	#	| 10000000-0000-0000-0000-000000000000 | Alpha | Ninth  | 34       | DDDDDDDDR |
+	#	| 20000000-0000-0000-0000-000000000000 | Beta  | Second | 22       | __R__X___ |
+	#	| 20000000-0000-0000-0000-000000000000 | Beta  | Third  | 4        | DDD__DDDR |
+	#	| 30000000-0000-0000-0000-000000000000 | Gamma | Fourth | 1        | XO__R____ |
+	#	| 30000000-0000-0000-0000-000000000000 | Gamma | Eigth  | 20       | __DDDDDDR |
+	#	| 40000000-0000-0000-0000-000000000000 | Cappa | Fourth | 9        | XO__R____ |
+	#	| 40000000-0000-0000-0000-000000000000 | Cappa | Eigth  | 20       | __DDDDDDR |
 

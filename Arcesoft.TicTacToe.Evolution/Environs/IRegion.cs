@@ -12,7 +12,12 @@ namespace Arcesoft.TicTacToe.Evolution.Environs
 
         string Name { get; set; }
 
+        long Age { get; }
+
         DateTimeOffset DateCreated { get;}
 
+        RegionSettings Settings { get; set; }
+
+        IEnumerable<IPopulation> Populations { get; }
     }
 }

@@ -8,7 +8,7 @@ Background:
 	Given I have a mutator
 
 Scenario: Should mutate all genes when mutation rate is 100 percent
-	Given I have the following evolution settings
+	Given I have the following population settings
 		| MutationRate |
 		| 1.0          |
 	Given I have an individual with the following genes
@@ -25,7 +25,7 @@ Scenario: Should mutate all genes when mutation rate is 100 percent
 	Then I expect the individual to contain '3' genes
 
 Scenario: Should not mutate any genes when mutation rate is 0 percent
-	Given I have the following evolution settings
+	Given I have the following population settings
 		| MutationRate |
 		| 0.0          |
 	Given I have an individual with the following genes

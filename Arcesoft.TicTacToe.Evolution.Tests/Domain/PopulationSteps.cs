@@ -37,7 +37,7 @@ namespace Arcesoft.TicTacToe.Evolution.Tests.Domain
             set.ForEach(a => DataAccess.DeletePopulation(new Guid(a.Id)));
         }
 
-
+        [Given(@"I evolve the population '(.*)' times")]
         [When(@"I evolve the population '(.*)' times")]
         public void WhenIEvolveThePopulationTimes(int cycles)
         {

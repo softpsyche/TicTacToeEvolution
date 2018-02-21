@@ -122,7 +122,7 @@ this.FeatureBackground();
                         "AllOrNothing",
                         "5"});
 #line 10
- testRunner.Given("I have the following evolution settings", ((string)(null)), table1, "Given ");
+ testRunner.Given("I have the following population settings", ((string)(null)), table1, "Given ");
 #line 13
  testRunner.Given("I have a population", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
@@ -196,7 +196,7 @@ this.FeatureBackground();
                         "AllOrNothing",
                         "5"});
 #line 27
- testRunner.Given("I have the following evolution settings", ((string)(null)), table4, "Given ");
+ testRunner.Given("I have the following population settings", ((string)(null)), table4, "Given ");
 #line 30
  testRunner.Given("I have a population", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden

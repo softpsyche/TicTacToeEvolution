@@ -112,7 +112,7 @@ this.FeatureBackground();
             table1.AddRow(new string[] {
                         "1.0"});
 #line 11
- testRunner.Given("I have the following evolution settings", ((string)(null)), table1, "Given ");
+ testRunner.Given("I have the following population settings", ((string)(null)), table1, "Given ");
 #line hidden
             TechTalk.SpecFlow.Table table2 = new TechTalk.SpecFlow.Table(new string[] {
                         "Turn",
@@ -176,7 +176,7 @@ this.FeatureBackground();
             table4.AddRow(new string[] {
                         "0.0"});
 #line 28
- testRunner.Given("I have the following evolution settings", ((string)(null)), table4, "Given ");
+ testRunner.Given("I have the following population settings", ((string)(null)), table4, "Given ");
 #line hidden
             TechTalk.SpecFlow.Table table5 = new TechTalk.SpecFlow.Table(new string[] {
                         "Turn",

@@ -126,7 +126,7 @@ this.FeatureBackground();
                         "AllOrNothing",
                         "1"});
 #line 12
- testRunner.Given("I have the following evolution settings", ((string)(null)), table1, "Given ");
+ testRunner.Given("I have the following population settings", ((string)(null)), table1, "Given ");
 #line hidden
             TechTalk.SpecFlow.Table table2 = new TechTalk.SpecFlow.Table(new string[] {
                         "Id",
@@ -326,7 +326,7 @@ this.FeatureBackground();
                         "AllOrNothing",
                         "1"});
 #line 54
- testRunner.Given("I have the following evolution settings", ((string)(null)), table10, "Given ");
+ testRunner.Given("I have the following population settings", ((string)(null)), table10, "Given ");
 #line hidden
             TechTalk.SpecFlow.Table table11 = new TechTalk.SpecFlow.Table(new string[] {
                         "Id",
@@ -361,6 +361,66 @@ this.FeatureBackground();
                         "QuagmadiusGiggidyTheThird"});
 #line 65
  testRunner.Then("I expect the find populations search results to only contain", ((string)(null)), table12, "Then ");
+#line hidden
+            this.ScenarioCleanup();
+        }
+        
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Data access should save region")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Persistance")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("Integration")]
+        public virtual void DataAccessShouldSaveRegion()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Data access should save region", ((string[])(null)));
+#line 70
+this.ScenarioSetup(scenarioInfo);
+#line 5
+this.FeatureBackground();
+#line hidden
+            TechTalk.SpecFlow.Table table13 = new TechTalk.SpecFlow.Table(new string[] {
+                        "MutationRate",
+                        "MaximumPopulationSize",
+                        "IndividualChildBearingLimit",
+                        "MaximumGenesPerIndividual",
+                        "BreederType",
+                        "FitnessEvaluatorType",
+                        "MatchTournaments"});
+            table13.AddRow(new string[] {
+                        "0",
+                        "2",
+                        "5",
+                        "2",
+                        "ASexual",
+                        "AllOrNothing",
+                        "1"});
+#line 71
+ testRunner.Given("I have the following population settings", ((string)(null)), table13, "Given ");
+#line hidden
+            TechTalk.SpecFlow.Table table14 = new TechTalk.SpecFlow.Table(new string[] {
+                        "Id",
+                        "Name",
+                        "Generation"});
+            table14.AddRow(new string[] {
+                        "99000000-0000-0000-0000-000000000000",
+                        "Giggidy",
+                        "5500"});
+#line 74
+ testRunner.Given("I have the following population", ((string)(null)), table14, "Given ");
+#line 77
+ testRunner.Given("I save my population", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 78
+ testRunner.Given("I evolve the population \'1\' times", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line hidden
+            TechTalk.SpecFlow.Table table15 = new TechTalk.SpecFlow.Table(new string[] {
+                        "InternalMigrationEnabled",
+                        "ExternalMigrationEnabled"});
+            table15.AddRow(new string[] {
+                        "true",
+                        "true"});
+#line 79
+ testRunner.Given("I have the following region settings", ((string)(null)), table15, "Given ");
+#line 82
+ testRunner.Given("I", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
             this.ScenarioCleanup();
         }

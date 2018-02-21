@@ -21,7 +21,7 @@ namespace Arcesoft.TicTacToe.Evolution.Tests.Domain
             Mutator = Container.GetInstance<Mutator>();
         }
 
-        [Given(@"I have the following evolution settings")]
+        [Given(@"I have the following population settings")]
         public void GivenIHaveTheFollowingMutationSettings(Table table)
         {
             PopulationSettings = table.CreateInstance<PopulationSettings>();

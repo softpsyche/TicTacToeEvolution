@@ -7,7 +7,7 @@ Background:
 
 Scenario: Population should promote fittest in one cycle
 	Given I have an evolution factory
-	Given I have the following evolution settings
+	Given I have the following population settings
          | MutationRate | MaximumPopulationSize | IndividualChildBearingLimit | MaximumGenesPerIndividual | BreederType | FitnessEvaluatorType | MatchTournaments |
          | 0            | 10                    | 5                           | 2                         | ASexual     | AllOrNothing         | 5                |
 	Given I have a population
@@ -24,7 +24,7 @@ Scenario: Population should promote fittest in one cycle
 @ignore
 Scenario: Population should promote fittest for many cycles
 	Given I have an evolution factory
-	Given I have the following evolution settings
+	Given I have the following population settings
          | MutationRate | MaximumPopulationSize | IndividualChildBearingLimit | MaximumGenesPerIndividual | BreederType | FitnessEvaluatorType | MatchTournaments |
          | 0            | 10                    | 5                           | 2                         | ASexual     | AllOrNothing         | 5                |
 	Given I have a population

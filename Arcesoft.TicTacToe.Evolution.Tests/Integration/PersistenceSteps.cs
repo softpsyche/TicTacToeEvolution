@@ -43,7 +43,7 @@ namespace Arcesoft.TicTacToe.Evolution.Tests.Integration
         [Then(@"I expect the saved population to contain the following individuals")]
         public void ThenIExpectTheSavedPopulationToContainTheFollowingIndividuals(Table table)
         {
-            var loadedPopulation = DataAccess.FindPopulation(Population.Id);
+            var loadedPopulation = DataAccess.TryFindPopulation(Population.Id);
 
             var projectedIndividuals = loadedPopulation
                 .Individuals.SelectMany(a => a.Genes, (individual, gene) => new
@@ -61,7 +61,7 @@ namespace Arcesoft.TicTacToe.Evolution.Tests.Integration
         [Then(@"I expect the saved population to contain")]
         public void ThenIExpectTheSavedPopulationToContain(Table table)
         {
-            var loadedPopulation = DataAccess.FindPopulation(Population.Id);
+            var loadedPopulation = DataAccess.TryFindPopulation(Population.Id);
 
             table.CompareToInstance(loadedPopulation);
         }
@@ -69,7 +69,7 @@ namespace Arcesoft.TicTacToe.Evolution.Tests.Integration
         [Then(@"I expect the saved population to contain the following evolution settings")]
         public void ThenIExpectTheSavedPopulationToContainTheFollowingEvolutionSettings(Table table)
         {
-            var loadedPopulation = DataAccess.FindPopulation(Population.Id);
+            var loadedPopulation = DataAccess.TryFindPopulation(Population.Id);
 
             table.CompareToInstance(loadedPopulation.Settings);
         }

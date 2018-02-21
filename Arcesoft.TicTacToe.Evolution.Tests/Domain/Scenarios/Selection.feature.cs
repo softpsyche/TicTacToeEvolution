@@ -681,7 +681,7 @@ this.FeatureBackground();
             table12.AddRow(new string[] {
                         "5"});
 #line 135
- testRunner.Given("I have the following evolution settings", ((string)(null)), table12, "Given ");
+ testRunner.Given("I have the following population settings", ((string)(null)), table12, "Given ");
 #line 138
  testRunner.Given("I have a tictactoe factory", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
