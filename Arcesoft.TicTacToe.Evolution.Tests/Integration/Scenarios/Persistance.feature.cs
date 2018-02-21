@@ -514,6 +514,118 @@ this.FeatureBackground();
 #line hidden
             this.ScenarioCleanup();
         }
+        
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Data access should search regions by name")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Persistance")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("Integration")]
+        public virtual void DataAccessShouldSearchRegionsByName()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Data access should search regions by name", ((string[])(null)));
+#line 111
+this.ScenarioSetup(scenarioInfo);
+#line 5
+this.FeatureBackground();
+#line hidden
+            TechTalk.SpecFlow.Table table23 = new TechTalk.SpecFlow.Table(new string[] {
+                        "Id",
+                        "Name",
+                        "DateCreated"});
+            table23.AddRow(new string[] {
+                        "10000000-0000-0000-0000-000000000000",
+                        "Giggidy",
+                        "10/18/1978 7:00:00 AM +00:00"});
+            table23.AddRow(new string[] {
+                        "20000000-0000-0000-0000-000000000000",
+                        "Giggid",
+                        "10/19/1978 7:00:00 AM +00:00"});
+            table23.AddRow(new string[] {
+                        "30000000-0000-0000-0000-000000000000",
+                        "QuagmadiusGiggidyTheThird",
+                        "10/20/1978 7:00:00 AM +00:00"});
+            table23.AddRow(new string[] {
+                        "40000000-0000-0000-0000-000000000000",
+                        "Coolio",
+                        "10/21/1978 7:00:00 AM +00:00"});
+#line 112
+ testRunner.Given("I have the following regions", ((string)(null)), table23, "Given ");
+#line 118
+ testRunner.Given("I save my regions", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 119
+ testRunner.When("I find regions by name \'gIGgIDY\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+            TechTalk.SpecFlow.Table table24 = new TechTalk.SpecFlow.Table(new string[] {
+                        "Id",
+                        "Name",
+                        "DateCreated"});
+            table24.AddRow(new string[] {
+                        "10000000-0000-0000-0000-000000000000",
+                        "Giggidy",
+                        "10/18/1978 7:00:00 AM +00:00"});
+            table24.AddRow(new string[] {
+                        "30000000-0000-0000-0000-000000000000",
+                        "QuagmadiusGiggidyTheThird",
+                        "10/20/1978 7:00:00 AM +00:00"});
+#line 120
+ testRunner.Then("I expect the search regions to only contain", ((string)(null)), table24, "Then ");
+#line hidden
+            this.ScenarioCleanup();
+        }
+        
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Data access should search regions most recent")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Persistance")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("Integration")]
+        public virtual void DataAccessShouldSearchRegionsMostRecent()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Data access should search regions most recent", ((string[])(null)));
+#line 125
+this.ScenarioSetup(scenarioInfo);
+#line 5
+this.FeatureBackground();
+#line hidden
+            TechTalk.SpecFlow.Table table25 = new TechTalk.SpecFlow.Table(new string[] {
+                        "Id",
+                        "Name"});
+            table25.AddRow(new string[] {
+                        "10000000-0000-0000-0000-000000000000",
+                        "Giggidy"});
+            table25.AddRow(new string[] {
+                        "20000000-0000-0000-0000-000000000000",
+                        "Giggid"});
+            table25.AddRow(new string[] {
+                        "30000000-0000-0000-0000-000000000000",
+                        "QuagmadiusGiggidyTheThird"});
+            table25.AddRow(new string[] {
+                        "40000000-0000-0000-0000-000000000000",
+                        "Coolio"});
+#line 126
+ testRunner.Given("I have the following regions", ((string)(null)), table25, "Given ");
+#line 132
+ testRunner.Given("I save my regions", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 133
+ testRunner.When("I find regions by most recent \'10\' days with a limit of \'10\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+            TechTalk.SpecFlow.Table table26 = new TechTalk.SpecFlow.Table(new string[] {
+                        "Id",
+                        "Name"});
+            table26.AddRow(new string[] {
+                        "10000000-0000-0000-0000-000000000000",
+                        "Giggidy"});
+            table26.AddRow(new string[] {
+                        "20000000-0000-0000-0000-000000000000",
+                        "Giggid"});
+            table26.AddRow(new string[] {
+                        "30000000-0000-0000-0000-000000000000",
+                        "QuagmadiusGiggidyTheThird"});
+            table26.AddRow(new string[] {
+                        "40000000-0000-0000-0000-000000000000",
+                        "Coolio"});
+#line 134
+ testRunner.Then("I expect the search regions to only contain", ((string)(null)), table26, "Then ");
+#line hidden
+            this.ScenarioCleanup();
+        }
     }
 }
 #pragma warning restore

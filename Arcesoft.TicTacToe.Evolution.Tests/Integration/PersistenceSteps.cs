@@ -156,5 +156,24 @@ namespace Arcesoft.TicTacToe.Evolution.Tests.Integration
         {
             DataAccess.DeleteAllRegions();
         }
+
+        [When(@"I find regions by name '(.*)'")]
+        public void WhenIFindRegionsByName(string name)
+        {
+            Invoke(() => RegionSearchResults = DataAccess.SearchRegionsByName(name));
+        }
+
+        [Then(@"I expect the search regions to only contain")]
+        public void ThenIExpectTheSearchRegionsByNameToOnlyContain(Table table)
+        {
+            table.CompareToSet(RegionSearchResults);
+        }
+
+        [When(@"I find regions by most recent '(.*)' days with a limit of '(.*)'")]
+        public void WhenIFindRegionsByMostRecentDaysWithALimitOf(int days, int limit)
+        {
+            Invoke(() => RegionSearchResults = DataAccess.SearchRegionsMostRecent(days, limit));
+        }
+
     }
 }

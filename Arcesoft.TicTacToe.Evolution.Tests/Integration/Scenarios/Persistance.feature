@@ -108,4 +108,35 @@ Scenario: Data access should save region
 		| Id                                  |
 		| 30000000-0000-0000-0000-00000000000 |
 
+Scenario: Data access should search regions by name
+	Given I have the following regions
+		| Id                                   | Name                      | DateCreated                  |
+		| 10000000-0000-0000-0000-000000000000 | Giggidy                   | 10/18/1978 7:00:00 AM +00:00 |
+		| 20000000-0000-0000-0000-000000000000 | Giggid                    | 10/19/1978 7:00:00 AM +00:00 |
+		| 30000000-0000-0000-0000-000000000000 | QuagmadiusGiggidyTheThird | 10/20/1978 7:00:00 AM +00:00 |
+		| 40000000-0000-0000-0000-000000000000 | Coolio                    | 10/21/1978 7:00:00 AM +00:00 |
+	Given I save my regions
+	When I find regions by name 'gIGgIDY'
+	Then I expect the search regions to only contain
+		| Id                                   | Name                      | DateCreated                  |
+		| 10000000-0000-0000-0000-000000000000 | Giggidy                   | 10/18/1978 7:00:00 AM +00:00 |
+		| 30000000-0000-0000-0000-000000000000 | QuagmadiusGiggidyTheThird | 10/20/1978 7:00:00 AM +00:00 |
+#need better test for one below...
+Scenario: Data access should search regions most recent
+	Given I have the following regions
+		| Id                                   | Name                      | 
+		| 10000000-0000-0000-0000-000000000000 | Giggidy                   | 
+		| 20000000-0000-0000-0000-000000000000 | Giggid                    | 
+		| 30000000-0000-0000-0000-000000000000 | QuagmadiusGiggidyTheThird | 
+		| 40000000-0000-0000-0000-000000000000 | Coolio                    | 
+	Given I save my regions
+	When I find regions by most recent '10' days with a limit of '10'
+	Then I expect the search regions to only contain
+		| Id                                   | Name                      | 
+		| 10000000-0000-0000-0000-000000000000 | Giggidy                   | 
+		| 20000000-0000-0000-0000-000000000000 | Giggid                    | 
+		| 30000000-0000-0000-0000-000000000000 | QuagmadiusGiggidyTheThird | 
+		| 40000000-0000-0000-0000-000000000000 | Coolio                    | 
+
+
 

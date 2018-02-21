@@ -10,6 +10,7 @@ using Arcesoft.TicTacToe.Evolution.Mutations;
 using Moq;
 using Arcesoft.TicTacToe.Evolution.Environs;
 using Arcesoft.TicTacToe.Evolution.Persistance;
+using Arcesoft.TicTacToe.Evolution.Models;
 
 namespace Arcesoft.TicTacToe.Evolution.Tests
 {
@@ -350,6 +351,18 @@ namespace Arcesoft.TicTacToe.Evolution.Tests
             set
             {
                 CurrentContext.Set(value, nameof(Regions));
+            }
+        }
+
+        protected List<RegionSearchResult> RegionSearchResults
+        {
+            get
+            {
+                return GetScenarioContextItemOrDefault<List<RegionSearchResult>>(nameof(RegionSearchResults));
+            }
+            set
+            {
+                CurrentContext.Set(value, nameof(RegionSearchResults));
             }
         }
 
