@@ -18,7 +18,7 @@ namespace Arcesoft.TicTacToe.Evolution.Environs
 
         public RegionSettings Settings { get; set; }
 
-        public List<Population> Populations { get; internal set; }
+        public List<IPopulation> Populations { get; internal set; } = new List<IPopulation>();
 
         IEnumerable<IPopulation> IRegion.Populations => Populations;
 
@@ -36,6 +36,23 @@ namespace Arcesoft.TicTacToe.Evolution.Environs
             catch (Exception ex)
             {
                 throw;
+            }
+        }
+
+        public void AddPopulations(IEnumerable<IPopulation> populations, bool replaceExisting = false)
+        {
+            if (populations == null) return;
+
+            if (replaceExisting)
+            {
+                //TODO: we may need to rework some history here...maybe??
+
+                Populations = populations.ToList();
+            }
+            else
+            {
+                //add the migrants
+                Populations.AddRange(populations);
             }
         }
     }

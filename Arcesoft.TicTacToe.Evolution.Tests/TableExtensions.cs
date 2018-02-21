@@ -31,6 +31,11 @@ namespace Arcesoft.TicTacToe.Evolution.Tests
             return table.CreateSet(a => factory.CreatePopulation(evolutionSettings)).ToList();
         }
 
+        public static IEnumerable<IRegion> ToRegions(this Table table, IInternalEvolutionFactory factory, RegionSettings settings)
+        {
+            return table.CreateSet(a => factory.CreateRegion(settings)).ToList();
+        }
+
         public static Gene ToGene(this TableRow tableRow)
         {
             return new Gene(

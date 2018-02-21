@@ -19,5 +19,7 @@ namespace Arcesoft.TicTacToe.Evolution.Environs
         RegionSettings Settings { get; set; }
 
         IEnumerable<IPopulation> Populations { get; }
+
+        void AddPopulations(IEnumerable<IPopulation> populations, bool replaceExisting = false);
     }
 }

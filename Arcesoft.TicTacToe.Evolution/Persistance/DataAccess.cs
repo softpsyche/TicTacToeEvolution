@@ -82,7 +82,7 @@ namespace Arcesoft.TicTacToe.Evolution.Persistance
             var region = regionEntity.ToRegion(EvolutionFactory);
 
             region.Populations = regionEntity.PopulationIds?
-                .Select(a => TryFindPopulation(a) as Population)
+                .Select(a => TryFindPopulation(a))
                 .ToList();
 
             return region;

@@ -329,6 +329,30 @@ namespace Arcesoft.TicTacToe.Evolution.Tests
             }
         }
 
+        protected RegionSettings RegionSettings
+        {
+            get
+            {
+                return GetScenarioContextItemOrDefault<RegionSettings>();
+            }
+            set
+            {
+                CurrentContext.Set(value);
+            }
+        }
+
+        protected List<IRegion> Regions
+        {
+            get
+            {
+                return GetScenarioContextItemOrDefault<List<IRegion>>(nameof(Regions));
+            }
+            set
+            {
+                CurrentContext.Set(value, nameof(Regions));
+            }
+        }
+
 
         protected void Invoke(Action action)
         {

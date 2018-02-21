@@ -9,6 +9,7 @@ using TechTalk.SpecFlow.Assist;
 using Arcesoft.TicTacToe.Evolution.Persistance;
 using Arcesoft.TicTacToe.Evolution.Organisms;
 using FluentAssertions;
+using Arcesoft.TicTacToe.Evolution.Environs;
 
 namespace Arcesoft.TicTacToe.Evolution.Tests.Integration
 {
@@ -28,6 +29,7 @@ namespace Arcesoft.TicTacToe.Evolution.Tests.Integration
         }
 
         [Given(@"I save my population")]
+        [When(@"I save my population")]
         public void GivenISaveMyPopulation()
         {
             Invoke(() => DataAccess.SavePopulation(Population));
@@ -100,5 +102,59 @@ namespace Arcesoft.TicTacToe.Evolution.Tests.Integration
             DataAccess.DeleteAllPopulations();
         }
 
+        [Given(@"I evolve the populations '(.*)' times")]
+        public void GivenIEvolveThePopulationsTimes(int p0)
+        {
+            Populations.ForEach(a => a.Evolve(p0));
+        }
+
+        [Given(@"I have the following region settings")]
+        public void GivenIHaveTheFollowingRegionSettings(Table table)
+        {
+            RegionSettings = table.CreateInstance<RegionSettings>();
+        }
+
+        [Given(@"I have the following regions")]
+        public void GivenIHaveTheFollowingRegions(Table table)
+        {
+            Regions = table.ToRegions(EvolutionFactory, RegionSettings).ToList();
+        }
+
+        [Given(@"I add the following given populations to region '(.*)'")]
+        public void GivenIAddTheFollowingGivenPopulationsToRegion(Guid id, Table table)
+        {
+            var populationsToAdd = table
+                .CreateDynamicSet()
+                .Select(a => new Guid(a.Id))
+                .Join(Populations, a => a, a => a.Id, (a, b) => b)
+                .ToList();
+
+            Regions.Single(a => a.Id == id).AddPopulations(populationsToAdd);
+        }
+
+        [Given(@"I save my regions")]
+        [When(@"I save my regions")]
+        public void WhenISaveMyRegions()
+        {
+            Regions.ForEach(a => Invoke(() => DataAccess.SaveRegion(a)));
+        }
+
+        [Then(@"I expect the saved region '(.*)' to contain")]
+        public void ThenIExpectTheSavedRegionToContain(Guid id, Table table)
+        {
+            table.CompareToInstance(DataAccess.TryFindRegion(id));
+        }
+
+        [Then(@"I expect the saved region '(.*)' to contain the following populations")]
+        public void ThenIExpectTheSavedRegionToContainTheFollowingPopulations(Guid id, Table table)
+        {
+            table.CompareToSet(DataAccess.TryFindRegion(id).Populations);
+        }
+
+        [Given(@"I delete all regions")]
+        public void GivenIDeleteAllRegions()
+        {
+            DataAccess.DeleteAllRegions();
+        }
     }
 }
