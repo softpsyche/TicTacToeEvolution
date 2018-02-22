@@ -81,6 +81,12 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UxPopulationSettings.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UxPopulationSettings.Designer.cs">
+      <DependentUpon>UxPopulationSettings.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="DlgNewRegion.resx">
       <DependentUpon>DlgNewRegion.cs</DependentUpon>
     </EmbeddedResource>
@@ -100,7 +106,11 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="UxPopulationSettings.resx">
+      <DependentUpon>UxPopulationSettings.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="packages.config" />
+    <None Include="Properties\DataSources\Arcesoft.TicTacToe.Evolution.PopulationSettings.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
