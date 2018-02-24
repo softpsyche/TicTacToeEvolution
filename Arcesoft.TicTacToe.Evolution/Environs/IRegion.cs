@@ -21,5 +21,7 @@ namespace Arcesoft.TicTacToe.Evolution.Environs
         IEnumerable<IPopulation> Populations { get; }
 
         void AddPopulations(IEnumerable<IPopulation> populations, bool replaceExisting = false);
+
+        void Advance(int years = 1);
     }
 }

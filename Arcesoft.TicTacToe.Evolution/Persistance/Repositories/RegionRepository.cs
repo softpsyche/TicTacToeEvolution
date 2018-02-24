@@ -69,7 +69,9 @@ namespace Arcesoft.TicTacToe.Evolution.Persistance.Repositories
             {
                 var collection = db.GetCollection<RegionEntity>();
 
-                return collection.Find(a => a.Name.ToLowerInvariant().Contains(name.ToLowerInvariant()));
+                var results = collection.Find(a => a.Name.ToLowerInvariant().Contains(name.ToLowerInvariant())).ToList();
+
+                return results;
             }
         }
 
@@ -83,7 +85,8 @@ namespace Arcesoft.TicTacToe.Evolution.Persistance.Repositories
                 return collection
                     .Find(a => a.DateCreated >= cutoffDate, 0)
                     .OrderByDescending(a => a.DateCreated)
-                    .Take(limit);
+                    .Take(limit)
+                    .ToList();
             }
         }
 

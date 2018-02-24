@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Arcesoft.TicTacToe.Evolution.Persistance
 {
-    internal interface IDataAccess
+    public interface IDataAccess
     {
         void SavePopulation(IPopulation population);
 

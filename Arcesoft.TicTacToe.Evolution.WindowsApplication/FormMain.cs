@@ -1,4 +1,6 @@
 ﻿using Arcesoft.TicTacToe.Evolution.Environs;
+using Arcesoft.TicTacToe.Evolution.Persistance;
+using Arcesoft.TicTacToe.Evolution.WindowsApplication.Assets;
 using Arcesoft.TicTacToe.Evolution.WindowsApplication.DependencyInjection;
 using Arcesoft.TicTacToe.Evolution.WindowsApplication.Dialogs;
 using System;
@@ -16,26 +18,42 @@ namespace Arcesoft.TicTacToe.Evolution.WindowsApplication
 	internal partial class FormMain : Form
 	{
 		private FactoryContainer FactoryContainer { get; set; }
+        private IEvolutionFactory EvolutionFactory { get; set; }
+        private IDataAccess DataAccess { get; set; }
 		IRegion Region { get; set; }
 
-		public FormMain(FactoryContainer factoryContainer)
-		{
+        public FormMain(FactoryContainer factoryContainer, IEvolutionFactory evolutionFactory, IDataAccess dataAccess)
+        {
             FactoryContainer = factoryContainer;
+            EvolutionFactory = evolutionFactory;
+            DataAccess = dataAccess;
 
-			InitializeComponent();
+            InitializeComponent();
 
-			//this.EvolutionFactory = new EvolutionFactory();
-			//this.Population = this.EvolutionFactory.NewPopulation();
-			////this.Population.Name = String.Format("Population.{0}.pop",DateTime.Now.ToString("MM_dd_yyyy"));
-			//serializer = new JsonSerializer();
-		}
+            //this.EvolutionFactory = new EvolutionFactory();
+            //this.Population = this.EvolutionFactory.NewPopulation();
+            ////this.Population.Name = String.Format("Population.{0}.pop",DateTime.Now.ToString("MM_dd_yyyy"));
+            //serializer = new JsonSerializer();
+        }
+
+        private void FormMain_Load(object sender, EventArgs e)
+        {
+            var region = EvolutionFactory.CreateRegion(new RegionSettings()
+            {
+                ExternalMigrationEnabled = true,
+                InternalMigrationEnabled = true
+            });
+
+            region.AddPopulations(new[] { EvolutionFactory.CreatePopulation(EmbeddedResources.PresetPopulationSettings.First().Settings, "First") });
+            region.AddPopulations(new[] { EvolutionFactory.CreatePopulation(EmbeddedResources.PresetPopulationSettings.First().Settings, "Second") });
+
+            SetCurrentRegion(region);
+        }
 
 
-
-
-		private void FormMain_Shown(object sender, EventArgs e)
+        private void FormMain_Shown(object sender, EventArgs e)
 		{
-			//this.RunForever();
+			
 		}
 
         private void SetCurrentRegion(IRegion region)
@@ -55,14 +73,28 @@ namespace Arcesoft.TicTacToe.Evolution.WindowsApplication
             }
         }
 
-        private void openToolStripMenuItem_Click(object sender, EventArgs e)
+        private void saveToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            try
+            {
+                DataAccess.SaveRegion(Region);
+            }
+            catch (Exception ex)
+            {
 
+            }
         }
 
-        private void closeToolStripMenuItem_Click(object sender, EventArgs e)
+        private void openToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            try
+            {
+                var region = DlgOpenRegion.TryOpenRegion(FactoryContainer);
+            }
+            catch (Exception ex)
+            {
 
+            }
         }
 
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
@@ -72,6 +104,13 @@ namespace Arcesoft.TicTacToe.Evolution.WindowsApplication
                 Close();
             }
         }
+
+        private void buttonRun_Click(object sender, EventArgs e)
+        {
+            Region.Advance(1);
+        }
+
+
 
 
         //private void buttonDoIt_Click(object sender, EventArgs e)
