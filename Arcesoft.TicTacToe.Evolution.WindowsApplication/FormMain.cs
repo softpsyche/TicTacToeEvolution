@@ -1,4 +1,6 @@
 ﻿using Arcesoft.TicTacToe.Evolution.Environs;
+using Arcesoft.TicTacToe.Evolution.WindowsApplication.DependencyInjection;
+using Arcesoft.TicTacToe.Evolution.WindowsApplication.Dialogs;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -11,14 +13,14 @@ using System.Windows.Forms;
 
 namespace Arcesoft.TicTacToe.Evolution.WindowsApplication
 {
-	public partial class FormMain : Form
+	internal partial class FormMain : Form
 	{
-		private IEvolutionFactory EvolutionFactory { get; set; }
-		IPopulation Population { get; set; }
+		private FactoryContainer FactoryContainer { get; set; }
+		IRegion Region { get; set; }
 
-		public FormMain(IEvolutionFactory evolutionFactory)
+		public FormMain(FactoryContainer factoryContainer)
 		{
-            EvolutionFactory = evolutionFactory;
+            FactoryContainer = factoryContainer;
 
 			InitializeComponent();
 
@@ -28,31 +30,40 @@ namespace Arcesoft.TicTacToe.Evolution.WindowsApplication
 			//serializer = new JsonSerializer();
 		}
 
-		private void buttonDoIt_Click(object sender, EventArgs e)
-		{
-			if (!backgroundWorkerMain.IsBusy)
-			{
-				backgroundWorkerMain.RunWorkerAsync();
-				buttonDoIt.Text = "Cancel";
-				progressBarMain.Value = 0;
-				progressBarMain.Visible = true;
-			}
-			else
-			{
-				backgroundWorkerMain.CancelAsync();
-				while (backgroundWorkerMain.CancellationPending)
-					System.Threading.Thread.Sleep(100);
 
-				buttonDoIt.Text = "Do It";
-				progressBarMain.Visible = false;
-			}
-		}
 
 
 		private void FormMain_Shown(object sender, EventArgs e)
 		{
 			//this.RunForever();
 		}
+
+        private void SetCurrentRegion(IRegion region)
+        {
+            Region = region;
+        }
+
+
+
+        private void newToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var newRegion = DlgNewRegion.TryCreateNewRegion(FactoryContainer, this);
+
+            if (newRegion != null)
+            {
+                SetCurrentRegion(newRegion);
+            }
+        }
+
+        private void openToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void closeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
 
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -62,6 +73,26 @@ namespace Arcesoft.TicTacToe.Evolution.WindowsApplication
             }
         }
 
+
+        //private void buttonDoIt_Click(object sender, EventArgs e)
+        //{
+        //	if (!backgroundWorkerMain.IsBusy)
+        //	{
+        //		backgroundWorkerMain.RunWorkerAsync();
+        //		buttonDoIt.Text = "Cancel";
+        //		progressBarMain.Value = 0;
+        //		progressBarMain.Visible = true;
+        //	}
+        //	else
+        //	{
+        //		backgroundWorkerMain.CancelAsync();
+        //		while (backgroundWorkerMain.CancellationPending)
+        //			System.Threading.Thread.Sleep(100);
+
+        //		buttonDoIt.Text = "Do It";
+        //		progressBarMain.Visible = false;
+        //	}
+        //}
         //private Game HumanGame = new Game();
         //private void gameBoardMain_MoveRequested(object sender, MoveRequestEventArgs e)
         //{

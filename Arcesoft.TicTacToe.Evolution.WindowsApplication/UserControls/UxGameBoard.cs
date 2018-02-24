@@ -9,9 +9,9 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Arcesoft.TicTacToe.Entities;
 
-namespace Arcesoft.TicTacToe.Evolution.WindowsApplication
+namespace Arcesoft.TicTacToe.Evolution.WindowsApplication.UserControls
 {
-    public partial class GameBoard : UserControl
+    public partial class UxGameBoard : UserControl
     {
         private IGame _game;
 
@@ -31,7 +31,7 @@ namespace Arcesoft.TicTacToe.Evolution.WindowsApplication
             }
         }
         private String BoardState { get; set; }
-        public GameBoard()
+        public UxGameBoard()
         {
             InitializeComponent();
             this.DoubleBuffered = true;

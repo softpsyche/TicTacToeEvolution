@@ -1,0 +1,27 @@
+[
+  {
+    "Name": "(Default)",
+    "Settings": {
+      "MutationRate": ".001",
+      "MaximumPopulationSize": "100",
+      "IndividualChildBearingLimit": "5",
+      "MaximumGenesPerIndividual": "100",
+      "BreederType": "ASexual",
+      "FitnessEvaluatorType": "AllOrNothing",
+      "MatchTournaments": "5"
+    }
+  },
+  {
+
+    "Name": "Large",
+    "Settings": {
+      "MutationRate": ".001",
+      "MaximumPopulationSize": "250",
+      "IndividualChildBearingLimit": "5",
+      "MaximumGenesPerIndividual": "100",
+      "BreederType": "ASexual",
+      "FitnessEvaluatorType": "AllOrNothing",
+      "MatchTournaments": "4"
+    }
+  }
+]

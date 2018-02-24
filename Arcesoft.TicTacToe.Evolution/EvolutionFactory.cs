@@ -67,20 +67,24 @@ namespace Arcesoft.TicTacToe.Evolution
             return individual;
         }
 
-        public IPopulation CreatePopulation(PopulationSettings settings)
+        public IPopulation CreatePopulation(PopulationSettings settings, string name = null)
         {
             var population = new Population(
                 FactoryContainer.GetInstance<IInternalEvolutionFactory>(),
                 FactoryContainer.GetInstance<IMutator>(),
                 settings);
 
+            population.Name = name;
+
             return population;
         }
 
-        public IRegion CreateRegion(RegionSettings settings)
+        public IRegion CreateRegion(RegionSettings settings,string name = null)
         {
             var region = new Region(
                 settings);
+
+            region.Name = name;
 
             return region;
         }

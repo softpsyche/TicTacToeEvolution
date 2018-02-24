@@ -29,12 +29,9 @@
 		private void InitializeComponent()
 		{
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormMain));
-            this.buttonDoIt = new System.Windows.Forms.Button();
             this.backgroundWorkerMain = new System.ComponentModel.BackgroundWorker();
             this.splitContainerMain = new System.Windows.Forms.SplitContainer();
-            this.progressBarMain = new System.Windows.Forms.ProgressBar();
-            this.buttonSave = new System.Windows.Forms.Button();
-            this.gameBoardMain = new Arcesoft.TicTacToe.Evolution.WindowsApplication.GameBoard();
+            this.gameBoardMain = new Arcesoft.TicTacToe.Evolution.WindowsApplication.UserControls.UxGameBoard();
             this.menuStripMain = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.newToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -42,22 +39,10 @@
             this.closeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerMain)).BeginInit();
-            this.splitContainerMain.Panel1.SuspendLayout();
             this.splitContainerMain.Panel2.SuspendLayout();
             this.splitContainerMain.SuspendLayout();
             this.menuStripMain.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // buttonDoIt
-            // 
-            this.buttonDoIt.Location = new System.Drawing.Point(4, 4);
-            this.buttonDoIt.Margin = new System.Windows.Forms.Padding(4);
-            this.buttonDoIt.Name = "buttonDoIt";
-            this.buttonDoIt.Size = new System.Drawing.Size(110, 39);
-            this.buttonDoIt.TabIndex = 0;
-            this.buttonDoIt.Text = "Do It";
-            this.buttonDoIt.UseVisualStyleBackColor = true;
-            this.buttonDoIt.Click += new System.EventHandler(this.buttonDoIt_Click);
             // 
             // backgroundWorkerMain
             // 
@@ -72,12 +57,6 @@
             this.splitContainerMain.Name = "splitContainerMain";
             this.splitContainerMain.Orientation = System.Windows.Forms.Orientation.Horizontal;
             // 
-            // splitContainerMain.Panel1
-            // 
-            this.splitContainerMain.Panel1.Controls.Add(this.progressBarMain);
-            this.splitContainerMain.Panel1.Controls.Add(this.buttonSave);
-            this.splitContainerMain.Panel1.Controls.Add(this.buttonDoIt);
-            // 
             // splitContainerMain.Panel2
             // 
             this.splitContainerMain.Panel2.Controls.Add(this.gameBoardMain);
@@ -85,26 +64,6 @@
             this.splitContainerMain.SplitterDistance = 193;
             this.splitContainerMain.TabIndex = 2;
             this.splitContainerMain.Visible = false;
-            // 
-            // progressBarMain
-            // 
-            this.progressBarMain.Location = new System.Drawing.Point(121, 4);
-            this.progressBarMain.Maximum = 20;
-            this.progressBarMain.Name = "progressBarMain";
-            this.progressBarMain.Size = new System.Drawing.Size(162, 39);
-            this.progressBarMain.Style = System.Windows.Forms.ProgressBarStyle.Continuous;
-            this.progressBarMain.TabIndex = 2;
-            this.progressBarMain.Visible = false;
-            // 
-            // buttonSave
-            // 
-            this.buttonSave.Location = new System.Drawing.Point(738, 4);
-            this.buttonSave.Margin = new System.Windows.Forms.Padding(4);
-            this.buttonSave.Name = "buttonSave";
-            this.buttonSave.Size = new System.Drawing.Size(110, 39);
-            this.buttonSave.TabIndex = 1;
-            this.buttonSave.Text = "Save";
-            this.buttonSave.UseVisualStyleBackColor = true;
             // 
             // gameBoardMain
             // 
@@ -140,18 +99,21 @@
             this.newToolStripMenuItem.Name = "newToolStripMenuItem";
             this.newToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.newToolStripMenuItem.Text = "New";
+            this.newToolStripMenuItem.Click += new System.EventHandler(this.newToolStripMenuItem_Click);
             // 
             // openToolStripMenuItem
             // 
             this.openToolStripMenuItem.Name = "openToolStripMenuItem";
             this.openToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.openToolStripMenuItem.Text = "Open";
+            this.openToolStripMenuItem.Click += new System.EventHandler(this.openToolStripMenuItem_Click);
             // 
             // closeToolStripMenuItem
             // 
             this.closeToolStripMenuItem.Name = "closeToolStripMenuItem";
             this.closeToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.closeToolStripMenuItem.Text = "Close";
+            this.closeToolStripMenuItem.Click += new System.EventHandler(this.closeToolStripMenuItem_Click);
             // 
             // exitToolStripMenuItem
             // 
@@ -174,7 +136,6 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Evott";
             this.Shown += new System.EventHandler(this.FormMain_Shown);
-            this.splitContainerMain.Panel1.ResumeLayout(false);
             this.splitContainerMain.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerMain)).EndInit();
             this.splitContainerMain.ResumeLayout(false);
@@ -186,13 +147,9 @@
 		}
 
 		#endregion
-
-		private System.Windows.Forms.Button buttonDoIt;
-		private GameBoard gameBoardMain;
+		private UserControls.UxGameBoard gameBoardMain;
 		private System.ComponentModel.BackgroundWorker backgroundWorkerMain;
 		private System.Windows.Forms.SplitContainer splitContainerMain;
-		private System.Windows.Forms.Button buttonSave;
-		private System.Windows.Forms.ProgressBar progressBarMain;
         private System.Windows.Forms.MenuStrip menuStripMain;
         private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem newToolStripMenuItem;

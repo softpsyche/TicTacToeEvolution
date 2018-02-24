@@ -59,42 +59,51 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\EmbeddedResources.cs" />
+    <Compile Include="Assets\PresetPopulationSetting.cs" />
     <Compile Include="DependencyInjection\Binder.cs" />
     <Compile Include="DependencyInjection\FactoryContainer.cs" />
-    <Compile Include="DlgNewRegion.cs">
+    <Compile Include="Dialogs\DlgNewRegion.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="DlgNewRegion.Designer.cs">
+    <Compile Include="Dialogs\DlgNewRegion.Designer.cs">
       <DependentUpon>DlgNewRegion.cs</DependentUpon>
     </Compile>
+    <Compile Include="Extensions.cs" />
     <Compile Include="FormMain.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormMain.Designer.cs">
       <DependentUpon>FormMain.cs</DependentUpon>
     </Compile>
-    <Compile Include="GameBoard.cs">
+    <Compile Include="UserControls\UxGameBoard.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="GameBoard.Designer.cs">
-      <DependentUpon>GameBoard.cs</DependentUpon>
+    <Compile Include="UserControls\UxGameBoard.Designer.cs">
+      <DependentUpon>UxGameBoard.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="UxPopulationSettings.cs">
+    <Compile Include="UserControls\UxPopulationSettings.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="UxPopulationSettings.Designer.cs">
+    <Compile Include="UserControls\UxPopulationSettings.Designer.cs">
       <DependentUpon>UxPopulationSettings.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="DlgNewRegion.resx">
+    <Compile Include="UserControls\UxRegionSettings.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\UxRegionSettings.Designer.cs">
+      <DependentUpon>UxRegionSettings.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="Dialogs\DlgNewRegion.resx">
       <DependentUpon>DlgNewRegion.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormMain.resx">
       <DependentUpon>FormMain.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="GameBoard.resx">
-      <DependentUpon>GameBoard.cs</DependentUpon>
+    <EmbeddedResource Include="UserControls\UxGameBoard.resx">
+      <DependentUpon>UxGameBoard.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -106,11 +115,18 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <EmbeddedResource Include="UxPopulationSettings.resx">
+    <EmbeddedResource Include="UserControls\UxPopulationSettings.resx">
       <DependentUpon>UxPopulationSettings.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Assets\PresetPopulationSettings.json" />
+    <EmbeddedResource Include="UserControls\UxRegionSettings.resx">
+      <DependentUpon>UxRegionSettings.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="packages.config" />
+    <None Include="Properties\DataSources\Arcesoft.TicTacToe.Evolution.Environs.IRegion.datasource" />
+    <None Include="Properties\DataSources\Arcesoft.TicTacToe.Evolution.Environs.RegionSettings.datasource" />
     <None Include="Properties\DataSources\Arcesoft.TicTacToe.Evolution.PopulationSettings.datasource" />
+    <None Include="Properties\DataSources\Arcesoft.TicTacToe.Evolution.WindowsApplication.Assets.PresetPopulationSetting.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

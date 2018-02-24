@@ -1,6 +1,6 @@
-﻿namespace Arcesoft.TicTacToe.Evolution.WindowsApplication
+﻿namespace Arcesoft.TicTacToe.Evolution.WindowsApplication.UserControls
 {
-	partial class GameBoard
+	partial class UxGameBoard
 	{
 		/// <summary> 
 		/// Required designer variable.
