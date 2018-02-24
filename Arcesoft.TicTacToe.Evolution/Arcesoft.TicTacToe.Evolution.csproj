@@ -101,7 +101,6 @@
     <Compile Include="Mutations\MutationSettings.cs" />
     <Compile Include="Organisms\Allele.cs" />
     <Compile Include="EvolutionFactory.cs" />
-    <None Include="Extensions.cs" />
     <Compile Include="Mutations\Mutator.cs" />
     <Compile Include="Organisms\AlleleConstants.cs" />
     <Compile Include="Organisms\AlleleExtensions.cs" />
@@ -111,6 +110,7 @@
     <Compile Include="Organisms\TurnExtensions.cs" />
     <Compile Include="Organisms\Turn.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="StringExtensions.cs" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>

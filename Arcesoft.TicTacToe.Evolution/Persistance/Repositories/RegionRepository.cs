@@ -69,7 +69,7 @@ namespace Arcesoft.TicTacToe.Evolution.Persistance.Repositories
             {
                 var collection = db.GetCollection<RegionEntity>();
 
-                var results = collection.Find(a => a.Name.ToLowerInvariant().Contains(name.ToLowerInvariant())).ToList();
+                var results = collection.Find(a => a.Name.ToLowerInvariantSafe().ContainsSafe(name.ToLowerInvariantSafe())).ToList();
 
                 return results;
             }

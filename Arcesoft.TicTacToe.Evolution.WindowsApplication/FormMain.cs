@@ -44,6 +44,8 @@ namespace Arcesoft.TicTacToe.Evolution.WindowsApplication
                 InternalMigrationEnabled = true
             });
 
+            region.Name = $@"{Environment.MachineName}/{Environment.UserName} - {DateTime.Now.ToShortDateString()}";
+
             region.AddPopulations(new[] { EvolutionFactory.CreatePopulation(EmbeddedResources.PresetPopulationSettings.First().Settings, "First") });
             region.AddPopulations(new[] { EvolutionFactory.CreatePopulation(EmbeddedResources.PresetPopulationSettings.First().Settings, "Second") });
 
@@ -59,6 +61,8 @@ namespace Arcesoft.TicTacToe.Evolution.WindowsApplication
         private void SetCurrentRegion(IRegion region)
         {
             Region = region;
+
+            this.Text = $"Evott - ({Region.Name})";
         }
 
 
