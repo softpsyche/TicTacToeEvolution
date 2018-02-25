@@ -9,7 +9,11 @@ namespace Arcesoft.TicTacToe.Evolution.Persistance.Repositories
 {
     internal interface IRegionRepository
     {
+        bool Exists(Guid id);
+
         void Insert(RegionEntity regionEntity);
+
+        bool Update(RegionEntity regionEntity);
 
         bool Delete(Guid id);
 

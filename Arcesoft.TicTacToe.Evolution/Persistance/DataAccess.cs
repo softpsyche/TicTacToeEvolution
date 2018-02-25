@@ -63,6 +63,23 @@ namespace Arcesoft.TicTacToe.Evolution.Persistance
             RegionRepository.Insert(region.ToRegionEntity());
         }
 
+        public bool UpdateRegion(IRegion region)
+        {
+            return RegionRepository.Update(region.ToRegionEntity());
+        }
+
+        public void SaveOrUpdateRegion(IRegion region)
+        {
+            if (RegionRepository.Exists(region.Id))
+            {
+                UpdateRegion(region);
+            }
+            else
+            {
+                SaveRegion(region);
+            }
+        }
+
         public void DeleteAllRegions()
         {
             RegionRepository.DeleteAll();

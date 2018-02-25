@@ -23,6 +23,10 @@ namespace Arcesoft.TicTacToe.Evolution.Persistance
 
         void SaveRegion(IRegion region);
 
+        bool UpdateRegion(IRegion region);
+
+        void SaveOrUpdateRegion(IRegion region);
+
         void DeleteAllRegions();
 
         bool DeleteRegion(Guid Id);

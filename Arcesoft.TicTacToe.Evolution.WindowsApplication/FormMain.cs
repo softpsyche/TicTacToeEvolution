@@ -15,25 +15,23 @@ using System.Windows.Forms;
 
 namespace Arcesoft.TicTacToe.Evolution.WindowsApplication
 {
-	internal partial class FormMain : Form
-	{
-		private FactoryContainer FactoryContainer { get; set; }
+    internal partial class FormMain : Form
+    {
+        private FactoryContainer FactoryContainer { get; set; }
         private IEvolutionFactory EvolutionFactory { get; set; }
         private IDataAccess DataAccess { get; set; }
-		IRegion Region { get; set; }
+        private ApplicationSettings ApplicationSettings { get; set; }
 
-        public FormMain(FactoryContainer factoryContainer, IEvolutionFactory evolutionFactory, IDataAccess dataAccess)
+        IRegion SelectedRegion { get; set; }
+
+        public FormMain(FactoryContainer factoryContainer, IEvolutionFactory evolutionFactory, IDataAccess dataAccess, ApplicationSettings applicationSettings)
         {
             FactoryContainer = factoryContainer;
             EvolutionFactory = evolutionFactory;
             DataAccess = dataAccess;
+            ApplicationSettings = applicationSettings;
 
             InitializeComponent();
-
-            //this.EvolutionFactory = new EvolutionFactory();
-            //this.Population = this.EvolutionFactory.NewPopulation();
-            ////this.Population.Name = String.Format("Population.{0}.pop",DateTime.Now.ToString("MM_dd_yyyy"));
-            //serializer = new JsonSerializer();
         }
 
         private void FormMain_Load(object sender, EventArgs e)
@@ -54,18 +52,16 @@ namespace Arcesoft.TicTacToe.Evolution.WindowsApplication
 
 
         private void FormMain_Shown(object sender, EventArgs e)
-		{
-			
-		}
+        {
+
+        }
 
         private void SetCurrentRegion(IRegion region)
         {
-            Region = region;
+            SelectedRegion = region;
 
-            this.Text = $"Evott - ({Region.Name})";
+            Text = $"Evott - ({SelectedRegion.Name})";
         }
-
-
 
         private void newToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -81,7 +77,7 @@ namespace Arcesoft.TicTacToe.Evolution.WindowsApplication
         {
             try
             {
-                DataAccess.SaveRegion(Region);
+                DataAccess.SaveRegion(SelectedRegion);
             }
             catch (Exception ex)
             {
@@ -109,101 +105,152 @@ namespace Arcesoft.TicTacToe.Evolution.WindowsApplication
             }
         }
 
-        private void buttonRun_Click(object sender, EventArgs e)
+        private void runToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Region.Advance(1);
+            if (backgroundWorkerMain.IsBusy)
+            {
+                MessageBox.Show("This evolution program is already running",
+                    "Cannot start, already running",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Exclamation);
+
+                return;
+            }
+
+            backgroundWorkerMain.RunWorkerAsync();
+
+            toolStripProgressBarRunning.Visible = true;
+            toolStripProgressBarRunning.MarqueeAnimationSpeed = 500;
         }
 
+        private void pauseToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if ((!backgroundWorkerMain.IsBusy) || (backgroundWorkerMain.CancellationPending))
+            {
+                MessageBox.Show("This evolution program is not currently running or is in the process of pausing",
+                    "Cannot stop, program is not running",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Exclamation);
 
+                return;
+            }
 
+            backgroundWorkerMain.CancelAsync();
+        }
 
-        //private void buttonDoIt_Click(object sender, EventArgs e)
-        //{
-        //	if (!backgroundWorkerMain.IsBusy)
-        //	{
-        //		backgroundWorkerMain.RunWorkerAsync();
-        //		buttonDoIt.Text = "Cancel";
-        //		progressBarMain.Value = 0;
-        //		progressBarMain.Visible = true;
-        //	}
-        //	else
-        //	{
-        //		backgroundWorkerMain.CancelAsync();
-        //		while (backgroundWorkerMain.CancellationPending)
-        //			System.Threading.Thread.Sleep(100);
+        private void backgroundWorkerMain_DoWork(object sender, DoWorkEventArgs e)
+        {
+            DateTime? lastSaveDate = null;
+            var nextSaveDate = GetNextSaveDate();
+            var reportProgressInterval = ApplicationSettings.ReportProgressIntervalInGenerations;
+            long nextProgressReport = 1;
+            var advanceAmount = CalculateAdvanceOptimumForCurrentComputer();
 
-        //		buttonDoIt.Text = "Do It";
-        //		progressBarMain.Visible = false;
-        //	}
-        //}
-        //private Game HumanGame = new Game();
-        //private void gameBoardMain_MoveRequested(object sender, MoveRequestEventArgs e)
-        //{
-        //	if (HumanGame.IsOver)
-        //	{
-        //		MessageBox.Show("Game is over");
-        //		return;
-        //	}
+            //save the region...
+            DataAccess.SaveOrUpdateRegion(SelectedRegion);
 
-        //	if (HumanGame.IsMoveValid(e.Move))
-        //	{
-        //		HumanGame.MakeMove(e.Move);
+            //while the universe has not reached a heat death
+            while (true)
+            {
+                //check for cancel
+                if (backgroundWorkerMain.CancellationPending)
+                {
+                    //save before we bail...
+                    DataAccess.SaveOrUpdateRegion(SelectedRegion);
+                    return;
+                }
 
-        //		gameBoardMain.SetBoardState(this.HumanGame.GameBoardString);
-        //	}
-        //	else
-        //	{
-        //		MessageBox.Show("Invalid move to " + e.Move.ToInteger().ToString());
-        //	}
-        //}
+                //autosave if enabled
+                if (DateTime.Now >= nextSaveDate)
+                {
+                    lastSaveDate = DateTime.Now;
+                    DataAccess.UpdateRegion(SelectedRegion);
+                }
 
-        //private void backgroundWorkerMain_DoWork(object sender, DoWorkEventArgs e)
-        //{
-        //	while (true)
-        //	{
-        //		if (backgroundWorkerMain.CancellationPending == true)
-        //		{
-        //			break;
-        //		}
+                //report progress to user...
+                if (SelectedRegion.Age >= nextProgressReport)
+                {
+                    backgroundWorkerMain.ReportProgress(0, new BackgroundWorkerProgressReport()
+                    {
+                        LastSaveDate = lastSaveDate,
+                        RegionSummary= BuildRegionSummary(SelectedRegion)
+                    });
+                    nextProgressReport += reportProgressInterval;
+                }
 
-        //		for (int i = 0; i < 1000; i++)
-        //		{
-        //			if (backgroundWorkerMain.CancellationPending == true)
-        //			{
-        //				break;
-        //			}
+                //advance the passage of time...
+                SelectedRegion.Advance(advanceAmount);
+            }
+        }
 
-        //			this.Population.Evolve();
+        private RegionSummary BuildRegionSummary(IRegion region)
+        {
+            return new RegionSummary()
+            {
+                Id = region.Id,
+                Age = region.Age,
+                Name = region.Name,
+                PopulationSummaries = region.Populations.Select(a => new PopulationSummary()
+                {
+                    Id = a.Id,
+                    Name = a.Name,
+                    Size = a.Individuals.Count()
+                }).ToList()
+            };
+        }
 
-        //			if (i % 50 == 0)
-        //				backgroundWorkerMain.ReportProgress(0);
-        //		}
+        private int CalculateAdvanceOptimumForCurrentComputer()
+        {
+            //TODO use some logics yo...
+            return 1;
+        }
 
-        //		serializer.SerializeToFile(this.Population, @"C:\" + this.Population.Name);
-        //	}
-        //}
+        private DateTime GetNextSaveDate() => ApplicationSettings.AutomaticSaveFrequencyInSecondsEnabled ? DateTime.Now.AddSeconds(ApplicationSettings.AutomaticSaveFrequencyInSeconds) : DateTime.MaxValue;
 
-        //private void FormMain_Load(object sender, EventArgs e)
-        //{
-        //	JsonSerializer serializer = new JsonSerializer();
-        //	var population = serializer.DeserializeFromFile(@"c:\Population.04_04_2016.AllNight.pop");
+        private void backgroundWorkerMain_ProgressChanged(object sender, ProgressChangedEventArgs e)
+        {
+            var progress = e.UserState as BackgroundWorkerProgressReport;
 
+            toolStripStatusLabelGenerationCount.Text = $"Age: {progress.RegionSummary.Age}";
 
-        //	//this.Population = this.Context.CreatePopulation(population);
-        //}
+            var lastSavedDateString = progress.LastSaveDate.HasValue ? progress.LastSaveDate.Value.ToString() : "N/A";
 
-        //private void buttonSave_Click(object sender, EventArgs e)
-        //{
+            toolStripStatusLabelLastSaved.Text = $"Last saved: {lastSavedDateString}";
+        }
 
-        //}
+        private void backgroundWorkerMain_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            toolStripProgressBarRunning.Visible = false;
+            toolStripProgressBarRunning.MarqueeAnimationSpeed = 0;
+            toolStripProgressBarRunning.Value = 0;
+        }
+    }
 
-        //private void backgroundWorkerMain_ProgressChanged(object sender, ProgressChangedEventArgs e)
-        //{
-        //	if (this.progressBarMain.Value == this.progressBarMain.Maximum)
-        //		this.progressBarMain.Value = 0;
+    public class BackgroundWorkerProgressReport
+    {
+        public RegionSummary RegionSummary { get; set; }
+        public DateTime? LastSaveDate { get; set; }
+    }
 
-        //	this.progressBarMain.PerformStep();
-        //}
+    public class RegionSummary
+    {
+        public Guid Id { get; set; }
 
+        public string Name { get; set; }
+
+        public long Age { get; set; }
+
+        public int PopulationCount => PopulationSummaries.Count;
+
+        public List<PopulationSummary> PopulationSummaries { get; set; }
+    }
+
+    public class PopulationSummary
+    {
+        public Guid Id { get; set; }
+
+        public string Name { get; set; }
+
+        public int Size { get; set; }
     }
 }

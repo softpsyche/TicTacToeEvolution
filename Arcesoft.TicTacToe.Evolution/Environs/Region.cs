@@ -32,6 +32,8 @@ namespace Arcesoft.TicTacToe.Evolution.Environs
             try
             {
                 Task.WaitAll(Populations.Select(a => Task.Run(() => a.Evolve(years))).ToArray());
+
+                Age += years;
             }
             catch (Exception ex)
             {

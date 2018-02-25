@@ -22,6 +22,16 @@ namespace Arcesoft.TicTacToe.Evolution.Persistance.Repositories
             Settings = settings;
         }
 
+        public bool Exists(Guid id)
+        {
+            using (var db = Open())
+            {
+                var collection = db.GetCollection<RegionEntity>();
+
+                return collection.Exists(a => a.Id == id);
+            }
+        }
+
         public void Insert(RegionEntity regionEntity)
         {
             using (var db = Open())
@@ -32,6 +42,19 @@ namespace Arcesoft.TicTacToe.Evolution.Persistance.Repositories
 
                 collection.EnsureIndex(a => a.Name);
                 collection.EnsureIndex(a => a.DateCreated);
+            }
+        }
+
+        public bool Update(RegionEntity regionEntity)
+        {
+            using (var db = Open())
+            {
+                var collection = db.GetCollection<RegionEntity>();
+
+                return collection.Update(regionEntity);
+
+                //collection.EnsureIndex(a => a.Name);
+                //collection.EnsureIndex(a => a.DateCreated);
             }
         }
 
