@@ -33,6 +33,12 @@ namespace Arcesoft.TicTacToe.Evolution.Selection
         }
         private void EvaluateInternal(IGame game, Match match, Ledger ledger, bool includeDescription)
         {
+
+            if (game.TotalMovesMade > 4)
+            {
+                var boardy = game.GameBoardString;
+            }
+
             //is the game over?
             if (game.GameIsOver)
             {

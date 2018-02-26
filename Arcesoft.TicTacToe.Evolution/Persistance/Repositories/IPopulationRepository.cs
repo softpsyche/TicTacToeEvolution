@@ -9,7 +9,11 @@ namespace Arcesoft.TicTacToe.Evolution.Persistance.Repositories
 {
     internal interface IPopulationRepository
     {
+        bool Exists(Guid id);
+
         void Insert(PopulationEntity populationEntity);
+
+        bool Update(PopulationEntity populationEntity);
 
         bool Delete(Guid id);
 

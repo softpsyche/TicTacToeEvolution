@@ -44,6 +44,8 @@
             this.runToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pauseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripStatusLabelLastSaved = new System.Windows.Forms.ToolStripStatusLabel();
+            this.renameRegionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.tabControlPopulationSummaries = new System.Windows.Forms.TabControl();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerMain)).BeginInit();
             this.splitContainerMain.Panel2.SuspendLayout();
             this.splitContainerMain.SuspendLayout();
@@ -69,6 +71,7 @@
             // 
             // splitContainerMain.Panel2
             // 
+            this.splitContainerMain.Panel2.Controls.Add(this.tabControlPopulationSummaries);
             this.splitContainerMain.Panel2.Controls.Add(this.statusStripMain);
             this.splitContainerMain.Size = new System.Drawing.Size(856, 535);
             this.splitContainerMain.SplitterDistance = 224;
@@ -153,7 +156,8 @@
             // 
             this.commandsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.runToolStripMenuItem,
-            this.pauseToolStripMenuItem});
+            this.pauseToolStripMenuItem,
+            this.renameRegionToolStripMenuItem});
             this.commandsToolStripMenuItem.Name = "commandsToolStripMenuItem";
             this.commandsToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F5;
             this.commandsToolStripMenuItem.Size = new System.Drawing.Size(81, 20);
@@ -163,7 +167,7 @@
             // 
             this.runToolStripMenuItem.Name = "runToolStripMenuItem";
             this.runToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F5;
-            this.runToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.runToolStripMenuItem.Size = new System.Drawing.Size(154, 22);
             this.runToolStripMenuItem.Text = "Run";
             this.runToolStripMenuItem.Click += new System.EventHandler(this.runToolStripMenuItem_Click);
             // 
@@ -171,7 +175,7 @@
             // 
             this.pauseToolStripMenuItem.Name = "pauseToolStripMenuItem";
             this.pauseToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F8;
-            this.pauseToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.pauseToolStripMenuItem.Size = new System.Drawing.Size(154, 22);
             this.pauseToolStripMenuItem.Text = "Pause";
             this.pauseToolStripMenuItem.Click += new System.EventHandler(this.pauseToolStripMenuItem_Click);
             // 
@@ -180,6 +184,22 @@
             this.toolStripStatusLabelLastSaved.Name = "toolStripStatusLabelLastSaved";
             this.toolStripStatusLabelLastSaved.Size = new System.Drawing.Size(90, 17);
             this.toolStripStatusLabelLastSaved.Text = "Last Saved: N/A";
+            // 
+            // renameRegionToolStripMenuItem
+            // 
+            this.renameRegionToolStripMenuItem.Name = "renameRegionToolStripMenuItem";
+            this.renameRegionToolStripMenuItem.Size = new System.Drawing.Size(154, 22);
+            this.renameRegionToolStripMenuItem.Text = "Rename region";
+            this.renameRegionToolStripMenuItem.Click += new System.EventHandler(this.renameRegionToolStripMenuItem_Click);
+            // 
+            // tabControlPopulationSummaries
+            // 
+            this.tabControlPopulationSummaries.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tabControlPopulationSummaries.Location = new System.Drawing.Point(0, 0);
+            this.tabControlPopulationSummaries.Name = "tabControlPopulationSummaries";
+            this.tabControlPopulationSummaries.SelectedIndex = 0;
+            this.tabControlPopulationSummaries.Size = new System.Drawing.Size(852, 281);
+            this.tabControlPopulationSummaries.TabIndex = 1;
             // 
             // FormMain
             // 
@@ -225,6 +245,8 @@
         private System.Windows.Forms.ToolStripProgressBar toolStripProgressBarRunning;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabelGenerationCount;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabelLastSaved;
+        private System.Windows.Forms.ToolStripMenuItem renameRegionToolStripMenuItem;
+        private System.Windows.Forms.TabControl tabControlPopulationSummaries;
     }
 }
 

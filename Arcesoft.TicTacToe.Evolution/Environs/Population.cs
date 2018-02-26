@@ -121,5 +121,10 @@ namespace Arcesoft.TicTacToe.Evolution.Environs
 
             Individuals = newIndividual.Copy(settings.MaximumPopulationSize).ToList();
         }
+
+        public override string ToString()
+        {
+            return string.IsNullOrWhiteSpace(Name) ? Id.ToString() : Name;
+        }
     }
 }

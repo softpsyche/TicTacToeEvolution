@@ -77,6 +77,12 @@
     <Compile Include="Dialogs\DlgOpenRegion.Designer.cs">
       <DependentUpon>DlgOpenRegion.cs</DependentUpon>
     </Compile>
+    <Compile Include="Dialogs\DlgPlayGame.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\DlgPlayGame.Designer.cs">
+      <DependentUpon>DlgPlayGame.cs</DependentUpon>
+    </Compile>
     <Compile Include="Extensions.cs" />
     <Compile Include="FormMain.cs">
       <SubType>Form</SubType>
@@ -98,6 +104,12 @@
     <Compile Include="UserControls\UxPopulationSettings.Designer.cs">
       <DependentUpon>UxPopulationSettings.cs</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\UxPopulationSummary.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\UxPopulationSummary.Designer.cs">
+      <DependentUpon>UxPopulationSummary.cs</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\UxRegionSettings.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -109,6 +121,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\DlgOpenRegion.resx">
       <DependentUpon>DlgOpenRegion.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\DlgPlayGame.resx">
+      <DependentUpon>DlgPlayGame.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormMain.resx">
       <DependentUpon>FormMain.cs</DependentUpon>
@@ -130,6 +145,9 @@
       <DependentUpon>UxPopulationSettings.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Assets\PresetPopulationSettings.json" />
+    <EmbeddedResource Include="UserControls\UxPopulationSummary.resx">
+      <DependentUpon>UxPopulationSummary.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UserControls\UxRegionSettings.resx">
       <DependentUpon>UxRegionSettings.cs</DependentUpon>
     </EmbeddedResource>

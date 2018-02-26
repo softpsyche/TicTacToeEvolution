@@ -36,6 +36,23 @@ namespace Arcesoft.TicTacToe.Evolution.Persistance
             PopulationRepository.Insert(population.ToPopulationEntity());
         }
 
+        public bool UpdatePopulation(IPopulation population)
+        {
+            return PopulationRepository.Update(population.ToPopulationEntity());
+        }
+
+        public void SaveOrUpdatePopulation(IPopulation population)
+        {
+            if (PopulationRepository.Exists(population.Id))
+            {
+                UpdatePopulation(population);
+            }
+            else
+            {
+                SavePopulation(population);
+            }
+        }
+
         public bool DeletePopulation(Guid id)
         {
             return PopulationRepository.Delete(id);
@@ -61,11 +78,20 @@ namespace Arcesoft.TicTacToe.Evolution.Persistance
         public void SaveRegion(IRegion region)
         {
             RegionRepository.Insert(region.ToRegionEntity());
+
+            region.Populations?.ForEach(a => SaveOrUpdatePopulation(a));
         }
 
         public bool UpdateRegion(IRegion region)
         {
-            return RegionRepository.Update(region.ToRegionEntity());
+            var result = RegionRepository.Update(region.ToRegionEntity());
+
+            if (result)
+            {
+                region.Populations?.ForEach(a => SaveOrUpdatePopulation(a));
+            }
+
+            return result;
         }
 
         public void SaveOrUpdateRegion(IRegion region)
@@ -79,6 +105,8 @@ namespace Arcesoft.TicTacToe.Evolution.Persistance
                 SaveRegion(region);
             }
         }
+
+
 
         public void DeleteAllRegions()
         {

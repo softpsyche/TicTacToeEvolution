@@ -128,7 +128,25 @@ namespace Arcesoft.TicTacToe.Evolution.Organisms
         {
             return string.IsNullOrWhiteSpace(Name) ? Id.ToString() : $"{Name} - ({Id})";
         }
+        public string ToDetailedString()
+        {
+            //return string.IsNullOrWhiteSpace(Name) ? Id.ToString() : $"{Name} - ({Id})";
+            StringBuilder sb = new StringBuilder();
+
+            sb.AppendLine(ToString());
+
+            var grouped = Genes.GroupBy(a => a.Turn).OrderBy(a => a.Key.ToInteger());
+
+            var responses = grouped.Select(a => new {
+                Turn = a.Key,
+                Genes = a.OrderBy(b=>b.Priority)
+            });
+
+            responses.ForEach(a => sb.AppendLine($"{a.Turn}:{a.Genes.First().GetAlleles().ToAlleleString()}"));
+
+            return sb.ToString();
+        }
 
 
-	}
+    }
 }

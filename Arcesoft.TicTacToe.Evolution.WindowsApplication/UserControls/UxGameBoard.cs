@@ -30,6 +30,8 @@ namespace Arcesoft.TicTacToe.Evolution.WindowsApplication.UserControls
                 }
             }
         }
+        //public IArtificialIntelligence PlayerX
+
         private String BoardState { get; set; }
         public UxGameBoard()
         {

@@ -52,9 +52,6 @@ namespace Arcesoft.TicTacToe.Evolution.Persistance.Repositories
                 var collection = db.GetCollection<RegionEntity>();
 
                 return collection.Update(regionEntity);
-
-                //collection.EnsureIndex(a => a.Name);
-                //collection.EnsureIndex(a => a.DateCreated);
             }
         }
 

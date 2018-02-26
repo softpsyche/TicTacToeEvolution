@@ -1,8 +1,11 @@
 ﻿using Arcesoft.TicTacToe.Evolution.Environs;
 using Arcesoft.TicTacToe.Evolution.Persistance;
+using Arcesoft.TicTacToe.Evolution.Reproduction;
+using Arcesoft.TicTacToe.Evolution.Selection;
 using Arcesoft.TicTacToe.Evolution.WindowsApplication.Assets;
 using Arcesoft.TicTacToe.Evolution.WindowsApplication.DependencyInjection;
 using Arcesoft.TicTacToe.Evolution.WindowsApplication.Dialogs;
+using Arcesoft.TicTacToe.Evolution.WindowsApplication.UserControls;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -36,18 +39,30 @@ namespace Arcesoft.TicTacToe.Evolution.WindowsApplication
 
         private void FormMain_Load(object sender, EventArgs e)
         {
-            var region = EvolutionFactory.CreateRegion(new RegionSettings()
+            var lastRegion = DataAccess.SearchRegionsMostRecent().FirstOrDefault();
+
+            if (lastRegion == null)
             {
-                ExternalMigrationEnabled = true,
-                InternalMigrationEnabled = true
-            });
+                var region = EvolutionFactory.CreateRegion(new RegionSettings()
+                {
+                    ExternalMigrationEnabled = true,
+                    InternalMigrationEnabled = true
+                });
 
-            region.Name = $@"{Environment.MachineName}/{Environment.UserName} - {DateTime.Now.ToShortDateString()}";
+                region.Name = $@"{Environment.MachineName}/{Environment.UserName} - {DateTime.Now.ToShortDateString()}";
 
-            region.AddPopulations(new[] { EvolutionFactory.CreatePopulation(EmbeddedResources.PresetPopulationSettings.First().Settings, "First") });
-            region.AddPopulations(new[] { EvolutionFactory.CreatePopulation(EmbeddedResources.PresetPopulationSettings.First().Settings, "Second") });
+                region.AddPopulations(new[] { EvolutionFactory.CreatePopulation(EmbeddedResources.PresetPopulationSettings.First().Settings, "First") });
+                region.AddPopulations(new[] { EvolutionFactory.CreatePopulation(EmbeddedResources.PresetPopulationSettings.Skip(1).First().Settings, "Second") });
+                region.AddPopulations(new[] { EvolutionFactory.CreatePopulation(EmbeddedResources.PresetPopulationSettings.Skip(2).First().Settings, "Third") });
 
-            SetCurrentRegion(region);
+                region.Advance();
+
+                SetCurrentRegion(region);
+            }
+            else
+            {
+                SetCurrentRegion(DataAccess.TryFindRegion(lastRegion.Id));
+            }
         }
 
 
@@ -60,7 +75,43 @@ namespace Arcesoft.TicTacToe.Evolution.WindowsApplication
         {
             SelectedRegion = region;
 
+            BindName();
+
+            BindPopulationTabs();
+        }
+
+        private void BindName()
+        {
             Text = $"Evott - ({SelectedRegion.Name})";
+        }
+
+        private void BindPopulationTabs()
+        {
+            tabControlPopulationSummaries.TabPages.Clear();
+
+            SelectedRegion.Populations.ForEach(a =>
+            {
+                var tabPage = new TabPage(a.ToString());
+                var uxPopulationSummary = new UxPopulationSummary();
+                uxPopulationSummary.Dock = DockStyle.Fill;
+                uxPopulationSummary.PlayRequested += UxPopulationSummary_PlayRequested;
+                uxPopulationSummary.UpdateSummary(new PopulationSummary(a));
+
+                tabPage.Controls.Add(uxPopulationSummary);
+
+                tabControlPopulationSummaries.TabPages.Add(tabPage);
+            });
+        }
+
+        private void UxPopulationSummary_PlayRequested(object sender, EventArgs e)
+        {
+            if (backgroundWorkerMain.IsBusy)
+            {
+                MessageBox.Show("Unable to do this while game is running");
+            }
+
+            var requestor = sender as UxPopulationSummary;
+            var popId = requestor.PopulationSummary.Id;
         }
 
         private void newToolStripMenuItem_Click(object sender, EventArgs e)
@@ -75,14 +126,9 @@ namespace Arcesoft.TicTacToe.Evolution.WindowsApplication
 
         private void saveToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            try
-            {
-                DataAccess.SaveRegion(SelectedRegion);
-            }
-            catch (Exception ex)
-            {
+            DataAccess.SaveOrUpdateRegion(SelectedRegion);
 
-            }
+            
         }
 
         private void openToolStripMenuItem_Click(object sender, EventArgs e)
@@ -143,11 +189,11 @@ namespace Arcesoft.TicTacToe.Evolution.WindowsApplication
             DateTime? lastSaveDate = null;
             var nextSaveDate = GetNextSaveDate();
             var reportProgressInterval = ApplicationSettings.ReportProgressIntervalInGenerations;
-            long nextProgressReport = 1;
+            long nextProgressReport = SelectedRegion.Age + 1;
             var advanceAmount = CalculateAdvanceOptimumForCurrentComputer();
 
             //save the region...
-            DataAccess.SaveOrUpdateRegion(SelectedRegion);
+            //DataAccess.SaveOrUpdateRegion(SelectedRegion);
 
             //while the universe has not reached a heat death
             while (true)
@@ -165,6 +211,7 @@ namespace Arcesoft.TicTacToe.Evolution.WindowsApplication
                 {
                     lastSaveDate = DateTime.Now;
                     DataAccess.UpdateRegion(SelectedRegion);
+                    nextSaveDate = GetNextSaveDate();
                 }
 
                 //report progress to user...
@@ -190,12 +237,7 @@ namespace Arcesoft.TicTacToe.Evolution.WindowsApplication
                 Id = region.Id,
                 Age = region.Age,
                 Name = region.Name,
-                PopulationSummaries = region.Populations.Select(a => new PopulationSummary()
-                {
-                    Id = a.Id,
-                    Name = a.Name,
-                    Size = a.Individuals.Count()
-                }).ToList()
+                PopulationSummaries = region.Populations.Select(a => new PopulationSummary(a)).ToList()
             };
         }
 
@@ -223,6 +265,17 @@ namespace Arcesoft.TicTacToe.Evolution.WindowsApplication
             toolStripProgressBarRunning.Visible = false;
             toolStripProgressBarRunning.MarqueeAnimationSpeed = 0;
             toolStripProgressBarRunning.Value = 0;
+        }
+
+        private void renameRegionToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            string newName = SelectedRegion.Name;
+            if (this.InputBox("Rename region", "Enter new region name", ref newName) == DialogResult.OK)
+            {
+                SelectedRegion.Name = newName;
+
+                BindName();
+            }
         }
     }
 
@@ -252,5 +305,29 @@ namespace Arcesoft.TicTacToe.Evolution.WindowsApplication
         public string Name { get; set; }
 
         public int Size { get; set; }
+
+        public long Generation { get; set; }
+
+        public int GenesPerIndividual { get; set; }
+
+        public BreederType BreederType { get; set; }
+
+        public FitnessEvaluatorType FitnessEvaluatorType { get; set; }
+
+        public PopulationSummary()
+        {
+
+        }
+        public PopulationSummary(IPopulation population)
+        {
+            Id = population.Id;
+            Name = population.Name;
+            Generation = population.Generation;
+            Size = population.Individuals.Count();
+            GenesPerIndividual = population.Settings.MaximumGenesPerIndividual;
+            BreederType = population.Settings.BreederType;
+            FitnessEvaluatorType = population.Settings.FitnessEvaluatorType;
+        }
+
     }
 }
