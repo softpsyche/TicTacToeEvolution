@@ -31,9 +31,11 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormMain));
             this.backgroundWorkerMain = new System.ComponentModel.BackgroundWorker();
             this.splitContainerMain = new System.Windows.Forms.SplitContainer();
+            this.tabControlPopulationSummaries = new System.Windows.Forms.TabControl();
             this.statusStripMain = new System.Windows.Forms.StatusStrip();
-            this.toolStripProgressBarRunning = new System.Windows.Forms.ToolStripProgressBar();
             this.toolStripStatusLabelGenerationCount = new System.Windows.Forms.ToolStripStatusLabel();
+            this.toolStripProgressBarRunning = new System.Windows.Forms.ToolStripProgressBar();
+            this.toolStripStatusLabelLastSaved = new System.Windows.Forms.ToolStripStatusLabel();
             this.menuStripMain = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.newToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -43,9 +45,8 @@
             this.commandsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.runToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pauseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripStatusLabelLastSaved = new System.Windows.Forms.ToolStripStatusLabel();
             this.renameRegionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.tabControlPopulationSummaries = new System.Windows.Forms.TabControl();
+            this.playHumanVHumanToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerMain)).BeginInit();
             this.splitContainerMain.Panel2.SuspendLayout();
             this.splitContainerMain.SuspendLayout();
@@ -77,6 +78,15 @@
             this.splitContainerMain.SplitterDistance = 224;
             this.splitContainerMain.TabIndex = 2;
             // 
+            // tabControlPopulationSummaries
+            // 
+            this.tabControlPopulationSummaries.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tabControlPopulationSummaries.Location = new System.Drawing.Point(0, 0);
+            this.tabControlPopulationSummaries.Name = "tabControlPopulationSummaries";
+            this.tabControlPopulationSummaries.SelectedIndex = 0;
+            this.tabControlPopulationSummaries.Size = new System.Drawing.Size(852, 281);
+            this.tabControlPopulationSummaries.TabIndex = 1;
+            // 
             // statusStripMain
             // 
             this.statusStripMain.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -89,6 +99,12 @@
             this.statusStripMain.TabIndex = 0;
             this.statusStripMain.Text = "statusStrip1";
             // 
+            // toolStripStatusLabelGenerationCount
+            // 
+            this.toolStripStatusLabelGenerationCount.Name = "toolStripStatusLabelGenerationCount";
+            this.toolStripStatusLabelGenerationCount.Size = new System.Drawing.Size(40, 17);
+            this.toolStripStatusLabelGenerationCount.Text = "Age: 0";
+            // 
             // toolStripProgressBarRunning
             // 
             this.toolStripProgressBarRunning.Name = "toolStripProgressBarRunning";
@@ -96,11 +112,11 @@
             this.toolStripProgressBarRunning.Style = System.Windows.Forms.ProgressBarStyle.Marquee;
             this.toolStripProgressBarRunning.Visible = false;
             // 
-            // toolStripStatusLabelGenerationCount
+            // toolStripStatusLabelLastSaved
             // 
-            this.toolStripStatusLabelGenerationCount.Name = "toolStripStatusLabelGenerationCount";
-            this.toolStripStatusLabelGenerationCount.Size = new System.Drawing.Size(40, 17);
-            this.toolStripStatusLabelGenerationCount.Text = "Age: 0";
+            this.toolStripStatusLabelLastSaved.Name = "toolStripStatusLabelLastSaved";
+            this.toolStripStatusLabelLastSaved.Size = new System.Drawing.Size(90, 17);
+            this.toolStripStatusLabelLastSaved.Text = "Last Saved: N/A";
             // 
             // menuStripMain
             // 
@@ -127,28 +143,28 @@
             // newToolStripMenuItem
             // 
             this.newToolStripMenuItem.Name = "newToolStripMenuItem";
-            this.newToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.newToolStripMenuItem.Size = new System.Drawing.Size(103, 22);
             this.newToolStripMenuItem.Text = "New";
             this.newToolStripMenuItem.Click += new System.EventHandler(this.newToolStripMenuItem_Click);
             // 
             // saveToolStripMenuItem
             // 
             this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
-            this.saveToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.saveToolStripMenuItem.Size = new System.Drawing.Size(103, 22);
             this.saveToolStripMenuItem.Text = "Save";
             this.saveToolStripMenuItem.Click += new System.EventHandler(this.saveToolStripMenuItem_Click);
             // 
             // openToolStripMenuItem
             // 
             this.openToolStripMenuItem.Name = "openToolStripMenuItem";
-            this.openToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.openToolStripMenuItem.Size = new System.Drawing.Size(103, 22);
             this.openToolStripMenuItem.Text = "Open";
             this.openToolStripMenuItem.Click += new System.EventHandler(this.openToolStripMenuItem_Click);
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(103, 22);
             this.exitToolStripMenuItem.Text = "Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
@@ -157,7 +173,8 @@
             this.commandsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.runToolStripMenuItem,
             this.pauseToolStripMenuItem,
-            this.renameRegionToolStripMenuItem});
+            this.renameRegionToolStripMenuItem,
+            this.playHumanVHumanToolStripMenuItem});
             this.commandsToolStripMenuItem.Name = "commandsToolStripMenuItem";
             this.commandsToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F5;
             this.commandsToolStripMenuItem.Size = new System.Drawing.Size(81, 20);
@@ -167,7 +184,7 @@
             // 
             this.runToolStripMenuItem.Name = "runToolStripMenuItem";
             this.runToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F5;
-            this.runToolStripMenuItem.Size = new System.Drawing.Size(154, 22);
+            this.runToolStripMenuItem.Size = new System.Drawing.Size(212, 22);
             this.runToolStripMenuItem.Text = "Run";
             this.runToolStripMenuItem.Click += new System.EventHandler(this.runToolStripMenuItem_Click);
             // 
@@ -175,31 +192,24 @@
             // 
             this.pauseToolStripMenuItem.Name = "pauseToolStripMenuItem";
             this.pauseToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F8;
-            this.pauseToolStripMenuItem.Size = new System.Drawing.Size(154, 22);
+            this.pauseToolStripMenuItem.Size = new System.Drawing.Size(212, 22);
             this.pauseToolStripMenuItem.Text = "Pause";
             this.pauseToolStripMenuItem.Click += new System.EventHandler(this.pauseToolStripMenuItem_Click);
-            // 
-            // toolStripStatusLabelLastSaved
-            // 
-            this.toolStripStatusLabelLastSaved.Name = "toolStripStatusLabelLastSaved";
-            this.toolStripStatusLabelLastSaved.Size = new System.Drawing.Size(90, 17);
-            this.toolStripStatusLabelLastSaved.Text = "Last Saved: N/A";
             // 
             // renameRegionToolStripMenuItem
             // 
             this.renameRegionToolStripMenuItem.Name = "renameRegionToolStripMenuItem";
-            this.renameRegionToolStripMenuItem.Size = new System.Drawing.Size(154, 22);
+            this.renameRegionToolStripMenuItem.Size = new System.Drawing.Size(212, 22);
             this.renameRegionToolStripMenuItem.Text = "Rename region";
             this.renameRegionToolStripMenuItem.Click += new System.EventHandler(this.renameRegionToolStripMenuItem_Click);
             // 
-            // tabControlPopulationSummaries
+            // playHumanVHumanToolStripMenuItem
             // 
-            this.tabControlPopulationSummaries.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tabControlPopulationSummaries.Location = new System.Drawing.Point(0, 0);
-            this.tabControlPopulationSummaries.Name = "tabControlPopulationSummaries";
-            this.tabControlPopulationSummaries.SelectedIndex = 0;
-            this.tabControlPopulationSummaries.Size = new System.Drawing.Size(852, 281);
-            this.tabControlPopulationSummaries.TabIndex = 1;
+            this.playHumanVHumanToolStripMenuItem.Name = "playHumanVHumanToolStripMenuItem";
+            this.playHumanVHumanToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F12;
+            this.playHumanVHumanToolStripMenuItem.Size = new System.Drawing.Size(212, 22);
+            this.playHumanVHumanToolStripMenuItem.Text = "Play human v human";
+            this.playHumanVHumanToolStripMenuItem.Click += new System.EventHandler(this.playHumanVHumanToolStripMenuItem_Click);
             // 
             // FormMain
             // 
@@ -247,6 +257,7 @@
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabelLastSaved;
         private System.Windows.Forms.ToolStripMenuItem renameRegionToolStripMenuItem;
         private System.Windows.Forms.TabControl tabControlPopulationSummaries;
+        private System.Windows.Forms.ToolStripMenuItem playHumanVHumanToolStripMenuItem;
     }
 }
 

@@ -14,20 +14,46 @@ namespace Arcesoft.TicTacToe.Evolution.WindowsApplication.Dialogs
     internal partial class DlgPlayGame : Form
     {
         private IGame Game { get; set; }
+        public IArtificialIntelligence PlayerXAI { get; set; }
+        public IArtificialIntelligence PlayerOAI { get; set; }
 
         public DlgPlayGame(IGame game)
         {
             InitializeComponent();
 
-            Game = game;
+            if (this.InDesignMode())
+            {
+                return;
+            }
 
+            Game = game;
             uxGameBoardMain.Game = Game;
         }
 
-        public static void Play(FactoryContainer factoryContainer)
+        private void DlgPlayGame_Load(object sender, EventArgs e)
+        {
+            if (this.InDesignMode())
+            {
+                return;
+            }
+        }
+
+        private void buttonCreate_Click(object sender, EventArgs e)
+        {
+            Game.Reset();
+        }
+
+        private void buttonCancel_Click(object sender, EventArgs e)
+        {
+            DialogResult = DialogResult.Cancel;
+        }
+
+        public static void Play(FactoryContainer factoryContainer, IArtificialIntelligence playerXAI = null, IArtificialIntelligence playerOAI = null)
         {
             using (var dlg = factoryContainer.GetInstance<DlgPlayGame>())
             {
+                dlg.PlayerXAI = playerXAI;
+                dlg.PlayerOAI = playerOAI;
                 dlg.ShowDialog();
             }
         }

@@ -23,11 +23,11 @@ namespace Arcesoft.TicTacToe.ArtificialIntelligence.Strategies
             _random = random;
         }
 
-        public void MakeMove(IGame game, bool randomlySelectIfMoreThanOne = true)
+        public bool TryMakeMove(IGame game, bool randomlySelectIfMoreThanOne = true)
         {
             if (game.GameIsOver)
             {
-                throw new GameException($"Unable to make a move because the game is over.");
+                return false;
             }
 
             var moves = _moveDataAccess.FindMoveResponses(game.GameBoardString, game.CurrentPlayer);
@@ -43,6 +43,15 @@ namespace Arcesoft.TicTacToe.ArtificialIntelligence.Strategies
             }
 
             game.Move(moveResponse.Response);
+
+            return true;
+        }
+        public void MakeMove(IGame game, bool randomlySelectIfMoreThanOne = true)
+        {
+            if (TryMakeMove(game,randomlySelectIfMoreThanOne) == false)
+            {
+                throw new GameException($"Unable to make a move because the game is over.");
+            }
         }
 
         public IEnumerable<MoveResult> FindMoveResults(IGame game)

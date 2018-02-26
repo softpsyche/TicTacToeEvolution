@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Arcesoft.TicTacToe.Entities;
+using System.Threading;
 
 namespace Arcesoft.TicTacToe.Evolution.WindowsApplication.UserControls
 {
@@ -25,35 +26,34 @@ namespace Arcesoft.TicTacToe.Evolution.WindowsApplication.UserControls
             {
                 if (ReferenceEquals(value, _game) == false)
                 {
-                    _game = Game;
+                    UnregisterEvents(_game);
+                    _game = value;
+                    RegisterEvents(_game);
+
+                    _game.Reset();
+
                     Invalidate();
                 }
             }
         }
-        //public IArtificialIntelligence PlayerX
-
+        public IArtificialIntelligence PlayerX { get; set; }
+        public IArtificialIntelligence PlayerO { get; set; }
+        public int DelayBetweenAiMovesInMilliseconds { get; set; } = 1000;
+        private bool IsCurrentPlayerHuman => Game.CurrentPlayer == Player.X ? PlayerX == null : PlayerO == null;
+        private IArtificialIntelligence CurrentAI => Game.CurrentPlayer == Player.X ? PlayerX : PlayerO;
         private String BoardState { get; set; }
-        public UxGameBoard()
-        {
-            InitializeComponent();
-            this.DoubleBuffered = true;
-
-            //this.BoardState = "XXXOOOXXX";
-            this.BlackPen = new Pen(Brushes.Black, 10);
-        }
-
         private Int32 SquareWidth
         {
             get
             {
-                return this.Width / 3;
+                return this.panelBoard.Width / 3;
             }
         }
         private Int32 SquareHeight
         {
             get
             {
-                return this.Height / 3;
+                return this.panelBoard.Height / 3;
             }
         }
         private Pen BlackPen
@@ -62,7 +62,65 @@ namespace Arcesoft.TicTacToe.Evolution.WindowsApplication.UserControls
             set;
         }
 
-        protected override void OnPaint(PaintEventArgs e)
+        public UxGameBoard()
+        {
+            InitializeComponent();
+            DoubleBuffered = true;
+
+            //this.BoardState = "XXXOOOXXX";
+            this.BlackPen = new Pen(Brushes.Black, 10);
+        }
+
+        private void UnregisterEvents(IGame game)
+        {
+            if (game != null)
+            {
+                game.GameStateChanged -= Game_GameStateChanged;
+            }
+        }
+
+        private void RegisterEvents(IGame game)
+        {
+            if (game != null)
+            {
+                game.GameStateChanged += Game_GameStateChanged;
+            }
+        }
+
+        private void Game_GameStateChanged(object sender, GameStateChangedEventArgs e)
+        {
+            if (Game.GameIsOver)
+            {
+                //do game over junk? render
+                labelGameState.Text = $"Game state: {Game.GameState}";
+
+                //feedback
+                labelFeedback.Text = $"Game over";
+
+                return;
+            }
+
+            //if we are waiting on a human...bail out
+            if (IsCurrentPlayerHuman)
+            {
+                return;
+            }
+
+            Thread.Sleep(DelayBetweenAiMovesInMilliseconds);
+
+            var moved = CurrentAI.TryMakeMove(Game);
+
+            if (moved == false)
+            {
+                //do game over junk? render
+                labelGameState.Text = $"Game state: " + (Game.CurrentPlayer == Player.X? GameState.OWin.ToString(): GameState.XWin.ToString());
+
+                //feedback
+                labelFeedback.Text = $"AI unable to move...";
+            }
+        }
+
+        private void panelBoard_Paint(object sender, PaintEventArgs e)
         {
             base.OnPaint(e);
 
@@ -83,22 +141,27 @@ namespace Arcesoft.TicTacToe.Evolution.WindowsApplication.UserControls
             {
                 for (Int32 x = 0; x < 3; x++)
                 {
-                    DrawSquare(e, GetBoardCharacter(x, y), x, y);
+                    var squareString = Game.GameBoardString[x + (y * 3)].ToString();
+
+                    DrawSquare(e, squareString, x, y);
                 }
             }
         }
 
-        private String GetBoardCharacter(int x, int y)
-        {
-            var dude = (y * 3);
+        //private String GetBoardCharacter(int x, int y)
+        //{
+        //    var charIndex = x + (y * 3);
 
-            if (BoardState != null && BoardState.Length > dude)
-            {
-                return BoardState[dude].ToString();
-            }
-
-            return String.Empty;
-        }
+        //    switch (Game.GameBoardString[charIndex])
+        //    {
+        //        case BoardConstants.SquareOChar:
+        //            return BoardConstants.SquareOString;
+        //        case BoardConstants.SquareXChar:
+        //            return BoardConstants.SquareXString;
+        //        default:
+        //            return string.Empty;
+        //    }
+        //}
 
         private void DrawSquare(PaintEventArgs e, String character, Int32 x, Int32 y)
         {
@@ -121,18 +184,19 @@ namespace Arcesoft.TicTacToe.Evolution.WindowsApplication.UserControls
             }
         }
 
-        private void GameBoard_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void GameBoard_MouseUp(object sender, MouseEventArgs e)
         {
+            //if the current player is not human, throw this away.
+            if (IsCurrentPlayerHuman == false)
+            {
+                return;
+            }
+
             Int32 xCoord;
             Int32 yCoord;
 
-            var height = this.Height / 3;
-            var width = this.Width / 3;
+            var height = panelBoard.Height / 3;
+            var width = panelBoard.Width / 3;
 
             if (e.Location.X < width)
             {
@@ -163,14 +227,24 @@ namespace Arcesoft.TicTacToe.Evolution.WindowsApplication.UserControls
             MakeMove(yCoord, xCoord);
         }
 
+        private void MakeMove(int yCoord, int xCoord)
+        {
+            var move = ToMove(yCoord, xCoord);
+
+            if (Game.IsMoveValid(move))
+            {
+                Game.Move(move);
+                Invalidate(true);
+            }
+            else
+            {
+                labelFeedback.Text = $"Invalid move '{move}'";
+            }
+        }
+
         private Move ToMove(int yCoord, int xCoord)
         {
             return (Move)((yCoord * 3) + xCoord);
-        }
-
-        private void MakeMove(int yCoord, int xCoord)
-        {
-
         }
     }
 }

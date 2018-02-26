@@ -51,6 +51,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ArtificialIntelligence\IndividualArtificialIntelligence.cs" />
     <Compile Include="DependencyInjection\Binder.cs" />
     <Compile Include="DependencyInjection\FactoryContainer.cs" />
     <Compile Include="Environs\IPopulation.cs" />

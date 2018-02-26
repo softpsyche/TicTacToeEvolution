@@ -277,6 +277,11 @@ namespace Arcesoft.TicTacToe.Evolution.WindowsApplication
                 BindName();
             }
         }
+
+        private void playHumanVHumanToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            DlgPlayGame.Play(FactoryContainer);
+        }
     }
 
     public class BackgroundWorkerProgressReport
