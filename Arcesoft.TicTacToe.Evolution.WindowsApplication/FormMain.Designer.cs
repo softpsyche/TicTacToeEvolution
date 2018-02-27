@@ -77,8 +77,8 @@
             // 
             this.splitContainerMain.Panel2.Controls.Add(this.tabControlPopulationSummaries);
             this.splitContainerMain.Panel2.Controls.Add(this.statusStripMain);
-            this.splitContainerMain.Size = new System.Drawing.Size(856, 535);
-            this.splitContainerMain.SplitterDistance = 224;
+            this.splitContainerMain.Size = new System.Drawing.Size(916, 690);
+            this.splitContainerMain.SplitterDistance = 288;
             this.splitContainerMain.TabIndex = 2;
             // 
             // tabControlPopulationSummaries
@@ -87,7 +87,7 @@
             this.tabControlPopulationSummaries.Location = new System.Drawing.Point(0, 0);
             this.tabControlPopulationSummaries.Name = "tabControlPopulationSummaries";
             this.tabControlPopulationSummaries.SelectedIndex = 0;
-            this.tabControlPopulationSummaries.Size = new System.Drawing.Size(852, 281);
+            this.tabControlPopulationSummaries.Size = new System.Drawing.Size(912, 372);
             this.tabControlPopulationSummaries.TabIndex = 1;
             // 
             // statusStripMain
@@ -96,9 +96,9 @@
             this.toolStripStatusLabelGenerationCount,
             this.toolStripProgressBarRunning,
             this.toolStripStatusLabelLastSaved});
-            this.statusStripMain.Location = new System.Drawing.Point(0, 281);
+            this.statusStripMain.Location = new System.Drawing.Point(0, 372);
             this.statusStripMain.Name = "statusStripMain";
-            this.statusStripMain.Size = new System.Drawing.Size(852, 22);
+            this.statusStripMain.Size = new System.Drawing.Size(912, 22);
             this.statusStripMain.TabIndex = 0;
             this.statusStripMain.Text = "statusStrip1";
             // 
@@ -128,7 +128,7 @@
             this.commandsToolStripMenuItem});
             this.menuStripMain.Location = new System.Drawing.Point(0, 0);
             this.menuStripMain.Name = "menuStripMain";
-            this.menuStripMain.Size = new System.Drawing.Size(856, 24);
+            this.menuStripMain.Size = new System.Drawing.Size(916, 24);
             this.menuStripMain.TabIndex = 3;
             this.menuStripMain.Text = "menuStrip1";
             // 
@@ -245,7 +245,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(856, 559);
+            this.ClientSize = new System.Drawing.Size(916, 714);
             this.Controls.Add(this.splitContainerMain);
             this.Controls.Add(this.menuStripMain);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));

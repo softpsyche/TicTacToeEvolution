@@ -10,8 +10,8 @@ namespace Arcesoft.TicTacToe.Evolution.Selection
     public class Match
     {
         public Guid Id { get; private set; }
-        public Individual PlayerX { get; set; }
-        public Individual PlayerO { get; set; }
+        public IArtificialIntelligence PlayerX { get; set; }
+        public IArtificialIntelligence PlayerO { get; set; }
 
         public Match()
         {

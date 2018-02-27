@@ -12,7 +12,9 @@ namespace Arcesoft.TicTacToe.Data
         void DeleteAllMoveResponses();
 
         void InsertMoveResponses(IEnumerable<MoveResponse> moveResponses);
-        
+
+        IEnumerable<MoveResponse> FindAllMoveResponses();
+
         IEnumerable<MoveResponse> FindMoveResponses(string currentBoardPosition, Player currentPlayer);
     }
 }

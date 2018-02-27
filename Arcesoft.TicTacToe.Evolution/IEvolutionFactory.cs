@@ -1,4 +1,5 @@
 ﻿using Arcesoft.TicTacToe.Evolution.Environs;
+using Arcesoft.TicTacToe.Evolution.Organisms;
 using Arcesoft.TicTacToe.Evolution.Reproduction;
 using Arcesoft.TicTacToe.Evolution.Selection;
 using System;

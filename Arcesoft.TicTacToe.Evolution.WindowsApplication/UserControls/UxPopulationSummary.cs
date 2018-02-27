@@ -7,14 +7,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Arcesoft.TicTacToe.Entities;
 
 namespace Arcesoft.TicTacToe.Evolution.WindowsApplication.UserControls
 {
     public partial class UxPopulationSummary : UserControl
     {
-        public event EventHandler<EventArgs> PlayRequested;
+        public event EventHandler<PlayRequestedEventArgs> PlayRequested;
 
-        public PopulationSummary PopulationSummary  { get; private set;}
+        public PopulationSummary PopulationSummary { get; private set; }
 
         public UxPopulationSummary()
         {
@@ -34,14 +35,31 @@ namespace Arcesoft.TicTacToe.Evolution.WindowsApplication.UserControls
             PopulationSummary = summary;
         }
 
-        private void buttonPlayAgainst_Click(object sender, EventArgs e)
+        private void buttonPlayAsX_Click(object sender, EventArgs e)
         {
-            OnPlayRequested();
+            OnPlayRequested(Player.X, PopulationSummary.Id);
         }
 
-        private void OnPlayRequested()
+        private void buttonPlayAsO_Click(object sender, EventArgs e)
         {
-            PlayRequested?.Invoke(this, new EventArgs());
+            OnPlayRequested(Player.O, PopulationSummary.Id);
         }
+
+        private void OnPlayRequested(Player player, Guid id)
+        {
+            PlayRequested?.Invoke(this, new PlayRequestedEventArgs()
+            {
+                Player = player,
+                PopulationId = id
+            });
+        }
+
+
+    }
+
+    public class PlayRequestedEventArgs : EventArgs
+    {
+        public Player Player { get; set; }
+        public Guid PopulationId { get; set; }
     }
 }

@@ -9,6 +9,7 @@ namespace Arcesoft.TicTacToe.Evolution.Selection
 {
     public enum FitnessEvaluatorType
     {
-        AllOrNothing
+        AllOrNothing,
+        Godly
     }
 }

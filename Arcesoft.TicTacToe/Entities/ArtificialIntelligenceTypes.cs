@@ -10,5 +10,6 @@ namespace Arcesoft.TicTacToe.Entities
     {
         public const string BruteForce = nameof(BruteForce);
         public const string OmniscientGod = nameof(OmniscientGod);
+        public const string LightningGod = nameof(LightningGod);
     }
 }

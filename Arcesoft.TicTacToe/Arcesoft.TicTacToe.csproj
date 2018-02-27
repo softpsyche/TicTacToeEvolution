@@ -49,6 +49,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ArtificialIntelligence\Strategies\LightningGod.cs" />
     <Compile Include="ArtificialIntelligence\Strategies\BruteForce.cs" />
     <Compile Include="Database\BoardStateComparer.cs" />
     <Compile Include="Database\ILiteDatabase.cs" />

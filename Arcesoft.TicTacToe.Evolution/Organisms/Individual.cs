@@ -10,14 +10,14 @@ namespace Arcesoft.TicTacToe.Evolution.Organisms
     /// <summary>
     /// TODO: parent ids??
     /// </summary>
-	public class Individual 
+	public class Individual : IArtificialIntelligence
     {
         public Guid Id { get; internal set; } = Guid.NewGuid();
         public string Name { get; set; }
-        
+
         private List<Gene> _geneList = new List<Gene>();
         private List<Guid> _parentIdList = null;
-		public IEnumerable<Gene> Genes
+        public IEnumerable<Gene> Genes
         {
             get
             {
@@ -76,40 +76,40 @@ namespace Arcesoft.TicTacToe.Evolution.Organisms
             return FindResponses(game.GameBoardString, game.Turn(), maximumToFind);
         }
         public IEnumerable<Move> FindResponses(String gameBoardState, Turn turn, Int32 maximumToFind = Int32.MaxValue)
-		{
+        {
             List<Move> responses = new List<Move>();
-			var genesForCurrentMove = Genes
-				.Where(a => a.Turn == turn)
-				.OrderBy(a => a.Priority)//sort here maybe move this out to an eager sort later.
-				.ToArray();
+            var genesForCurrentMove = Genes
+                .Where(a => a.Turn == turn)
+                .OrderBy(a => a.Priority)//sort here maybe move this out to an eager sort later.
+                .ToArray();
 
-			//assume list is sorted
-			foreach (var gene in genesForCurrentMove)
-			{
-				//try to match on each gene...
-				if (gene.IsMatch(gameBoardState))
-				{
-					//get the response for caching...
-					var response = gene.Response;
+            //assume list is sorted
+            foreach (var gene in genesForCurrentMove)
+            {
+                //try to match on each gene...
+                if (gene.IsMatch(gameBoardState))
+                {
+                    //get the response for caching...
+                    var response = gene.Response;
 
-					if (response.HasValue)
-					{
-						responses.Add(response.Value);
+                    if (response.HasValue)
+                    {
+                        responses.Add(response.Value);
 
-						if (responses.Count >= maximumToFind)
-						{
-							return responses;
-						}
+                        if (responses.Count >= maximumToFind)
+                        {
+                            return responses;
+                        }
 
-					}
-				}
-			}
+                    }
+                }
+            }
 
-			//return a distinct list of responses
-			return responses
-				.Distinct()
-				.ToList();
-		}
+            //return a distinct list of responses
+            return responses
+                .Distinct()
+                .ToList();
+        }
 
         public Individual[] Copy(Int32 numberOfCopies)
         {
@@ -137,9 +137,10 @@ namespace Arcesoft.TicTacToe.Evolution.Organisms
 
             var grouped = Genes.GroupBy(a => a.Turn).OrderBy(a => a.Key.ToInteger());
 
-            var responses = grouped.Select(a => new {
+            var responses = grouped.Select(a => new
+            {
                 Turn = a.Key,
-                Genes = a.OrderBy(b=>b.Priority)
+                Genes = a.OrderBy(b => b.Priority)
             });
 
             responses.ForEach(a => sb.AppendLine($"{a.Turn}:{a.Genes.First().GetAlleles().ToAlleleString()}"));
@@ -147,6 +148,62 @@ namespace Arcesoft.TicTacToe.Evolution.Organisms
             return sb.ToString();
         }
 
+        #region IArtificial intelligence
+        public IEnumerable<MoveResult> FindMoveResults(IGame game)
+        {
+            //just make something up for this...
+            return FindResponses(game)
+                .Select(a => new MoveResult(a, GameState.InPlay));
+        }
 
+        public Move? TryFindBestMove(IGame game, bool randomlySelectIfMoreThanOne = true)
+        {
+            var results = FindResponses(game, 1).ToList();
+
+            if (results.Any())
+            {
+                return results.First();
+            }
+
+            return null;
+        }
+
+        public void MakeMove(IGame game, bool randomlySelectIfMoreThanOne = true)
+        {
+            var moved = TryMakeMove(game);
+
+            if (moved == false)
+            {
+                if (game.GameIsOver)
+                {
+                    throw new GameException($"Unable to make a move because the game is over.");
+                }
+
+                throw new GameException($"Unable to make a move because the individual has no response for the given boardstate.");
+            }
+        }
+
+        public bool TryMakeMove(IGame game, bool randomlySelectIfMoreThanOne = true)
+        {
+            if (game.GameIsOver)
+            {
+                return false;
+            }
+
+            var moves = FindResponses(game, 1).ToList();
+
+            if (moves.Any() && game.IsMoveValid(moves.First()))
+            {
+                game.Move(moves.First());
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+
+        #endregion
     }
 }

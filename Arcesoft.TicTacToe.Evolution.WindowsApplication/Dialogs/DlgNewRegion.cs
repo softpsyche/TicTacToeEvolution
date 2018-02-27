@@ -55,6 +55,7 @@ namespace Arcesoft.TicTacToe.Evolution.WindowsApplication.Dialogs
                     var evoFactory = factoryContainer.GetInstance<IEvolutionFactory>();
 
                     var region = evoFactory.CreateRegion(dialog.NewRegionSettings);
+                    region.Name = dialog.textBoxName.Text;
                     var pops = dialog.GetPopulations();
                     var populations = pops.Select(a => evoFactory.CreatePopulation(a.Item2, a.Item1));
                     region.AddPopulations(populations);

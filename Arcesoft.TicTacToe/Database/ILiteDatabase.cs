@@ -19,6 +19,8 @@ namespace Arcesoft.TicTacToe.Database
 
         TItem FindById<TItem,TItemId>(TItemId id);
 
+        IEnumerable<TItem> FindAll<TItem>();
+
         IEnumerable<TItem> FindByIndex<TItem>(Expression<Func<TItem, bool>> predicate);
 
         void EnsureIndex<TItem, K>(Expression<Func<TItem, K>> property, bool unique = false);

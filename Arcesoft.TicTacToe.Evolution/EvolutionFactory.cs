@@ -53,6 +53,8 @@ namespace Arcesoft.TicTacToe.Evolution
             {
                 case FitnessEvaluatorType.AllOrNothing:
                     return FactoryContainer.GetInstance<AllOrNothingFitnessEvaluator>();
+                case FitnessEvaluatorType.Godly:
+                    return FactoryContainer.GetInstance<GodlyFitnessEvaluator>();
                 default:
                     throw new ArgumentOutOfRangeException(nameof(fitnessEvaluatorType));
             }
@@ -79,7 +81,7 @@ namespace Arcesoft.TicTacToe.Evolution
             return population;
         }
 
-        public IRegion CreateRegion(RegionSettings settings,string name = null)
+        public IRegion CreateRegion(RegionSettings settings, string name = null)
         {
             var region = new Region(
                 settings);

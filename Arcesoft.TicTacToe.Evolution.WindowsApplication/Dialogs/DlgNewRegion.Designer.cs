@@ -36,12 +36,10 @@
             this.removePoulationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.buttonCreate = new System.Windows.Forms.Button();
             this.buttonCancel = new System.Windows.Forms.Button();
-            this.bindingSourceRegion = new System.Windows.Forms.BindingSource(this.components);
             this.textBoxName = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.uxRegionSettings1 = new Arcesoft.TicTacToe.Evolution.WindowsApplication.UserControls.UxRegionSettings();
             this.contextMenuStripPopulation.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.bindingSourceRegion)).BeginInit();
             this.SuspendLayout();
             // 
             // tabControlPopulations
@@ -100,15 +98,10 @@
             this.buttonCancel.UseVisualStyleBackColor = true;
             this.buttonCancel.Click += new System.EventHandler(this.buttonCancel_Click);
             // 
-            // bindingSourceRegion
-            // 
-            this.bindingSourceRegion.DataSource = typeof(Arcesoft.TicTacToe.Evolution.Environs.IRegion);
-            // 
             // textBoxName
             // 
             this.textBoxName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBoxName.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bindingSourceRegion, "Name", true));
             this.textBoxName.Location = new System.Drawing.Point(151, 12);
             this.textBoxName.Name = "textBoxName";
             this.textBoxName.Size = new System.Drawing.Size(213, 20);
@@ -152,7 +145,6 @@
             this.Text = "DlgNewRegion";
             this.Shown += new System.EventHandler(this.DlgNewRegion_Shown);
             this.contextMenuStripPopulation.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.bindingSourceRegion)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -167,7 +159,6 @@
         private System.Windows.Forms.ToolStripMenuItem addPopulationToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem removePoulationToolStripMenuItem;
         private UserControls.UxRegionSettings uxRegionSettings1;
-        private System.Windows.Forms.BindingSource bindingSourceRegion;
         private System.Windows.Forms.TextBox textBoxName;
         private System.Windows.Forms.Label label1;
     }

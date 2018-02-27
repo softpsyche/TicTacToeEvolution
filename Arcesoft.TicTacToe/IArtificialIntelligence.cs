@@ -10,6 +10,8 @@ namespace Arcesoft.TicTacToe
 {
     public interface IArtificialIntelligence
     {
+        Move? TryFindBestMove(IGame game, bool randomlySelectIfMoreThanOne = true);
+
         bool TryMakeMove(IGame game, bool randomlySelectIfMoreThanOne = true);
 
         void MakeMove(IGame game, bool randomlySelectIfMoreThanOne = true);

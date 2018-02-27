@@ -49,6 +49,11 @@ namespace Arcesoft.TicTacToe.Database
             return Collection<TItem>().Find(predicate);
         }
 
+        public IEnumerable<TItem> FindAll<TItem>()
+        {
+            return Collection<TItem>().FindAll();
+        }
+
         public TItem FindById<TItem, TItemId>(TItemId id)
         {
             return Collection<TItem>().FindById(new LiteDB.BsonValue(id));

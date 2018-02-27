@@ -106,7 +106,7 @@ namespace Arcesoft.TicTacToe.Evolution.WindowsApplication
             });
         }
 
-        private void UxPopulationSummary_PlayRequested(object sender, EventArgs e)
+        private void UxPopulationSummary_PlayRequested(object sender, PlayRequestedEventArgs e)
         {
             if (backgroundWorkerMain.IsBusy)
             {
@@ -114,7 +114,10 @@ namespace Arcesoft.TicTacToe.Evolution.WindowsApplication
             }
 
             var requestor = sender as UxPopulationSummary;
-            var popId = requestor.PopulationSummary.Id;
+            var population = SelectedRegion.Populations.SingleOrDefault(a => a.Id == e.PopulationId);
+            var individualAi = population.Individuals.First();
+
+            DlgPlayGame.Play(FactoryContainer, e.Player == Player.O ? individualAi : null, e.Player == Player.O ? null : individualAi);
         }
 
         private void newToolStripMenuItem_Click(object sender, EventArgs e)
@@ -346,7 +349,7 @@ namespace Arcesoft.TicTacToe.Evolution.WindowsApplication
             Id = population.Id;
             Name = population.Name;
             Generation = population.Generation;
-            Size = population.Individuals.Count();
+            Size = (population.Individuals?.Count()).GetValueOrDefault();
             GenesPerIndividual = population.Settings.MaximumGenesPerIndividual;
             BreederType = population.Settings.BreederType;
             FitnessEvaluatorType = population.Settings.FitnessEvaluatorType;

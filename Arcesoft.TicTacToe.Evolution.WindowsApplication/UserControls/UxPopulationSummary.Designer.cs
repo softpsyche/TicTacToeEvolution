@@ -42,14 +42,15 @@
             this.label6 = new System.Windows.Forms.Label();
             this.textBoxFitnessEvaluator = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
-            this.buttonPlayAgainst = new System.Windows.Forms.Button();
+            this.buttonPlayAgainstAsX = new System.Windows.Forms.Button();
+            this.buttonPlayAsO = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // textBoxName
             // 
             this.textBoxName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBoxName.Location = new System.Drawing.Point(182, 4);
+            this.textBoxName.Location = new System.Drawing.Point(182, 53);
             this.textBoxName.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.textBoxName.Name = "textBoxName";
             this.textBoxName.ReadOnly = true;
@@ -58,7 +59,7 @@
             // 
             // label1
             // 
-            this.label1.Location = new System.Drawing.Point(5, 7);
+            this.label1.Location = new System.Drawing.Point(5, 56);
             this.label1.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(143, 18);
@@ -69,7 +70,7 @@
             // 
             this.textBoxId.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBoxId.Location = new System.Drawing.Point(182, 36);
+            this.textBoxId.Location = new System.Drawing.Point(182, 85);
             this.textBoxId.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.textBoxId.Name = "textBoxId";
             this.textBoxId.ReadOnly = true;
@@ -78,7 +79,7 @@
             // 
             // label2
             // 
-            this.label2.Location = new System.Drawing.Point(5, 39);
+            this.label2.Location = new System.Drawing.Point(5, 88);
             this.label2.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(143, 18);
@@ -89,7 +90,7 @@
             // 
             this.textBoxSize.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBoxSize.Location = new System.Drawing.Point(182, 68);
+            this.textBoxSize.Location = new System.Drawing.Point(182, 117);
             this.textBoxSize.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.textBoxSize.Name = "textBoxSize";
             this.textBoxSize.ReadOnly = true;
@@ -98,7 +99,7 @@
             // 
             // label3
             // 
-            this.label3.Location = new System.Drawing.Point(5, 71);
+            this.label3.Location = new System.Drawing.Point(5, 120);
             this.label3.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(143, 18);
@@ -109,7 +110,7 @@
             // 
             this.textBoxGeneration.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBoxGeneration.Location = new System.Drawing.Point(182, 100);
+            this.textBoxGeneration.Location = new System.Drawing.Point(182, 149);
             this.textBoxGeneration.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.textBoxGeneration.Name = "textBoxGeneration";
             this.textBoxGeneration.ReadOnly = true;
@@ -118,7 +119,7 @@
             // 
             // label4
             // 
-            this.label4.Location = new System.Drawing.Point(5, 103);
+            this.label4.Location = new System.Drawing.Point(5, 152);
             this.label4.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(143, 18);
@@ -129,7 +130,7 @@
             // 
             this.textBoxGenesPerIndividual.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBoxGenesPerIndividual.Location = new System.Drawing.Point(182, 132);
+            this.textBoxGenesPerIndividual.Location = new System.Drawing.Point(182, 181);
             this.textBoxGenesPerIndividual.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.textBoxGenesPerIndividual.Name = "textBoxGenesPerIndividual";
             this.textBoxGenesPerIndividual.ReadOnly = true;
@@ -138,7 +139,7 @@
             // 
             // label5
             // 
-            this.label5.Location = new System.Drawing.Point(5, 135);
+            this.label5.Location = new System.Drawing.Point(5, 184);
             this.label5.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(167, 18);
@@ -149,7 +150,7 @@
             // 
             this.textBoxBreederType.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBoxBreederType.Location = new System.Drawing.Point(182, 164);
+            this.textBoxBreederType.Location = new System.Drawing.Point(182, 213);
             this.textBoxBreederType.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.textBoxBreederType.Name = "textBoxBreederType";
             this.textBoxBreederType.ReadOnly = true;
@@ -158,7 +159,7 @@
             // 
             // label6
             // 
-            this.label6.Location = new System.Drawing.Point(5, 167);
+            this.label6.Location = new System.Drawing.Point(5, 216);
             this.label6.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(167, 18);
@@ -169,7 +170,7 @@
             // 
             this.textBoxFitnessEvaluator.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBoxFitnessEvaluator.Location = new System.Drawing.Point(182, 196);
+            this.textBoxFitnessEvaluator.Location = new System.Drawing.Point(182, 245);
             this.textBoxFitnessEvaluator.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.textBoxFitnessEvaluator.Name = "textBoxFitnessEvaluator";
             this.textBoxFitnessEvaluator.ReadOnly = true;
@@ -178,30 +179,41 @@
             // 
             // label7
             // 
-            this.label7.Location = new System.Drawing.Point(5, 199);
+            this.label7.Location = new System.Drawing.Point(5, 248);
             this.label7.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(167, 18);
             this.label7.TabIndex = 16;
             this.label7.Text = "Fitness evaluator type";
             // 
-            // buttonPlayAgainst
+            // buttonPlayAgainstAsX
             // 
-            this.buttonPlayAgainst.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.buttonPlayAgainst.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonPlayAgainst.Location = new System.Drawing.Point(188, 230);
-            this.buttonPlayAgainst.Name = "buttonPlayAgainst";
-            this.buttonPlayAgainst.Size = new System.Drawing.Size(124, 43);
-            this.buttonPlayAgainst.TabIndex = 17;
-            this.buttonPlayAgainst.Text = "Play against";
-            this.buttonPlayAgainst.UseVisualStyleBackColor = true;
-            this.buttonPlayAgainst.Click += new System.EventHandler(this.buttonPlayAgainst_Click);
+            this.buttonPlayAgainstAsX.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonPlayAgainstAsX.Location = new System.Drawing.Point(182, 3);
+            this.buttonPlayAgainstAsX.Name = "buttonPlayAgainstAsX";
+            this.buttonPlayAgainstAsX.Size = new System.Drawing.Size(124, 43);
+            this.buttonPlayAgainstAsX.TabIndex = 17;
+            this.buttonPlayAgainstAsX.Text = "Play as X";
+            this.buttonPlayAgainstAsX.UseVisualStyleBackColor = true;
+            this.buttonPlayAgainstAsX.Click += new System.EventHandler(this.buttonPlayAsX_Click);
+            // 
+            // buttonPlayAsO
+            // 
+            this.buttonPlayAsO.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonPlayAsO.Location = new System.Drawing.Point(312, 3);
+            this.buttonPlayAsO.Name = "buttonPlayAsO";
+            this.buttonPlayAsO.Size = new System.Drawing.Size(124, 43);
+            this.buttonPlayAsO.TabIndex = 18;
+            this.buttonPlayAsO.Text = "Play as O";
+            this.buttonPlayAsO.UseVisualStyleBackColor = true;
+            this.buttonPlayAsO.Click += new System.EventHandler(this.buttonPlayAsO_Click);
             // 
             // UxPopulationSummary
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.buttonPlayAgainst);
+            this.Controls.Add(this.buttonPlayAsO);
+            this.Controls.Add(this.buttonPlayAgainstAsX);
             this.Controls.Add(this.textBoxFitnessEvaluator);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.textBoxBreederType);
@@ -241,6 +253,7 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.TextBox textBoxFitnessEvaluator;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.Button buttonPlayAgainst;
+        private System.Windows.Forms.Button buttonPlayAgainstAsX;
+        private System.Windows.Forms.Button buttonPlayAsO;
     }
 }

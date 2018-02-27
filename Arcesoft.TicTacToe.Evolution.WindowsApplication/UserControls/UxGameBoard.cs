@@ -89,6 +89,15 @@ namespace Arcesoft.TicTacToe.Evolution.WindowsApplication.UserControls
 
         private void Game_GameStateChanged(object sender, GameStateChangedEventArgs e)
         {
+            if (Game.MoveHistory.Length == 0)
+            {
+                //do game over junk? render
+                labelGameState.Text = $"Game state: {Game.GameState}";
+
+                //feedback
+                labelFeedback.Text = $"";
+            }
+
             if (Game.GameIsOver)
             {
                 //do game over junk? render

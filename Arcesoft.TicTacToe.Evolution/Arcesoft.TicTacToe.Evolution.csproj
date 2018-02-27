@@ -51,7 +51,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ArtificialIntelligence\IndividualArtificialIntelligence.cs" />
     <Compile Include="DependencyInjection\Binder.cs" />
     <Compile Include="DependencyInjection\FactoryContainer.cs" />
     <Compile Include="Environs\IPopulation.cs" />
@@ -111,6 +110,7 @@
     <Compile Include="Organisms\TurnExtensions.cs" />
     <Compile Include="Organisms\Turn.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Selection\Strategies\GodlyFitnessEvaluator.cs" />
     <Compile Include="StringExtensions.cs" />
     <None Include="packages.config" />
   </ItemGroup>

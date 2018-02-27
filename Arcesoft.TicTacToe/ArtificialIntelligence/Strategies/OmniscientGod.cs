@@ -23,11 +23,11 @@ namespace Arcesoft.TicTacToe.ArtificialIntelligence.Strategies
             _random = random;
         }
 
-        public bool TryMakeMove(IGame game, bool randomlySelectIfMoreThanOne = true)
+        public Move? TryFindBestMove(IGame game, bool randomlySelectIfMoreThanOne = true)
         {
             if (game.GameIsOver)
             {
-                return false;
+                return null;
             }
 
             var moves = _moveDataAccess.FindMoveResponses(game.GameBoardString, game.CurrentPlayer);
@@ -42,10 +42,21 @@ namespace Arcesoft.TicTacToe.ArtificialIntelligence.Strategies
                 throw new Exception($"Unable to make a move because there are no available moves for game board {game.GameBoardString}. Possible corrupt move data access or game.");
             }
 
-            game.Move(moveResponse.Response);
-
-            return true;
+            return moveResponse.Response;
         }
+        public bool TryMakeMove(IGame game, bool randomlySelectIfMoreThanOne = true)
+        {
+            var move = TryFindBestMove(game, randomlySelectIfMoreThanOne);
+
+            if (move.HasValue)
+            {
+                game.Move(move.Value);
+                return true;
+            }
+
+            return false;
+        }
+
         public void MakeMove(IGame game, bool randomlySelectIfMoreThanOne = true)
         {
             if (TryMakeMove(game,randomlySelectIfMoreThanOne) == false)

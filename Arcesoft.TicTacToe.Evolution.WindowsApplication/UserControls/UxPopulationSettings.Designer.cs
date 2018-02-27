@@ -173,6 +173,7 @@
             this.comboBoxBreederType.Name = "comboBoxBreederType";
             this.comboBoxBreederType.Size = new System.Drawing.Size(183, 21);
             this.comboBoxBreederType.TabIndex = 7;
+            this.comboBoxBreederType.SelectedIndexChanged += new System.EventHandler(this.comboBoxBreederType_SelectedIndexChanged);
             // 
             // label6
             // 
@@ -192,6 +193,7 @@
             this.comboBoxFitnessEvaluatorType.Name = "comboBoxFitnessEvaluatorType";
             this.comboBoxFitnessEvaluatorType.Size = new System.Drawing.Size(183, 21);
             this.comboBoxFitnessEvaluatorType.TabIndex = 8;
+            this.comboBoxFitnessEvaluatorType.SelectedIndexChanged += new System.EventHandler(this.comboBoxFitnessEvaluatorType_SelectedIndexChanged);
             // 
             // label7
             // 

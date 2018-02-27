@@ -33,12 +33,6 @@ namespace Arcesoft.TicTacToe.Evolution.Selection
         }
         private void EvaluateInternal(IGame game, Match match, Ledger ledger, bool includeDescription)
         {
-
-            if (game.TotalMovesMade > 4)
-            {
-                var boardy = game.GameBoardString;
-            }
-
             //is the game over?
             if (game.GameIsOver)
             {
@@ -67,8 +61,8 @@ namespace Arcesoft.TicTacToe.Evolution.Selection
             else
             {
                 var move = game.CurrentPlayer == Player.X ?
-                    match.PlayerX.TryFindMove(game) :
-                    match.PlayerO.TryFindMove(game);
+                    match.PlayerX.TryFindBestMove(game):
+                    match.PlayerO.TryFindBestMove(game);
 
                 if (move.HasValue)
                 {
@@ -104,9 +98,12 @@ namespace Arcesoft.TicTacToe.Evolution.Selection
                 }
             }
         }
-        private void UpdateScoresOrLedger(Individual individual, Match match, MetricType metricType, Ledger ledger, string description)
+        private void UpdateScoresOrLedger(IArtificialIntelligence artificialIntelligence, Match match, MetricType metricType, Ledger ledger, string description)
         {
-            if (ledger != null)
+            var individual = artificialIntelligence as Individual;
+
+            //we only record results of an individual. other AIs will not be counted.
+            if ((individual != null) && (ledger != null))
             {
                 ledger.AddEntry(
                     individual.Id,

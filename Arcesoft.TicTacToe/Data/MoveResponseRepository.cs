@@ -42,6 +42,16 @@ namespace Arcesoft.TicTacToe.Data
             }
         }
 
+        public IEnumerable<MoveResponse> FindAllMoveResponses()
+        {
+            using (var db = Database())
+            {
+                var responses = db.FindAll<MoveResponseRecord>();
+
+                return ToMoveResponses(responses);
+            }
+        }
+
         public IEnumerable<MoveResponse> FindMoveResponses(string currentBoardPosition, Player currentPlayer)
         {
             using (var db = Database())

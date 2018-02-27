@@ -20,11 +20,11 @@ namespace Arcesoft.TicTacToe.ArtificialIntelligence.Strategies
             _random = random;
         }
 
-        public bool TryMakeMove(IGame game, bool randomlySelectIfMoreThanOne = true)
+        public Move? TryFindBestMove(IGame game, bool randomlySelectIfMoreThanOne = true)
         {
             if (game.GameIsOver)
             {
-                return false;
+                return null;
             }
 
             //we make a copy because its polite to not inadvertantly mess up 
@@ -37,9 +37,19 @@ namespace Arcesoft.TicTacToe.ArtificialIntelligence.Strategies
 
             var moveResult = randomlySelectIfMoreThanOne ? bestMoves.RandomFromListOrDefault(_random) : bestMoves.First();
 
-            game.Move(moveResult.MoveMade);
+            return moveResult.MoveMade;
+        }
+        public bool TryMakeMove(IGame game, bool randomlySelectIfMoreThanOne = true)
+        {
+            var move = TryFindBestMove(game, randomlySelectIfMoreThanOne);
 
-            return true;
+            if (move.HasValue)
+            {
+                game.Move(move.Value);
+                return true;
+            }
+
+            return false;
         }
 
         public void MakeMove(IGame game, bool randomlySelectIfMoreThanOne = true)

@@ -4,37 +4,36 @@
     "Settings": {
       "MutationRate": ".001",
       "MaximumPopulationSize": "100",
-      "IndividualChildBearingLimit": "15",
-      "MaximumGenesPerIndividual": "200",
+      "IndividualChildBearingLimit": "5",
+      "MaximumGenesPerIndividual": "80",
       "BreederType": "ASexual",
-      "FitnessEvaluatorType": "AllOrNothing",
+      "FitnessEvaluatorType": "Godly",
       "MatchTournaments": "5"
     }
   },
   {
-
     "Name": "Medium",
     "Settings": {
-      "MutationRate": ".00025",
-      "MaximumPopulationSize": "250",
-      "IndividualChildBearingLimit": "7",
-      "MaximumGenesPerIndividual": "160",
+      "MutationRate": ".0025",
+      "MaximumPopulationSize": "300",
+      "IndividualChildBearingLimit": "10",
+      "MaximumGenesPerIndividual": "120",
       "BreederType": "ASexual",
-      "FitnessEvaluatorType": "AllOrNothing",
-      "MatchTournaments": "4"
+      "FitnessEvaluatorType": "Godly",
+      "MatchTournaments": "5"
     }
   },
   {
 
     "Name": "Large",
     "Settings": {
-      "MutationRate": ".00025",
+      "MutationRate": ".005",
       "MaximumPopulationSize": "1000",
-      "IndividualChildBearingLimit": "4",
-      "MaximumGenesPerIndividual": "140",
+      "IndividualChildBearingLimit": "20",
+      "MaximumGenesPerIndividual": "200",
       "BreederType": "ASexual",
-      "FitnessEvaluatorType": "AllOrNothing",
-      "MatchTournaments": "4"
+      "FitnessEvaluatorType": "Godly",
+      "MatchTournaments": "5"
     }
   }
 ]

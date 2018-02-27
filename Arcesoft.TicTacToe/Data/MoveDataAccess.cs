@@ -26,5 +26,10 @@ namespace Arcesoft.TicTacToe.ArtificialIntelligence
         {
             return _moveRepository.FindMoveResponses(currentBoardPosition, currentPlayer);
         }
+
+        public IEnumerable<MoveResponse> FindAllMoveResponses()
+        {
+            return _moveRepository.FindAllMoveResponses();
+        }
     }
 }

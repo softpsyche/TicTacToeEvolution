@@ -9,6 +9,7 @@ namespace Arcesoft.TicTacToe.Data
 {
     internal interface IMoveDataAccess
     {
+        IEnumerable<MoveResponse> FindAllMoveResponses();
         IEnumerable<MoveResponse> FindMoveResponses(string currentBoardPosition, Player currentPlayer);
     }
 }

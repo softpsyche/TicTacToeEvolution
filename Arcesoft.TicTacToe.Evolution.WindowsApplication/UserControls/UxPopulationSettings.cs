@@ -33,8 +33,6 @@ namespace Arcesoft.TicTacToe.Evolution.WindowsApplication.UserControls
             if (this.InDesignMode() == false)
             {
                 comboBoxPresets.DataSource = PresetPopulationSettings.Select(a => a.Name).ToList();
-                comboBoxBreederType.DataSource = Enum.GetNames(typeof(BreederType)).ToList();
-                comboBoxFitnessEvaluatorType.DataSource = Enum.GetNames(typeof(FitnessEvaluatorType)).ToList();
 
                 comboBoxPresets.SelectedIndex = 0;
             }
@@ -43,12 +41,25 @@ namespace Arcesoft.TicTacToe.Evolution.WindowsApplication.UserControls
         private void comboBoxPresets_SelectedIndexChanged(object sender, EventArgs e)
         {
             var val = PresetPopulationSettings.Single(a => a.Name == comboBoxPresets.SelectedValue.ToString());
-
-            comboBoxBreederType.SelectedItem = val.Settings.BreederType.ToString();
-            comboBoxFitnessEvaluatorType.SelectedItem = val.Settings.FitnessEvaluatorType.ToString();
-
             SelectedSettings = val.Settings;
+
+            comboBoxBreederType.DataSource = Enum.GetNames(typeof(BreederType)).ToList();
+            comboBoxFitnessEvaluatorType.DataSource = Enum.GetNames(typeof(FitnessEvaluatorType)).ToList();
+            comboBoxBreederType.SelectedItem = SelectedSettings.BreederType.ToString();
+            comboBoxFitnessEvaluatorType.SelectedItem = SelectedSettings.FitnessEvaluatorType.ToString();
+
+            
             bindingSourceMain.DataSource = SelectedSettings;
+        }
+
+        private void comboBoxFitnessEvaluatorType_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            SelectedSettings.FitnessEvaluatorType = comboBoxFitnessEvaluatorType.SelectedValue.ToString().ToEnumeration<FitnessEvaluatorType>();
+        }
+
+        private void comboBoxBreederType_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            SelectedSettings.BreederType = comboBoxBreederType.SelectedValue.ToString().ToEnumeration<BreederType>();
         }
     }
 }
