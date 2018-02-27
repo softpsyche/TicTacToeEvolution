@@ -17,10 +17,22 @@ namespace Arcesoft.TicTacToe.Evolution.WindowsApplication
 		{
             var container = Bootstrap();
 
+            BuildDb(container);
+
 			Application.EnableVisualStyles();
 			Application.SetCompatibleTextRenderingDefault(false);
 			Application.Run(container.GetInstance<FormMain>());
 		}
+
+        private static void BuildDb(Container container)
+        {
+            var builder = container.GetInstance<IDatabaseBuilder>();
+
+            if (builder.DatabaseIsEmpty())
+            {
+                builder.PopulateMoveResponses();
+            }
+        }
 
         private static Container Bootstrap()
         {

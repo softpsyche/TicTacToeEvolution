@@ -36,11 +36,17 @@ namespace Arcesoft.TicTacToe.Evolution.WindowsApplication.Dialogs
             {
                 return;
             }
+
+            uxGameBoardMain.PlayerX = PlayerXAI;
+            uxGameBoardMain.PlayerO = PlayerOAI;
+
+            Game.Reset();
         }
 
         private void buttonCreate_Click(object sender, EventArgs e)
         {
             Game.Reset();
+            Invalidate(true);
         }
 
         private void buttonCancel_Click(object sender, EventArgs e)

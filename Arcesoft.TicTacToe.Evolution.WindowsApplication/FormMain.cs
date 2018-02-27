@@ -1,4 +1,5 @@
-﻿using Arcesoft.TicTacToe.Evolution.Environs;
+﻿using Arcesoft.TicTacToe.Entities;
+using Arcesoft.TicTacToe.Evolution.Environs;
 using Arcesoft.TicTacToe.Evolution.Persistance;
 using Arcesoft.TicTacToe.Evolution.Reproduction;
 using Arcesoft.TicTacToe.Evolution.Selection;
@@ -22,15 +23,17 @@ namespace Arcesoft.TicTacToe.Evolution.WindowsApplication
     {
         private FactoryContainer FactoryContainer { get; set; }
         private IEvolutionFactory EvolutionFactory { get; set; }
+        private ITicTacToeFactory TicTacToeFactory { get; set; }
         private IDataAccess DataAccess { get; set; }
         private ApplicationSettings ApplicationSettings { get; set; }
 
         IRegion SelectedRegion { get; set; }
 
-        public FormMain(FactoryContainer factoryContainer, IEvolutionFactory evolutionFactory, IDataAccess dataAccess, ApplicationSettings applicationSettings)
+        public FormMain(FactoryContainer factoryContainer, IEvolutionFactory evolutionFactory, ITicTacToeFactory ticTacToeFactory, IDataAccess dataAccess, ApplicationSettings applicationSettings)
         {
             FactoryContainer = factoryContainer;
             EvolutionFactory = evolutionFactory;
+            TicTacToeFactory = ticTacToeFactory;
             DataAccess = dataAccess;
             ApplicationSettings = applicationSettings;
 
@@ -281,6 +284,21 @@ namespace Arcesoft.TicTacToe.Evolution.WindowsApplication
         private void playHumanVHumanToolStripMenuItem_Click(object sender, EventArgs e)
         {
             DlgPlayGame.Play(FactoryContainer);
+        }
+
+        private void playVsAIasXToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            DlgPlayGame.Play(FactoryContainer, null, TicTacToeFactory.NewArtificialIntelligence(ArtificialIntelligenceTypes.OmniscientGod));         
+        }
+
+        private void playVsAIasOToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            DlgPlayGame.Play(FactoryContainer, TicTacToeFactory.NewArtificialIntelligence(ArtificialIntelligenceTypes.OmniscientGod));
+        }
+
+        private void playVsIndividualToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            throw new NotImplementedException();
         }
     }
 

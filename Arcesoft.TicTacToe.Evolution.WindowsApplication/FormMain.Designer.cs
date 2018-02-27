@@ -47,6 +47,9 @@
             this.pauseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.renameRegionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.playHumanVHumanToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.playVsAIasXToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.playVsAIasOToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.playVsIndividualToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerMain)).BeginInit();
             this.splitContainerMain.Panel2.SuspendLayout();
             this.splitContainerMain.SuspendLayout();
@@ -174,7 +177,10 @@
             this.runToolStripMenuItem,
             this.pauseToolStripMenuItem,
             this.renameRegionToolStripMenuItem,
-            this.playHumanVHumanToolStripMenuItem});
+            this.playHumanVHumanToolStripMenuItem,
+            this.playVsAIasXToolStripMenuItem,
+            this.playVsAIasOToolStripMenuItem,
+            this.playVsIndividualToolStripMenuItem});
             this.commandsToolStripMenuItem.Name = "commandsToolStripMenuItem";
             this.commandsToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F5;
             this.commandsToolStripMenuItem.Size = new System.Drawing.Size(81, 20);
@@ -184,7 +190,7 @@
             // 
             this.runToolStripMenuItem.Name = "runToolStripMenuItem";
             this.runToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F5;
-            this.runToolStripMenuItem.Size = new System.Drawing.Size(212, 22);
+            this.runToolStripMenuItem.Size = new System.Drawing.Size(210, 22);
             this.runToolStripMenuItem.Text = "Run";
             this.runToolStripMenuItem.Click += new System.EventHandler(this.runToolStripMenuItem_Click);
             // 
@@ -192,24 +198,48 @@
             // 
             this.pauseToolStripMenuItem.Name = "pauseToolStripMenuItem";
             this.pauseToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F8;
-            this.pauseToolStripMenuItem.Size = new System.Drawing.Size(212, 22);
+            this.pauseToolStripMenuItem.Size = new System.Drawing.Size(210, 22);
             this.pauseToolStripMenuItem.Text = "Pause";
             this.pauseToolStripMenuItem.Click += new System.EventHandler(this.pauseToolStripMenuItem_Click);
             // 
             // renameRegionToolStripMenuItem
             // 
             this.renameRegionToolStripMenuItem.Name = "renameRegionToolStripMenuItem";
-            this.renameRegionToolStripMenuItem.Size = new System.Drawing.Size(212, 22);
+            this.renameRegionToolStripMenuItem.Size = new System.Drawing.Size(210, 22);
             this.renameRegionToolStripMenuItem.Text = "Rename region";
             this.renameRegionToolStripMenuItem.Click += new System.EventHandler(this.renameRegionToolStripMenuItem_Click);
             // 
             // playHumanVHumanToolStripMenuItem
             // 
             this.playHumanVHumanToolStripMenuItem.Name = "playHumanVHumanToolStripMenuItem";
-            this.playHumanVHumanToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F12;
-            this.playHumanVHumanToolStripMenuItem.Size = new System.Drawing.Size(212, 22);
-            this.playHumanVHumanToolStripMenuItem.Text = "Play human v human";
+            this.playHumanVHumanToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F10;
+            this.playHumanVHumanToolStripMenuItem.Size = new System.Drawing.Size(210, 22);
+            this.playHumanVHumanToolStripMenuItem.Text = "Play vs human";
             this.playHumanVHumanToolStripMenuItem.Click += new System.EventHandler(this.playHumanVHumanToolStripMenuItem_Click);
+            // 
+            // playVsAIasXToolStripMenuItem
+            // 
+            this.playVsAIasXToolStripMenuItem.Name = "playVsAIasXToolStripMenuItem";
+            this.playVsAIasXToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F11;
+            this.playVsAIasXToolStripMenuItem.Size = new System.Drawing.Size(210, 22);
+            this.playVsAIasXToolStripMenuItem.Text = "Play vs AI (as X)";
+            this.playVsAIasXToolStripMenuItem.Click += new System.EventHandler(this.playVsAIasXToolStripMenuItem_Click);
+            // 
+            // playVsAIasOToolStripMenuItem
+            // 
+            this.playVsAIasOToolStripMenuItem.Name = "playVsAIasOToolStripMenuItem";
+            this.playVsAIasOToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.F11)));
+            this.playVsAIasOToolStripMenuItem.Size = new System.Drawing.Size(210, 22);
+            this.playVsAIasOToolStripMenuItem.Text = "Play vs AI (as O)";
+            this.playVsAIasOToolStripMenuItem.Click += new System.EventHandler(this.playVsAIasOToolStripMenuItem_Click);
+            // 
+            // playVsIndividualToolStripMenuItem
+            // 
+            this.playVsIndividualToolStripMenuItem.Name = "playVsIndividualToolStripMenuItem";
+            this.playVsIndividualToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F12;
+            this.playVsIndividualToolStripMenuItem.Size = new System.Drawing.Size(210, 22);
+            this.playVsIndividualToolStripMenuItem.Text = "Play vs Individual";
+            this.playVsIndividualToolStripMenuItem.Click += new System.EventHandler(this.playVsIndividualToolStripMenuItem_Click);
             // 
             // FormMain
             // 
@@ -258,6 +288,9 @@
         private System.Windows.Forms.ToolStripMenuItem renameRegionToolStripMenuItem;
         private System.Windows.Forms.TabControl tabControlPopulationSummaries;
         private System.Windows.Forms.ToolStripMenuItem playHumanVHumanToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem playVsAIasXToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem playVsAIasOToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem playVsIndividualToolStripMenuItem;
     }
 }
 

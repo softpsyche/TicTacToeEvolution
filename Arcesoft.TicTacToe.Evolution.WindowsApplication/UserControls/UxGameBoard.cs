@@ -106,7 +106,11 @@ namespace Arcesoft.TicTacToe.Evolution.WindowsApplication.UserControls
                 return;
             }
 
-            Thread.Sleep(DelayBetweenAiMovesInMilliseconds);
+            //sleep if both players are AI (so it doesnt fly by)
+            if (PlayerX != null && PlayerO != null)
+            {
+                Thread.Sleep(DelayBetweenAiMovesInMilliseconds);
+            }
 
             var moved = CurrentAI.TryMakeMove(Game);
 
